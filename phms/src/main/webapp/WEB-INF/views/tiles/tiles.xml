@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="base-definition"
+		template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
+		<put-attribute name="pageCSS" value=""></put-attribute>
+		<put-attribute name="body" value="" />
+
+
+		<put-attribute name="footer"
+			value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="app" />
+		</put-list-attribute>
+
+
+		<put-list-attribute name="requiredJSFiles">
+		</put-list-attribute>
+
+
+	</definition>
+
+	<!-- Admin page -->
+	<definition name="adminRoot" extends="base-definition">
+		<put-attribute name="title" value="Stock" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/admin/stock.jsp" cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<add-attribute value="app" />
+			<add-attribute value="adminStock" />
+		</put-list-attribute>
+	</definition>
+
+
+	<!-- CustomerOrder page -->
+	<definition name="adminAddCustomerOrder" extends="adminRoot">
+		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/customerOrder/addCustomerOrder.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="addCustomerOrder" />
+		</put-list-attribute>
+	</definition>
+
+
+
+</tiles-definitions>

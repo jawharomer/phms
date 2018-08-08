@@ -1,0 +1,42 @@
+#admin-body {
+	flex: 1 1 auto;
+	overflow: visible;
+	display: flex;
+	flex-direction: row;
+}
+
+#section-right {
+	background: rgb(11, 123, 32);
+	min-height: 0;
+	overflow: auto;
+	flex-basis: auto;
+	padding-left: 10px;
+}
+
+#section-right .cus-navbar {
+	display: block;
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+#section-right .cus-navbar  li {
+	display: block;
+}
+
+#section-right .cus-navbar  li a {
+	display: inline-block;
+	width: 150px;
+	text-decoration: none;
+	color: inherit;
+	height: 50px;
+	background: gray;
+	margin-bottom: 3px;
+}
+
+#main-content {
+	overflow: auto;
+	flex: 1;
+	min-height: 0;
+	padding-left: 10px;
+}

@@ -1,0 +1,45 @@
+/*bootstrap*/
+.modal-backdrop {
+	z-index: -1;
+}
+
+/*Test*/
+table {
+	width: 100%;
+}
+
+body {
+	color: black;
+}
+
+#view-port {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	overflow: auto;
+	background: blue;
+	display: flex;
+	flex-direction: column;
+}
+
+#header {
+	flex-basis: 50px;
+	background: rgba(255, 255, 255, 0.3);
+}
+
+#site-content {
+	background: rgba(255, 255, 255, 0.4);
+	flex: 1 1 auto;
+	display: flex;
+	min-height: 0;
+}
+
+#footer {
+	flex-basis: 20px;
+}
+
+a {
+	color: inherit;
+}
