@@ -1,9 +1,13 @@
 package com.joh.phms.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joh.phms.domain.model.ProductStepUpD;
+import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductStepUp;
 import com.joh.phms.model.Vendor;
@@ -95,4 +101,28 @@ public class ProductStepUpController {
 			return "success";
 		}
 	}
+
+	@GetMapping()
+	private String getProductStepUpsByDate(@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
+			@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date to, Model model) {
+
+		logger.info("getProductStepUpsByDate->fired");
+
+		List<ProductStepUp> productStepUps = productStepUpService.findAllByTimeBetween(from, to);
+		logger.info("productStepUps=" + productStepUps);
+
+		model.addAttribute("productStepUps", productStepUps);
+
+		return "adminProductStepUps";
+	}
+
+	@GetMapping(path = "/delete/{id}")
+	private String deleteProductStepUp(@PathVariable int id) {
+		logger.info("deleteProductStepUp->fired");
+
+		logger.info("id=" + id);
+		productStepUpService.delete(id);
+		return "success";
+	}
+
 }

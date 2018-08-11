@@ -1,9 +1,13 @@
 package com.joh.phms.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joh.phms.dao.ProductStepUpDAO;
+import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.ProductStepUp;
 
 @Service
@@ -16,5 +20,15 @@ public class ProductStepUpServiceImpl implements ProductStepUpService {
 	public ProductStepUp save(ProductStepUp productStepUp) {
 		productStepUp.setSoldQuantity(0);
 		return productStepUpDAO.save(productStepUp);
+	}
+
+	@Override
+	public List<ProductStepUp> findAllByTimeBetween(Date from, Date to) {
+		return productStepUpDAO.findAllByTimeBetween(from, to);
+	}
+
+	@Override
+	public void delete(int id) {
+		productStepUpDAO.delete(id);
 	}
 }

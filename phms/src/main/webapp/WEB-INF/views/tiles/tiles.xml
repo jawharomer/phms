@@ -206,5 +206,36 @@
 	</definition>
 
 
+	<!-- AdminProductStepUps page -->
+	<definition name="adminProductStepUps" extends="adminRoot">
+		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/productStepUp/productStepUps.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="adminProductStepUps" />
+		</put-list-attribute>
+
+	</definition>
+
+
+
 
 </tiles-definitions>

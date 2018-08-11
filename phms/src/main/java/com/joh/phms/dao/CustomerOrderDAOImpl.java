@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import com.joh.phms.controller.CustomerOrderController;
 import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.CustomerOrderDetail;
+import com.joh.phms.model.ProductStepUp;
 
 public class CustomerOrderDAOImpl implements CustomerOrderDAOExt {
 
@@ -33,13 +34,13 @@ public class CustomerOrderDAOImpl implements CustomerOrderDAOExt {
 		for (CustomerOrderDetail customerOrderDetail : customerOrder.getCustomerOrderDetails()) {
 
 			logger.info("customerOrderDetail=" + customerOrderDetail);
-			List<Integer> productStepUpIds = customerOrderDetail.getProductStepUpIds();
-			logger.info("productStepUpIds=" + productStepUpIds);
+			List<ProductStepUp> productStepUps = customerOrderDetail.getProductStepUpIds();
+			logger.info("productStepUps=" + productStepUps);
 
-			for (Integer productStepUpId : productStepUpIds) {
+			for (ProductStepUp productStepUp : productStepUps) {
 				Query query = em.createNativeQuery(
 						"UPDATE  PRODUCT_STEPUPS SET SOLD_QUANTITY=SOLD_QUANTITY-1  WHERE I_PRODUCT_STEPUP=:id");
-				query.setParameter("id", productStepUpId);
+				query.setParameter("id", productStepUp.getId());
 				query.executeUpdate();
 			}
 

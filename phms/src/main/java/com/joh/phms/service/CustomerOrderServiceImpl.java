@@ -6,10 +6,12 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.joh.phms.controller.ProductStepUpController;
 import com.joh.phms.dao.CustomerOrderDAO;
 import com.joh.phms.dao.DoctorDAO;
 import com.joh.phms.dao.ProductDAO;
@@ -25,6 +27,8 @@ import com.joh.phms.model.ProductStepUp;
 
 @Service
 public class CustomerOrderServiceImpl implements CustomerOrderService {
+
+	private static final Logger logger = Logger.getLogger(CustomerOrderServiceImpl.class);
 
 	@Autowired
 	private CustomerOrderDAO customerOrderDAO;
@@ -46,11 +50,14 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			ProductD productD = productDAO.findProductByCode(customerOrderDetail.getProductCode());
 
 			totalPrice += customerOrderDetail.getQuantity() * productD.getPrice();
+			logger.info("customerOrderDetail.getPrice()=" + customerOrderDetail.getPrice());
+			logger.info("productD.getPrice()=" + productD.getPrice());
 
-			if (customerOrder.getDiscountType() == null && customerOrderDetail.getPrice() != productD.getPrice()) {
+			if (customerOrder.getDiscountType() == null
+					&& !customerOrderDetail.getPrice().equals(productD.getPrice())) {
 				throw new DataIntegrityViolationException("You are tring to discount without assign discount type");
 			} else if (customerOrder.getDiscountType() != null && customerOrder.getDoctor() == null
-					&& customerOrder.getDiscountType().getId() == DiscountType.type.ByDoctor.getId()) {
+					&& customerOrder.getDiscountType().getId().equals(DiscountType.type.ByDoctor.getId())) {
 
 				throw new DataIntegrityViolationException(
 						"You are tring to discount by doctor but no doctor is selected");
@@ -70,8 +77,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 							product.getCode());
 					throw new ItemNotAvaiableException(message);
 				}
-
-				customerOrderDetail.getProductStepUpIds().add(itemForStockDown.getId());
+				
+				ProductStepUp productStepUp=new ProductStepUp();
+				productStepUp.setId(itemForStockDown.getId());
+				customerOrderDetail.getProductStepUpIds().add(productStepUp);
 				productStepUpDAO.stockDown(itemForStockDown.getId());
 			}
 

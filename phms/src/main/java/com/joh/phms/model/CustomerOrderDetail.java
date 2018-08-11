@@ -3,15 +3,15 @@ package com.joh.phms.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "CUSTOMER_ORDER_DETAILS")
@@ -26,10 +26,9 @@ public class CustomerOrderDetail {
 	@JoinColumn(name = "I_CUSTOMER_ORDER")
 	private CustomerOrder customerOrder;
 
-	@ElementCollection
-	@CollectionTable(name = "COD_PRODUCT_STEPUP_IDS", joinColumns = @JoinColumn(name = "I_CUSTOMER_ORDER_DETAIL"))
-	@Column(name = "I_PRODUCT_STEPUP")
-	public List<Integer> productStepUpIds = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "COD_PRODUCT_STEPUPS", joinColumns = @JoinColumn(name = "I_CUSTOMER_ORDER_DETAIL"), inverseJoinColumns = @JoinColumn(name = "I_PRODUCT_STEPUP"))
+	public List<ProductStepUp> productStepUpIds = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "I_PRODUCT", nullable = false)
@@ -103,11 +102,11 @@ public class CustomerOrderDetail {
 		this.productCode = productCode;
 	}
 
-	public List<Integer> getProductStepUpIds() {
+	public List<ProductStepUp> getProductStepUpIds() {
 		return productStepUpIds;
 	}
 
-	public void setProductStepUpIds(List<Integer> productStepUpIds) {
+	public void setProductStepUpIds(List<ProductStepUp> productStepUpIds) {
 		this.productStepUpIds = productStepUpIds;
 	}
 

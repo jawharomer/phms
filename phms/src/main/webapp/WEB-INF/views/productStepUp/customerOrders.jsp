@@ -8,26 +8,6 @@
 
 	this is admin customer orders
 
-	<div>
-		<form action="<c:url value="/customerOrders" />">
-			<table>
-				<tr>
-					<td>From</td>
-					<td><input id="from" name="from" /></td>
-				</tr>
-
-				<tr>
-					<td>To</td>
-					<td><input id="to" name="to" /></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="View" /></td>
-				</tr>
-			</table>
-		</form>
-
-	</div>
-
 
 	<table>
 		<thead>
@@ -65,7 +45,7 @@
 					<td><a
 						href="<c:url value="/customerOrders/edit/" />${item.id}">Edit</a></td>
 					<td>
-						<button ng-click="deleteCustomerOrder(${item.id})">D</button>
+					<button ng-click="deleteCustomerOrder(${item.id})">D</button>
 					</td>
 				</tr>
 
@@ -80,5 +60,3 @@
 	<div>
 		<span>SumTotalPayment=</span> <span>${sumTotalPayment}</span>
 	</div>
-
-</div>
