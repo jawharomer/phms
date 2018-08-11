@@ -10,9 +10,8 @@ Adding new Customer Orders this is p
 
 
 <script type="text/javascript">
-<!--
 	var jsonDoctors = '${jsonDoctors}';
-//-->
+	var jsonDiscountTypes = '${jsonDiscountTypes}';
 </script>
 
 
@@ -31,6 +30,15 @@ Adding new Customer Orders this is p
 				</tr>
 
 				<tr>
+					<td>Discount Type</td>
+					<td><select ng-model="cusomerOrder.discountId">
+							<option ng-repeat="item in discountTypes" value="{{item.id}}"
+								value="{{item.id}}">{{item.discountType}}</option>
+					</select></td>
+				</tr>
+
+
+				<tr>
 					<td>Doctor</td>
 					<td><select ng-model="cusomerOrder.doctorId">
 							<option ng-repeat="item in  doctors" value="{{item.id}}">{{item.fullName}}</option>
@@ -46,7 +54,7 @@ Adding new Customer Orders this is p
 					<th>ProductName</th>
 					<th>Quantity</th>
 					<th>Price</th>
-					
+
 					<th>UnitType</th>
 				</tr>
 
@@ -69,7 +77,7 @@ Adding new Customer Orders this is p
 					<td>{{item.quantity}}</td>
 					<td>{{item.price}}</td>
 					<td>
-					<button ng-click="removeCustomerOrderDetail($index)">D</button>
+						<button ng-click="removeCustomerOrderDetail($index)">D</button>
 					</td>
 				</tr>
 			</tbody>
@@ -81,6 +89,3 @@ Adding new Customer Orders this is p
 
 
 	</div>
-	
-	
-	

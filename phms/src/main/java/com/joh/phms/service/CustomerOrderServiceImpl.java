@@ -1,16 +1,24 @@
 package com.joh.phms.service;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.joh.phms.dao.CustomerOrderDAO;
 import com.joh.phms.dao.DoctorDAO;
+import com.joh.phms.dao.ProductDAO;
 import com.joh.phms.dao.ProductStepUpDAO;
+import com.joh.phms.domain.model.ProductD;
 import com.joh.phms.exception.ItemNotAvaiableException;
 import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.CustomerOrderDetail;
+import com.joh.phms.model.DiscountType;
 import com.joh.phms.model.Doctor;
 import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductStepUp;
@@ -20,15 +28,35 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Autowired
 	private CustomerOrderDAO customerOrderDAO;
+
 	@Autowired
 	private ProductStepUpDAO productStepUpDAO;
+
+	@Autowired
+	private ProductDAO productDAO;
 
 	@Override
 	@Transactional
 	public CustomerOrder save(CustomerOrder customerOrder) {
+		double totalPrice = 0;
 		for (CustomerOrderDetail customerOrderDetail : customerOrder.getCustomerOrderDetails()) {
 
 			Product product = null;
+
+			ProductD productD = productDAO.findProductByCode(customerOrderDetail.getProductCode());
+
+			totalPrice += customerOrderDetail.getQuantity() * productD.getPrice();
+
+			if (customerOrder.getDiscountType() == null && customerOrderDetail.getPrice() != productD.getPrice()) {
+				throw new DataIntegrityViolationException("You are tring to discount without assign discount type");
+			} else if (customerOrder.getDiscountType() != null && customerOrder.getDoctor() == null
+					&& customerOrder.getDiscountType().getId() == DiscountType.type.ByDoctor.getId()) {
+
+				throw new DataIntegrityViolationException(
+						"You are tring to discount by doctor but no doctor is selected");
+
+			}
+
 			for (int i = 0; i < customerOrderDetail.getQuantity(); i++) {
 				ProductStepUp itemForStockDown = productStepUpDAO
 						.findProductStepUpForStockDown(customerOrderDetail.getProductCode());
@@ -48,12 +76,37 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			}
 
 		}
+
+		customerOrder.setTotalPrice(totalPrice);
+
 		return customerOrderDAO.save(customerOrder);
 	}
 
 	@Override
 	public CustomerOrder findOne(int id) {
-		return customerOrderDAO.findOne(id);
+		CustomerOrder customerOrder = customerOrderDAO.findOne(id);
+		if (customerOrder == null)
+			throw new EntityNotFoundException("" + id);
+		return customerOrder;
+	}
+
+	@Override
+	@Transactional
+	public CustomerOrder update(CustomerOrder customerOrder) {
+		customerOrderDAO.delete(customerOrder.getId());
+		customerOrder.setId(customerOrder.getId());
+		return save(customerOrder);
+	}
+
+	@Override
+	public List<CustomerOrder> findAllByOrderTimeBetween(Date from, Date to) {
+		return customerOrderDAO.findAllByOrderTimeBetween(from, to);
+	}
+
+	@Override
+	@Transactional
+	public void delete(int id) {
+		customerOrderDAO.delete(id);
 	}
 
 }

@@ -14,6 +14,7 @@ public class ProductStepUpServiceImpl implements ProductStepUpService {
 
 	@Override
 	public ProductStepUp save(ProductStepUp productStepUp) {
+		productStepUp.setSoldQuantity(0);
 		return productStepUpDAO.save(productStepUp);
 	}
 }

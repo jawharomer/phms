@@ -19,7 +19,8 @@ public class ProductDAOImpl implements ProductDAOExt {
 		List<ProductD> productDs = new ArrayList<>();
 
 		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,P.UNIT_TYPE,\n"
-				+ "IFNULL(SUM(QUANTITY),0) AS STOCK_LEVEL,\n" + "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
+				+ "IFNULL(SUM(QUANTITY-SOLD_QUANTITY),0) AS STOCK_LEVEL,\n"
+				+ "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
 				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE\n"
 				+ "FROM PRODUCTS P\n" + "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n"
 				+ "GROUP BY P.I_PRODUCT\n" + "ORDER BY PRODUCT_CODE");
@@ -55,9 +56,9 @@ public class ProductDAOImpl implements ProductDAOExt {
 		System.out.println(query);
 
 		Object[] row = (Object[]) query.getSingleResult();
- 
+
 		ProductD productD = new ProductD();
-		
+
 		productD.setProductId((Integer) row[0]);
 		productD.setCode((String) row[1]);
 		productD.setName((String) row[2]);
@@ -65,7 +66,7 @@ public class ProductDAOImpl implements ProductDAOExt {
 		productD.setStockLevel(Integer.parseInt("" + row[4]));
 		productD.setCost((Double) row[5]);
 		productD.setPrice((Double) row[6]);
-		
+
 		return productD;
 
 	}

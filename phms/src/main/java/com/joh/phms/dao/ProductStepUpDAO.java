@@ -15,7 +15,7 @@ public interface ProductStepUpDAO extends CrudRepository<ProductStepUp, Integer>
 	ProductStepUp findProductStepUpForStockDown(String productCode);
 	
 	@Modifying
-	@Query(value="UPDATE PRODUCT_STEPUPS SET QUANTITY=QUANTITY-1 WHERE I_PRODUCT_STEPUP= ?1 ",nativeQuery=true)
+	@Query(value="UPDATE PRODUCT_STEPUPS SET SOLD_QUANTITY=SOLD_QUANTITY+1 WHERE I_PRODUCT_STEPUP= ?1 ",nativeQuery=true)
 	void stockDown(Integer id);
 	
 	

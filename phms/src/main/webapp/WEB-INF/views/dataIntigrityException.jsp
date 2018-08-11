@@ -8,7 +8,8 @@
 </head>
 <body>
 
-	<h1>Can not Do this procedure because of Data error</h1>
+	<h3>Can not Do this procedure because of Data error</h3>
+	<p>${message}</p>
 
 </body>
 </html>

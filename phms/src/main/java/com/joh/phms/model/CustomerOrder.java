@@ -40,14 +40,16 @@ public class CustomerOrder {
 	@ColumnDefault("CURRENT_TIMESTAMP")
 	private Date orderTime;
 
+	@Column(name = "TOTAL_PRICE")
+	private Double totalPrice;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "I_DOCTOR")
 	private Doctor doctor;
-	
-	
-	
-	
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "I_DISCOUNT_TYPE")
+	private DiscountType discountType;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "I_CUSTOMER_ORDER")
@@ -93,10 +95,26 @@ public class CustomerOrder {
 		this.customerOrderDetails = customerOrderDetails;
 	}
 
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public DiscountType getDiscountType() {
+		return discountType;
+	}
+
+	public void setDiscountType(DiscountType discountType) {
+		this.discountType = discountType;
+	}
+
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", customerName=" + customerName + ", orderTime=" + orderTime + ", doctor=" + doctor
-				+ "]";
+		return "CustomerOrder [id=" + id + ", customerName=" + customerName + ", orderTime=" + orderTime
+				+ ", totalPrice=" + totalPrice + ", doctor=" + doctor + "]";
 	}
 
 }

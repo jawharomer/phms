@@ -3,21 +3,26 @@ appAddCusotmerOrder = angular.module("addCustomerOrder", []);
 appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 
 	$scope.doctors;
+	$scope.discountTypes;
 
 	$scope.cusomerOrder = {
 		customerName : "",
 		doctorId : "",
+		discountId:"",
 		customerOrderDetailDs : [],
 	};
 
 	$scope.init = function() {
 		console.log("init->fired");
 		console.log("jsonDoctors=", jsonDoctors);
+		console.log("jsonDiscountTypes=", jsonDiscountTypes);
 
 		$scope.doctors = JSON.parse(jsonDoctors);
+		
+		$scope.discountTypes = JSON.parse(jsonDiscountTypes);
 
 		console.log("$scope.doctors=", $scope.doctors);
-
+		console.log("$scope. $discountTypes=", $scope.discountTypes);
 	};
 
 	$scope.product = {
@@ -105,8 +110,15 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 				$("#modal-body").html(outPut);
 				$("#modal").modal("show");
 			} else {
-				$("#modal-body").html(response.data.message);
-				$("#modal").modal("show");
+				if(response.data.message){
+					$("#modal-body").html(response.data.message);
+					$("#modal").modal("show");
+				}
+				else{
+					$("#modal-body").html(response.data);
+					$("#modal").modal("show");
+				}
+				
 			}
 		});
 

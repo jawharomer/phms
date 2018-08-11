@@ -29,7 +29,7 @@ public class CustomerOrderDetail {
 	@ElementCollection
 	@CollectionTable(name = "COD_PRODUCT_STEPUP_IDS", joinColumns = @JoinColumn(name = "I_CUSTOMER_ORDER_DETAIL"))
 	@Column(name = "I_PRODUCT_STEPUP")
-	public List<Integer> productStepUpIds=new ArrayList<>();
+	public List<Integer> productStepUpIds = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "I_PRODUCT", nullable = false)
@@ -113,9 +113,8 @@ public class CustomerOrderDetail {
 
 	@Override
 	public String toString() {
-		return "CustomerOrderDetail [id=" + id + ", customerOrder=" + customerOrder + ", productStepUpIds="
-				+ productStepUpIds + ", product=" + product + ", productName=" + productName + ", productCode="
-				+ productCode + ", quantity=" + quantity + ", price=" + price + "]";
+		return "CustomerOrderDetail [id=" + id + ", productName=" + productName + ", productCode=" + productCode
+				+ ", quantity=" + quantity + ", price=" + price + "]";
 	}
 
 }

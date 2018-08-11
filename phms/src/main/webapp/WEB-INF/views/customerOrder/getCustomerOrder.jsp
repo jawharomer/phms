@@ -23,7 +23,7 @@ this is CustomerOrder page
 		<td>Total Price</td>
 		<td><c:set var="totalPrice" value="${0.0}" /> <c:forEach
 				var="item" items="${customerOrder.customerOrderDetails}">
-				<c:set var="totalPrice" value="${totalPrice + item.price}" />
+				<c:set var="totalPrice" value="${totalPrice + (item.price*item.quantity)}" />
 			</c:forEach> ${totalPrice}</td>
 	</tr>
 

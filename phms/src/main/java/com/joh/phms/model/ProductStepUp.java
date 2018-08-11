@@ -57,7 +57,7 @@ public class ProductStepUp {
 	@Column(name = "QUANTITY", nullable = false)
 	private Integer quantity;
 
-	@Column(name = "SOLD_QUANTITY")
+	@Column(name = "SOLD_QUANTITY", nullable = false)
 	private Integer soldQuantity;
 
 	@Column(name = "BONUS_QUANTITY")

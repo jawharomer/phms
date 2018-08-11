@@ -86,4 +86,125 @@
 
 
 
+	<!-- EditCustomerOrder page -->
+	<definition name="adminEditCustomerOrder"
+		extends="adminRoot">
+		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/customerOrder/editCustomerOrder.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="editCustomerOrder" />
+		</put-list-attribute>
+
+	</definition>
+
+
+	<!-- Doctors page -->
+	<definition name="doctors" extends="adminRoot">
+		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/doctor/adminDoctors.jsp" cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="adminDoctors" />
+		</put-list-attribute>
+
+	</definition>
+
+
+	<!-- DoctorCustomerOrders page -->
+	<definition name="doctorCustomerOrders" extends="adminRoot">
+		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/doctor/customerOrders.jsp" cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="adminDoctorCustomerOrders" />
+		</put-list-attribute>
+
+	</definition>
+
+
+	<!-- AdminCustomerOrders page -->
+	<definition name="adminCustomerOrders" extends="adminRoot">
+		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/customerOrder/customerOrders.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="adminCustomerOrders" />
+		</put-list-attribute>
+
+	</definition>
+
+
+
 </tiles-definitions>
