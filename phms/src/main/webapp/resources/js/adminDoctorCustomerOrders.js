@@ -2,10 +2,10 @@ $(document).ready()
 {
 	$("#from").datepicker({
 		dateFormat : "yy-mm-dd"
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", $("#from").val());
 
 	$("#to").datepicker({
 		dateFormat : "yy-mm-dd"
-	}).datepicker("setDate", new Date());
+	}).datepicker("setDate", $("#to").val());
 
 }

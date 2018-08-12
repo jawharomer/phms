@@ -182,6 +182,8 @@ public class CustomerOrderController {
 		logger.info("customerOrders=" + customerOrders);
 
 		model.addAttribute("customerOrders", customerOrders);
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
 
 		return "adminCustomerOrders";
 	}

@@ -34,13 +34,14 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
-			value="/WEB-INF/views/admin/stock.jsp" cascade="true" />
+			value="/WEB-INF/views/admin/notifications.jsp" cascade="true" />
 		<put-list-attribute name="requiredCSSFiles">
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />
 			<add-attribute value="jquery-ui.theme" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="adminStock" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">
@@ -131,6 +132,7 @@
 			<add-attribute value="jquery-ui.theme" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="adminDoctors" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">
@@ -190,6 +192,7 @@
 			<add-attribute value="jquery-ui.theme" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="adminCustomerOrders" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">
@@ -220,6 +223,7 @@
 			<add-attribute value="jquery-ui.theme" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="adminProductStepUps" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">

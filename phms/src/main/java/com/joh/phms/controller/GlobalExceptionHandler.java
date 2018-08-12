@@ -6,11 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.joh.phms.exception.ItemExistsException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -18,10 +21,20 @@ public class GlobalExceptionHandler {
 	private static final Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
 
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler({ ItemExistsException.class })
+	public String handleItemExistsException(HttpServletRequest request, ItemExistsException ex, Model model) {
+		logger.info("handleItemExistsException->fired");
+		logger.info("handleItemExistsException Occured:: URL=" + request.getRequestURL());
+		model.addAttribute("message", ex.getMessage());
+		return "itemExistsException";
+
+	}
+
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler({ DataIntegrityViolationException.class })
-	public String handleSQLException(HttpServletRequest request, Exception ex,Model model) {
+	public String handleSQLException(HttpServletRequest request, Exception ex, Model model) {
 		logger.info("SQLException Occured:: URL=" + request.getRequestURL());
-		model.addAttribute("message",ex.getMessage());
+		model.addAttribute("message", ex.getMessage());
 		return "dataIntigrityException";
 	}
 

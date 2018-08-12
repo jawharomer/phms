@@ -3,50 +3,72 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ taglib prefix='fn' uri='http://java.sun.com/jsp/jstl/functions'%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div ng-app="productStepUps" ng-controller="productStepUps">
 
-	This is Admin product stepups
+
+
+	<c:if test="${searchBy=='orderDate'}">
+		<h2>Added To Stock</h2>
+	</c:if>
+
+	<c:if test="${searchBy=='expirationDate'}">
+		<h2>Expiration From Stock</h2>
+	</c:if>
+	<hr>
 
 	<div>
-		<form action="<c:url value="/productStepUps" />">
+		<form action="<c:url value="/productStepUps/search/" />${searchBy}">
 			<table>
-				<tr>
-					<td>From</td>
-					<td><input id="from" name="from" /></td>
-				</tr>
 
+
+
+				<c:if test="${searchBy=='orderDate'}">
+
+					<tr>
+						<td class="text-left">From</td>
+						<td><input class="form-control" id="from" name="from"
+							value="<fmt:formatDate pattern = "yyyy-MM-dd"  
+         value = "${from}" />" /></td>
+					</tr>
+
+
+				</c:if>
 				<tr>
-					<td>To</td>
-					<td><input id="to" name="to" /></td>
+					<td class="text-left">To</td>
+					<td><input class="form-control" id="to" name="to"
+						value="<fmt:formatDate pattern = "yyyy-MM-dd" 
+         value = "${to}" />" /></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="View" /></td>
+					<td><input class="btn btn-outline-info" type="submit"
+						value="View" /></td>
 				</tr>
 			</table>
+			<hr>
 		</form>
 
 	</div>
 
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<td>ProductCode</td>
-				<td>Invoice Time</td>
-				<td>expirationDate</td>
-				<td>productionDate</td>
-				<td>vendor</td>
-				<td>paymentAmount</td>
+				<td>Code</td>
+				<td>Time</td>
+				<td>Expiration</td>
+				<td>Production</td>
+				<td>Vendor</td>
+				<td>PaymentAmount</td>
 				<td>Quantity</td>
-				<td>soldQuantity</td>
-				<td>bonusQuantity</td>
-				<td>note</td>
+				<td>Sold</td>
+				<td>Bonus</td>
+				<td>Note</td>
+				<td>Function</td>
 			</tr>
 		</thead>
 		<tbody>
-
-
 			<c:set var="sumTotalPayment" value="${0}" />
 
 			<c:forEach items="${productStepUps}" var="item">
@@ -58,26 +80,36 @@
 					<td>${item.expirationDate}</td>
 					<td>${item.productionDate}</td>
 					<td>${item.vendor.fullName}</td>
-					<td>${item.paymentAmount}</td>
+					<td><fmt:formatNumber type="number" maxFractionDigits="3"
+							value="${item.paymentAmount}" /></td>
 					<td>${item.quantity}</td>
 					<td>${item.soldQuantity}</td>
+					<td>${item.bonusQuantity}</td>
 					<td>${item.note}</td>
 					<td>
-						<button ng-click="deleteProductStepUp(${item.id})">D</button>
+						<button class="btn btn-sm btn-outline-danger"
+							ng-click="deleteProductStepUp(${item.id})">D</button>
 					</td>
 				</tr>
 
 				<c:set var="sumTotalPayment"
-					value="${sumTotalPayment+paymentAmount}" />
+					value="${sumTotalPayment+item.paymentAmount}" />
 
 			</c:forEach>
 
 		</tbody>
 
+
 	</table>
 
+	<hr>
+
 	<div>
-		<span>sumTotalPayment=</span> <span>${sumTotalPayment}</span>
+		<h6 class="text-info">
+			<span>Summation Of TotalPayment=</span> <span> <fmt:formatNumber
+					type="number" maxFractionDigits="3" value="${sumTotalPayment}" />
+			</span>
+		</h6>
 	</div>
 
 </div>

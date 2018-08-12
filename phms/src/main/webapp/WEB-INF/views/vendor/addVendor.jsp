@@ -13,35 +13,35 @@
 			<tbody>
 
 				<tr>
-					<td>fullName</td>
-					<td><sf:input path="fullName" /></td>
+					<td class="text-left">FullName</td>
+					<td><sf:input class="form-control" path="fullName" /></td>
 					<td><sf:errors path="fullName" /></td>
 				</tr>
 
 				<tr>
-					<td>phone</td>
-					<td><sf:input path="phone" /></td>
+					<td class="text-left">Phone</td>
+					<td><sf:input class="form-control" path="phone" /></td>
 					<td><sf:errors path="phone" /></td>
 				</tr>
 
 
 				<tr>
-					<td>address</td>
-					<td><sf:input path="address" /></td>
+					<td class="text-left">Address</td>
+					<td><sf:input class="form-control" path="address" /></td>
 					<td><sf:errors path="address" /></td>
 				</tr>
 
 
 				<tr>
-					<td>note</td>
-					<td><sf:input path="note" /></td>
+					<td class="text-left">Note</td>
+					<td><sf:textarea class="form-control" path="note" /></td>
 					<td><sf:errors path="note" /></td>
 				</tr>
 
 
 				<tr>
-					<td>Add</td>
-					<td><input type="submit" value="Adding"></td>
+					<td><input class="btn btn-outline-primary" type="submit"
+						value="Add"></td>
 				</tr>
 
 			</tbody>

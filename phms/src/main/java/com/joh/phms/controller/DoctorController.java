@@ -125,6 +125,9 @@ public class DoctorController {
 		model.addAttribute("doctorId", id);
 		model.addAttribute("doctorCustomerOrderDs", doctorCustomerOrderDs);
 
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
+
 		return "doctorCustomerOrders";
 	}
 

@@ -3,38 +3,43 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ taglib prefix='fn' uri='http://java.sun.com/jsp/jstl/functions'%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <div>
 	<form action="<c:url value="/doctors/" />${doctorId}/customerOrders">
 		<table>
 			<tr>
-				<td>From</td>
-				<td><input id="from" name="from" /></td>
+				<td class="text-left">From</td>
+				<td><input class="form-control" id="from" name="from" value="<fmt:formatDate pattern = "yyyy-MM-dd"  
+         value = "${from}" />" /></td>
 			</tr>
 
 			<tr>
-				<td>To</td>
-				<td><input id="to" name="to" /></td>
+				<td class="text-left">To</td>
+				<td><input class="form-control" id="to" name="to" value="<fmt:formatDate pattern = "yyyy-MM-dd"  
+         value = "${to}" />" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="View" /></td>
+				<td><input class="btn btn-outline-info" type="submit"
+					value="View" /></td>
 			</tr>
 		</table>
+		<hr />
 	</form>
 
 </div>
 
-<table>
+<table class="table">
 	<thead>
 		<tr>
-			<td>customerName</td>
-			<td>orderTime</td>
-			<td>totalPrice</td>
-			<td>totalPayment</td>
-			<td>discountType</td>
-			<td>income</td>
-			<td>Detail</td>
+			<th>Customer Name</th>
+			<th>Order Time</th>
+			<th>Total Price</th>
+			<th>Total Payment</th>
+			<th>Discount Type</th>
+			<th>Income</th>
+			<th>#Invoice</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -42,20 +47,28 @@
 			<tr>
 				<td>${item.customerName}</td>
 				<td>${item.orderTime}</td>
-				<td>${item.totalPrice}</td>
-				<td>${item.totalPayment}</td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="3"
+						value="${item.totalPrice}" /></td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="3"
+						value="${item.totalPayment}" /></td>
 				<td>${item.discountType}</td>
-				<td>${item.income}</td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="3"
+						value="${item.income}" /></td>
 				<td>${item.customerOrderId}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+<hr />
 
 <div>
 	<c:set var="totalIncome" value="${0}" />
 	<c:forEach var="item" items="${doctorCustomerOrderDs}">
 		<c:set var="totalIncome" value="${totalIncome + item.income}" />
 	</c:forEach>
-	<span> Total Income </span> <span> ${ totalIncome} </span>
+	<h6 class="text-info">
+		<span> Total Income: </span> <span> <fmt:formatNumber
+				type="number" maxFractionDigits="3" value="${totalIncome}" />
+		</span>
+	</h6>
 </div>

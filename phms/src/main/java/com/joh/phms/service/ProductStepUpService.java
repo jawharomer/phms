@@ -13,4 +13,6 @@ public interface ProductStepUpService {
 
 	void delete(int id);
 
+	List<ProductStepUp> findAllByExpirationDateLessThanEqual(Date to);
+
 }

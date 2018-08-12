@@ -10,34 +10,34 @@
 		<table>
 			<tbody>
 				<tr>
-					<td>Code</td>
-					<td><sf:input path="code" /></td>
+					<td class="text-left">Code</td>
+					<td><sf:input class="form-control" path="code" /></td>
 					<td><sf:errors path="code" /></td>
 				</tr>
 
 				<tr>
-					<td>Name</td>
-					<td><sf:input path="name" /></td>
+					<td class="text-left">Name</td>
+					<td><sf:input class="form-control" path="name" /></td>
 					<td><sf:errors path="name" /></td>
 				</tr>
 
 				<tr>
-					<td>Profit</td>
-					<td><sf:input path="profit" /></td>
+					<td class="text-left">Profit</td>
+					<td><sf:input class="form-control" path="profit" /></td>
 					<td><sf:errors path="profit" /></td>
 				</tr>
 
 				<tr>
-					<td>unitType</td>
-					<td><sf:input path="unitType" /></td>
+					<td class="text-left">unitType</td>
+					<td><sf:input class="form-control" path="unitType" /></td>
 					<td><sf:errors path="unitType" /></td>
 				</tr>
 
 				<tr>
-					<td>Add</td>
-					<td><input type="submit" value="Adding"></td>
+					<td><input class="btn btn-outline-warning" type="submit"
+						value="Edit"></td>
 				</tr>
-				
+
 			</tbody>
 
 		</table>

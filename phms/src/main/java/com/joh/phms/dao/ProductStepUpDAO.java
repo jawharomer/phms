@@ -17,13 +17,13 @@ public interface ProductStepUpDAO extends CrudRepository<ProductStepUp, Integer>
 			+ "WHERE  QUANTITY-SOLD_QUANTITY>0 \n" + "AND PRODUCT_CODE= ?1 " + "ORDER BY EXPIRATION_DATE\n"
 			+ "LIMIT 1;", nativeQuery = true)
 	ProductStepUp findProductStepUpForStockDown(String productCode);
-	
+
 	@Modifying
-	@Query(value="UPDATE PRODUCT_STEPUPS SET SOLD_QUANTITY=SOLD_QUANTITY+1 WHERE I_PRODUCT_STEPUP= ?1 ",nativeQuery=true)
+	@Query(value = "UPDATE PRODUCT_STEPUPS SET SOLD_QUANTITY=SOLD_QUANTITY+1 WHERE I_PRODUCT_STEPUP= ?1 ", nativeQuery = true)
 	void stockDown(Integer id);
-	
-	
+
 	List<ProductStepUp> findAllByTimeBetween(Date from, Date to);
-	
-	
+
+	List<ProductStepUp> findAllByExpirationDateLessThanEqualOrderByExpirationDate(Date to);
+
 }

@@ -19,7 +19,6 @@ body {
 	left: 0px;
 	bottom: 0px;
 	overflow: auto;
-	background: blue;
 	display: flex;
 	flex-direction: column;
 }
@@ -30,7 +29,6 @@ body {
 }
 
 #site-content {
-	background: rgba(255, 255, 255, 0.4);
 	flex: 1 1 auto;
 	display: flex;
 	min-height: 0;
@@ -38,8 +36,14 @@ body {
 
 #footer {
 	flex-basis: 20px;
+	color: white;
 }
 
 a {
 	color: inherit;
+}
+
+/*Custom Classes*/
+.cus-inline-block {
+	display: inline-block !important;
 }

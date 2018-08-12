@@ -6,11 +6,9 @@
 }
 
 #section-right {
-	background: rgb(11, 123, 32);
 	min-height: 0;
 	overflow: auto;
 	flex-basis: auto;
-	padding-left: 10px;
 }
 
 #section-right .cus-navbar {
@@ -38,5 +36,5 @@
 	overflow: auto;
 	flex: 1;
 	min-height: 0;
-	padding-left: 10px;
+	padding: 10px;
 }

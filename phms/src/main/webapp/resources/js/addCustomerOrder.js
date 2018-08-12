@@ -2,15 +2,45 @@ appAddCusotmerOrder = angular.module("addCustomerOrder", []);
 
 appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 
+	$scope.example = {
+	        value: 12
+	      };
+	
 	$scope.doctors;
 	$scope.discountTypes;
-
+	$scope.discountPercentage=0;
+	
 	$scope.cusomerOrder = {
-		customerName : "",
-		doctorId : "",
-		discountId:"",
-		customerOrderDetailDs : [],
+			customerName : "",
+			doctorId : "",
+			discountId:"",
+			customerOrderDetailDs : [],
+		};
+	
+	$scope.paymentAmount=function(){
+		var totalPayment=0;
+		for(var i = 0; i < $scope.cusomerOrder.customerOrderDetailDs.length; i++){
+			var quantity= $scope.cusomerOrder.customerOrderDetailDs[i].quantity;
+			var price= $scope.cusomerOrder.customerOrderDetailDs[i].price;
+			totalPayment+=quantity*price;
+		}
+
+		var discount=totalPayment*($scope.discountPercentage/100);
+        return totalPayment-discount;
 	};
+	
+	$scope.totalPrice=function(){
+		var totalPrice=0;
+		for(var i = 0; i < $scope.cusomerOrder.customerOrderDetailDs.length; i++){
+			var quantity= $scope.cusomerOrder.customerOrderDetailDs[i].quantity;
+			var price= $scope.cusomerOrder.customerOrderDetailDs[i].price;
+			totalPrice+=quantity*price;
+		}
+
+        return totalPrice;
+	};
+
+	
 
 	$scope.init = function() {
 		console.log("init->fired");

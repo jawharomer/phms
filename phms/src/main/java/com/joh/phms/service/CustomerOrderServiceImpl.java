@@ -67,18 +67,19 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			for (int i = 0; i < customerOrderDetail.getQuantity(); i++) {
 				ProductStepUp itemForStockDown = productStepUpDAO
 						.findProductStepUpForStockDown(customerOrderDetail.getProductCode());
-				if (i == 0) {
+
+				if (itemForStockDown == null) {
+					String message = String.format("This product (%s) is not avaiable enough in the stock",
+							customerOrderDetail.getProductCode());
+					throw new ItemNotAvaiableException(message);
+				}
+
+				if (i == 0 && itemForStockDown != null) {
 					product = itemForStockDown.getProduct();
 					customerOrderDetail.setProduct(product);
 				}
 
-				if (itemForStockDown == null) {
-					String message = String.format("This product (%s) is not avaiable enough in the stock",
-							product.getCode());
-					throw new ItemNotAvaiableException(message);
-				}
-				
-				ProductStepUp productStepUp=new ProductStepUp();
+				ProductStepUp productStepUp = new ProductStepUp();
 				productStepUp.setId(itemForStockDown.getId());
 				customerOrderDetail.getProductStepUpIds().add(productStepUp);
 				productStepUpDAO.stockDown(itemForStockDown.getId());

@@ -5,10 +5,12 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.joh.phms.dao.ProductDAO;
 import com.joh.phms.domain.model.ProductD;
+import com.joh.phms.exception.ItemExistsException;
 import com.joh.phms.model.Product;
 
 @Service
@@ -25,7 +27,11 @@ public class ProductServiceImpl implements ProductSevice {
 	@Override
 	@Transactional
 	public Product save(Product product) {
-		return productDAO.save(product);
+		try {
+			return productDAO.save(product);
+		} catch (DataIntegrityViolationException e) {
+			throw new ItemExistsException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -48,8 +54,7 @@ public class ProductServiceImpl implements ProductSevice {
 		productDAO.findOne(product.getId());
 		return productDAO.save(product);
 	}
-	
-	
+
 	@Override
 	public ProductD findProductByCode(String code) {
 		return productDAO.findProductByCode(code);

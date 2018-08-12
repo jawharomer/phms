@@ -9,22 +9,20 @@
 <fmt:formatDate var="currentDate" value="${now}" pattern="yyyy-MM-dd" />
 
 
-<div ng-app="adminDoctors" ng-controller="adminDoctors">
+<div ng-app="adminDoctors" ng-controller="adminDoctors"
+	class="admin-doctors">
 
-	This is doctos page={{1+1}}
-
-	<div>
-		<button ng-click="getAddingDoctor()">Add new Doctor</button>
-
+	<div class="add-new-doctor-div">
+		<button class="btn btn-outline-primary" ng-click="getAddingDoctor()">Add</button>
 	</div>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<td>Doctor Name</td>
 				<td>Doctor Phone</td>
 				<td>Profit</td>
-				<td>&nbsp;</td>
+				<td>Function</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,11 +35,13 @@
 					<td>${item.profit}</td>
 					<td>
 						<div>
-							<button ng-click="deleteDoctor(${item.id})">Delete</button>
-							<button ng-click="editDoctor(${item.id})">Edit</button>
-							<a
+							<button class="btn btn-outline-danger"
+								ng-click="deleteDoctor(${item.id})">Delete</button>
+							<button class="btn btn-outline-warning"
+								ng-click="editDoctor(${item.id})">Edit</button>
+							<a class="btn  btn-outline-info"
 								href="<c:url value="/doctors/"/>${item.id}/customerOrders?from=${currentDate}&to=${currentDate}">Invoice
-								</button>
+							</a>
 						</div>
 					</td>
 

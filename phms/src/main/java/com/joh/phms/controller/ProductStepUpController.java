@@ -102,20 +102,6 @@ public class ProductStepUpController {
 		}
 	}
 
-	@GetMapping()
-	private String getProductStepUpsByDate(@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
-			@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date to, Model model) {
-
-		logger.info("getProductStepUpsByDate->fired");
-
-		List<ProductStepUp> productStepUps = productStepUpService.findAllByTimeBetween(from, to);
-		logger.info("productStepUps=" + productStepUps);
-
-		model.addAttribute("productStepUps", productStepUps);
-
-		return "adminProductStepUps";
-	}
-
 	@GetMapping(path = "/delete/{id}")
 	private String deleteProductStepUp(@PathVariable int id) {
 		logger.info("deleteProductStepUp->fired");
@@ -123,6 +109,39 @@ public class ProductStepUpController {
 		logger.info("id=" + id);
 		productStepUpService.delete(id);
 		return "success";
+	}
+
+	@GetMapping(path = "/search/orderDate")
+	private String searchProductStepUpsByDate(@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
+			@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date to, Model model) {
+
+		logger.info("searchProductStepUpsByDate->fired");
+
+		List<ProductStepUp> productStepUps = productStepUpService.findAllByTimeBetween(from, to);
+		logger.info("productStepUps=" + productStepUps);
+
+		model.addAttribute("productStepUps", productStepUps);
+		model.addAttribute("searchBy", "orderDate");
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
+
+		return "adminProductStepUps";
+	}
+
+	@GetMapping(path = "/search/expirationDate")
+	private String searchProductStepUpsByExpirationDate(@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date to,
+			Model model) {
+
+		logger.info("getProductStepUpsByExpirationDate->fired");
+
+		List<ProductStepUp> productStepUps = productStepUpService.findAllByExpirationDateLessThanEqual(to);
+		logger.info("productStepUps=" + productStepUps);
+
+		model.addAttribute("productStepUps", productStepUps);
+		model.addAttribute("searchBy", "expirationDate");
+		model.addAttribute("to", to);
+
+		return "adminProductStepUps";
 	}
 
 }

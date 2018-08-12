@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#cus-add-div{
+	padding-bottom:20px;
+}
+
+.cus-table-function-div{
+	text-align: center;
+}
+
+th,td{
+	text-align: center;
+}

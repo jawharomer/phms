@@ -2,41 +2,40 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 
-<div id="add-product-container">
+<div id="add-product-container" style="padding: 5px; overflow: auto">
 
-	Addint new Product Page
+	<h4>Add new Product</h4>
 
 	<sf:form id="add-product-form" method="POST" commandName="product"
 		onsubmit="addProduct(event)">
 		<table>
 			<tbody>
 				<tr>
-					<td>Code</td>
-					<td><sf:input path="code" /></td>
+					<td class="text-left">Code</td>
+					<td><sf:input class="form-control" path="code" /></td>
 					<td><sf:errors path="code" /></td>
 				</tr>
 
 				<tr>
-					<td>Name</td>
-					<td><sf:input path="name" /></td>
-					<td><sf:errors path="name" /></td>
+					<td class="text-left">Name</td>
+					<td><sf:input class="form-control" path="name" /></td>
+					<td><sf:errors class="text-wrap" path="name" /></td>
 				</tr>
-				
+
 				<tr>
-					<td>Profit</td>
-					<td><sf:input path="profit" /></td>
+					<td class="text-left">Profit</td>
+					<td><sf:input class="form-control" path="profit" /></td>
 					<td><sf:errors path="profit" /></td>
 				</tr>
 
 				<tr>
-					<td>unitType</td>
-					<td><sf:input path="unitType" /></td>
+					<td class="text-left">unitType</td>
+					<td><sf:input class="form-control" path="unitType" /></td>
 					<td><sf:errors path="unitType" /></td>
 				</tr>
 
 				<tr>
-					<td>Add</td>
-					<td><input type="submit" value="Adding"></td>
+					<td><input class="btn btn-outline-primary" type="submit" value="Adding"></td>
 				</tr>
 
 			</tbody>
@@ -62,8 +61,9 @@
 			success : function(response) {
 				$("#add-product-container").html(response);
 			},
-			failure : function(errMsg) {
-				alert(errMsg);
+			error : function(response) {
+				console.log("response=", response);
+				$("#add-product-container").html(response.responseText);
 			}
 		});
 	}

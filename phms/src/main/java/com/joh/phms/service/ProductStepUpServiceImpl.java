@@ -26,6 +26,12 @@ public class ProductStepUpServiceImpl implements ProductStepUpService {
 	public List<ProductStepUp> findAllByTimeBetween(Date from, Date to) {
 		return productStepUpDAO.findAllByTimeBetween(from, to);
 	}
+	
+	
+	@Override
+	public List<ProductStepUp> findAllByExpirationDateLessThanEqual(Date to) {
+		return productStepUpDAO.findAllByExpirationDateLessThanEqualOrderByExpirationDate(to);
+	}
 
 	@Override
 	public void delete(int id) {
