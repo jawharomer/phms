@@ -21,9 +21,10 @@ public class ProductDAOImpl implements ProductDAOExt {
 		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,P.UNIT_TYPE,\n"
 				+ "IFNULL(SUM(QUANTITY-SOLD_QUANTITY),0) AS STOCK_LEVEL,\n"
 				+ "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
-				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE\n"
-				+ "FROM PRODUCTS P\n" + "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n"
-				+ "GROUP BY P.I_PRODUCT\n" + "ORDER BY PRODUCT_CODE");
+				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE,SCIENTIFIC_NAME,PC.CATEGORY_NAME AS CATEGORY\n"
+				+ "FROM PRODUCTS P LEFT OUTER JOIN PRODUCT_CATEGORIES PC USING(I_PRODUCT_CATEGORY) \n"
+				+ "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n" + "GROUP BY P.I_PRODUCT\n"
+				+ "ORDER BY PRODUCT_CODE");
 
 		List<Object[]> resultList = query.getResultList();
 
@@ -37,6 +38,8 @@ public class ProductDAOImpl implements ProductDAOExt {
 			productD.setStockLevel(Integer.parseInt("" + row[4]));
 			productD.setCost((Double) row[5]);
 			productD.setPrice((Double) row[6]);
+			productD.setScientificName((String) row[7]);
+			productD.setCategory((String) row[8]);
 
 			productDs.add(productD);
 		}
@@ -48,7 +51,7 @@ public class ProductDAOImpl implements ProductDAOExt {
 
 		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,P.UNIT_TYPE,\n"
 				+ "IFNULL(SUM(QUANTITY),0) AS STOCK_LEVEL,\n" + "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
-				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE\n"
+				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE,SCIENTIFIC_NAME\n"
 				+ "FROM PRODUCTS P\n" + "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n"
 				+ "WHERE PRODUCT_CODE= ?1 \nGROUP BY P.I_PRODUCT");
 
@@ -66,6 +69,7 @@ public class ProductDAOImpl implements ProductDAOExt {
 		productD.setStockLevel(Integer.parseInt("" + row[4]));
 		productD.setCost((Double) row[5]);
 		productD.setPrice((Double) row[6]);
+		productD.setScientificName((String) row[7]);
 
 		return productD;
 

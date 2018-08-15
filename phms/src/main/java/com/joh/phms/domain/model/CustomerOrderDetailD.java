@@ -1,5 +1,6 @@
 package com.joh.phms.domain.model;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class CustomerOrderDetailD {
@@ -11,6 +12,7 @@ public class CustomerOrderDetailD {
 	private String productName;
 
 	@NotNull(message = "{customerOrderDetailD.quantity.null}")
+	@Min(value = 1,message="minimum quantity is 1")
 	private Integer quantity;
 
 	@NotNull(message = "{customerOrderDetailD.price.null}")

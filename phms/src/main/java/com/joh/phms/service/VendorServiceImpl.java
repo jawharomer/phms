@@ -25,4 +25,21 @@ public class VendorServiceImpl implements VendorService {
 		return vendorDAO.save(vendor);
 	}
 
+	@Override
+	@Transactional
+	public void delete(int id) {
+		vendorDAO.delete(id);
+	}
+
+	@Override
+	public Vendor findOne(int id) {
+		return vendorDAO.findOne(id);
+	}
+
+	@Override
+	@Transactional
+	public Vendor update(Vendor vendor) {
+		vendor.setId(vendorDAO.findOne(vendor.getId()).getId());
+		return vendorDAO.save(vendor);
+	}
 }

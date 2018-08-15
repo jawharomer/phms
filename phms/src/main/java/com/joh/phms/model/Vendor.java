@@ -6,22 +6,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.joh.phms.validator.VendorValidator.ValidationForEdit;
 
 @Entity
 @Table(name = "VENDORS")
 public class Vendor {
 
+	@NotNull(groups = { ValidationForEdit.class }, message = "id is null")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "I_VENDOR")
 	private int id;
 
+	@NotBlank(message = "Full Name is blank")
 	@Column(name = "FULL_NAME")
 	private String fullName;
 
+	@NotBlank(message = "Phone is blank")
 	@Column(name = "PHONE")
 	private String phone;
 
+	@NotBlank(message = "Address is blank")
 	@Column(name = "ADDRESS")
 	private String address;
 

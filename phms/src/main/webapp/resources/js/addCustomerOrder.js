@@ -2,33 +2,29 @@ appAddCusotmerOrder = angular.module("addCustomerOrder", []);
 
 appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 
-	$scope.example = {
-	        value: 12
-	      };
 	
 	$scope.doctors;
 	$scope.discountTypes;
 	$scope.discountPercentage=0;
 	
+	
+	
 	$scope.cusomerOrder = {
 			customerName : "",
 			doctorId : "",
 			discountId:"",
+			discountAmount:"",
 			customerOrderDetailDs : [],
 		};
 	
-	$scope.paymentAmount=function(){
-		var totalPayment=0;
-		for(var i = 0; i < $scope.cusomerOrder.customerOrderDetailDs.length; i++){
-			var quantity= $scope.cusomerOrder.customerOrderDetailDs[i].quantity;
-			var price= $scope.cusomerOrder.customerOrderDetailDs[i].price;
-			totalPayment+=quantity*price;
+   $scope.$watch('discountPercentage',function(discountPercentage){
+		if(discountPercentage>0&&discountPercentage<=100){
+			$scope.cusomerOrder.discountAmount=discountPercentage/100;
+			console.log($scope.cusomerOrder.discountAmount);
 		}
+	});
 
-		var discount=totalPayment*($scope.discountPercentage/100);
-        return totalPayment-discount;
-	};
-	
+		
 	$scope.totalPrice=function(){
 		var totalPrice=0;
 		for(var i = 0; i < $scope.cusomerOrder.customerOrderDetailDs.length; i++){
@@ -39,6 +35,10 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 
         return totalPrice;
 	};
+	
+	$scope.totalPriceWithDiscount=function(){
+	return $scope.totalPrice()-($scope.totalPrice()*($scope.discountPercentage/100));
+	}
 
 	
 
@@ -59,6 +59,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		productId : "",
 		code : "",
 		name : "",
+		scientifiName : "",
 		unitType : "",
 		stockLevel : "",
 		cost : "",
@@ -81,13 +82,26 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 							$$ContextURL + "/products/find/code/"
 									+ $scope.product.code).then(
 							function(response) {
-								$scope.product = response.data;
+								console.log("success");
+								console.log("response=",response);
+							
+								if(response.data.stockLevel==0){
+									$("#modal-body").html("Out of the stock");
+									$("#modal").modal("show");
+								}
+								else{
+									$scope.product = response.data;
+								}
 							}, function(response) {
+								console.error("failed");
 								console.error("error occured");
 								$scope.content = "Something went wrong";
+								$("#modal-body").html(response.data);
+								$("#modal").modal("show");
 							});
 
 		}
+		
 	}
 
 	$scope.addCustomerOrderDetail = function() {
@@ -97,6 +111,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 			productId : $scope.product.productId,
 			productCode : $scope.product.code,
 			productName : $scope.product.name,
+			scientificName : $scope.product.scientificName,
 			quantity : $scope.product.quantity,
 			price : $scope.product.price
 		};
@@ -120,7 +135,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 			<div>${response.data.message}
 			</div>
 			<div>
-			<a target="_blank" href="${$$ContextURL}/customerOrders/${response.data.etc}">View</a></div>
+			<a class="btn btn-info" target="_blank" href="${$$ContextURL}/customerOrders/${response.data.etc}">View</a></div>
 			`;
 			console.log("outPut=",outPut);
 			

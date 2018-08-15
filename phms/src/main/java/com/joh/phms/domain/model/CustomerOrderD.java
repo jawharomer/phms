@@ -1,9 +1,13 @@
 package com.joh.phms.domain.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,10 +20,14 @@ public class CustomerOrderD {
 	@NotNull(groups = { ValidationForEdit.class }, message = "Customer order id is null")
 	private Integer customerOrderId;
 
-	@NotBlank(message = "customer Name is bank why")
+	@NotBlank(message = "customer Name is blank")
 	private String customerName;
 	private Integer doctorId;
 	private Integer discountId;
+
+	@Min(value = 0, message = "minimum discountAmount is 0")
+	@Max(value = 1, message = "maximum discountAmount is 1")
+	private BigDecimal discountAmount;
 
 	@Size(min = 1, message = "no  cusomter order detail is added")
 	@Valid()
@@ -64,13 +72,20 @@ public class CustomerOrderD {
 	public void setDiscountId(Integer discountId) {
 		this.discountId = discountId;
 	}
-	
-	
+
+	public BigDecimal getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(BigDecimal discountAmount) {
+		this.discountAmount = discountAmount;
+	}
 
 	@Override
 	public String toString() {
 		return "CustomerOrderD [customerOrderId=" + customerOrderId + ", customerName=" + customerName + ", doctorId="
-				+ doctorId + ", discountId=" + discountId + ", customerOrderDetailDs=" + customerOrderDetailDs + "]";
+				+ doctorId + ", discountId=" + discountId + ", discountAmount=" + discountAmount
+				+ ", customerOrderDetailDs=" + customerOrderDetailDs + "]";
 	}
 
 }

@@ -8,6 +8,7 @@
 
 	<sf:form id="add-vendor-form" method="POST" commandName="vendor"
 		onsubmit="addVendor(event)">
+		
 
 		<table>
 			<tbody>

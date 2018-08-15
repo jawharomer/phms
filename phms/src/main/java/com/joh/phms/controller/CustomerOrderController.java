@@ -21,7 +21,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joh.phms.commons.ObjectTranslator;
 import com.joh.phms.domain.model.CustomerOrderD;
-import com.joh.phms.domain.model.DoctorCustomerOrderD;
 import com.joh.phms.domain.model.JsonResponse;
 import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.DiscountType;

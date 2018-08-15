@@ -1,6 +1,5 @@
 package com.joh.phms.dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,7 +66,9 @@ public class ReportDAO {
 
 		Object totalExpirationResult = query.getSingleResult();
 
-		int totalExpiration = Integer.parseInt("" + totalExpirationResult);
+		int totalExpiration = 0;
+		if (totalExpirationResult != null)
+			totalExpiration = Integer.parseInt("" + totalExpirationResult);
 
 		//
 		NotificationD not1 = new NotificationD();
@@ -86,7 +87,10 @@ public class ReportDAO {
 
 		Object totalTodayCustomerPriceResult = query.getSingleResult();
 
-		double totalTodayCustomerPrice = Double.parseDouble("" + totalTodayCustomerPriceResult);
+		double totalTodayCustomerPrice = 0;
+
+		if (totalTodayCustomerPriceResult != null)
+			totalTodayCustomerPrice = Double.parseDouble("" + totalTodayCustomerPriceResult);
 
 		//
 		NotificationD not2 = new NotificationD();
@@ -105,7 +109,10 @@ public class ReportDAO {
 
 		Object totalTodayCustomerPriceResultWithDiscount = query.getSingleResult();
 
-		double totalTodayCustomerPriceWithDiscount = Double.parseDouble("" + totalTodayCustomerPriceResultWithDiscount);
+		double totalTodayCustomerPriceWithDiscount = 0;
+
+		if (totalTodayCustomerPriceResultWithDiscount != null)
+			Double.parseDouble("" + totalTodayCustomerPriceResultWithDiscount);
 
 		NotificationD not3 = new NotificationD();
 		not3.setTitle("Today Total Customer Order Income ");
@@ -124,7 +131,10 @@ public class ReportDAO {
 
 		Object totalTodayCustomerDiscountResult = query.getSingleResult();
 
-		double totalTodayCustomerDiscount = Double.parseDouble("" + totalTodayCustomerDiscountResult);
+		double totalTodayCustomerDiscount = 0;
+
+		if (totalTodayCustomerDiscountResult != null)
+			totalTodayCustomerDiscount = Double.parseDouble("" + totalTodayCustomerDiscountResult);
 
 		NotificationD not4 = new NotificationD();
 		not4.setTitle("Today Total Customer Discount ");
@@ -143,7 +153,10 @@ public class ReportDAO {
 
 		Object totalProductStepUpPaymentamountResult = query.getSingleResult();
 
-		double totalProductStepUpPaymentamount = Double.parseDouble("" + totalProductStepUpPaymentamountResult);
+		double totalProductStepUpPaymentamount = 0;
+
+		if (totalProductStepUpPaymentamountResult != null)
+			totalProductStepUpPaymentamount = Double.parseDouble("" + totalProductStepUpPaymentamountResult);
 
 		NotificationD not5 = new NotificationD();
 		not5.setTitle("Today total Stockup Payment Amount");

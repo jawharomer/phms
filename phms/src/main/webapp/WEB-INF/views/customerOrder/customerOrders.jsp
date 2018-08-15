@@ -69,17 +69,25 @@
 					<td>${item.orderTime}</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
 							value="${item.totalPrice}" /></td>
-					<td><fmt:formatNumber type="number" maxFractionDigits="3"
-							value="${totalPayment}" /></td>
-					<td><fmt:formatNumber type="number" maxFractionDigits="3"
-							value="${item.totalPrice-totalPayment}" /></td>
+					<td><c:if test="${item.discountAmount==null}">
+							<fmt:formatNumber type="number" maxFractionDigits="3"
+								value="${item.totalPrice}" />
+						</c:if> <c:if test="${item.discountAmount!=null}">
+							<fmt:formatNumber type="number" maxFractionDigits="3"
+								value="${item.totalPrice*item.discountAmount}" />
+						</c:if></td>
+					<td>${item.discountAmount}</td>
 					<td>${item.doctor.fullName}</td>
 					<td>${item.discountType.discountType}</td>
-					<td><a class="btn btn-sm btn-outline-warning"
-						href="<c:url value="/customerOrders/edit/" />${item.id}">E</a></td>
 					<td>
+						<!--  
+					<a class="btn btn-sm btn-outline-warning"
+						href="<c:url value="/customerOrders/edit/" />${item.id}">E</a>
+						-->
 						<button class="btn btn-sm btn-outline-danger"
-							ng-click="deleteCustomerOrder(${item.id})">D</button>
+							ng-click="deleteCustomerOrder(${item.id})">D</button> <a
+						target="_blank" class="btn btn-sm btn-outline-info"
+						href="<c:url value="/customerOrders/" />${item.id}">V</a>
 					</td>
 				</tr>
 
@@ -94,7 +102,7 @@
 	<hr>
 
 	<div>
-		<span>SumTotalPayment=</span> <span> <fmt:formatNumber
+		<span>Sum Total Payment=</span> <span> <fmt:formatNumber
 				type="number" maxFractionDigits="3" value="${sumTotalPayment}" />
 
 		</span>

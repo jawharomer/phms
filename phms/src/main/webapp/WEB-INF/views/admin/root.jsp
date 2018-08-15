@@ -10,7 +10,8 @@
 		<ul class="list-group">
 			<li class="list-group-item"><a
 				href="<c:url value="/customerOrders/add"/>">Sale Point</a></li>
-			<li class="list-group-item"><a href="<c:url value="/stock"/>">Stock</a></li>
+			<li class="list-group-item"><a
+				href="<c:url value="/adminStock"/>">Stock</a></li>
 			<li class="list-group-item"><a href="<c:url value="/doctors"/>">Doctors</a></li>
 			<li class="list-group-item"><a
 				href="<c:url value="/productStepUps/search/orderDate"/>?from=${currentDate}&to=${currentDate}">
@@ -22,7 +23,13 @@
 
 			<li class="list-group-item"><a
 				href="<c:url value="/customerOrders"/>?from=${currentDate}&to=${currentDate}">
-					CustomerOrders</a></li>
+					Customer Orders</a></li>
+
+			<li class="list-group-item"><a href="<c:url value="/vendors"/>">
+					Vendors</a></li>
+
+			<li class="list-group-item"><a href="<c:url value="/productCategories"/>">
+					Product Categories</a></li>
 
 		</ul>
 	</section>

@@ -12,32 +12,47 @@
 
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
-	ng-init="init()" ng-form name="form">
+	ng-init="init()" ng-form name="form">	
 	<h2>Sale Point</h2>
+	<button class="btn btn-lg btn-outline-success"
+		onClick="window.location.reload()">Refresh</button>
 
 
 
-	<table class="table">
+	<table class="table table-sm cus-table-borderless">
 		<tbody>
 			<tr>
 				<td>Customer Name</td>
-				<td><input class="form-control"
+				<td><input class="form-control form-control-sm"
 					ng-model="cusomerOrder.customerName"></td>
 			</tr>
 
 			<tr>
 				<td>Discount Type</td>
-				<td><select class="form-control"
-					ng-model="cusomerOrder.discountId">
-						<option ng-repeat="item in discountTypes" value="{{item.id}}"
-							value="{{item.id}}">{{item.discountType}}</option>
-				</select></td>
+				<td>
+					<div class="form-row">
+						<div class="col">
+							<select class="form-control form-control-sm"
+								ng-model="cusomerOrder.discountId">
+								<option value="">&nbsp;</option>
+								<option ng-repeat="item in discountTypes" value="{{item.id}}"
+									value="{{item.id}}">{{item.discountType}}</option>
+
+							</select>
+						</div>
+						<div class="col" >
+							% <input ng-disabled="!cusomerOrder.discountId" name="discountPercentage" type="number" max="100"
+								min="0" ng-model="discountPercentage"
+								class="w-50 cus-inline-block form-control form-control-sm">
+						</div>
+					</div>
+				</td>
 			</tr>
 
 
 			<tr>
 				<td>Doctor</td>
-				<td><select class="form-control"
+				<td><select class="form-control form-control-sm"
 					ng-model="cusomerOrder.doctorId">
 						<option ng-repeat="item in  doctors" value="{{item.id}}">{{item.fullName}}</option>
 				</select></td>
@@ -45,11 +60,12 @@
 		</tbody>
 	</table>
 
-	<table class="table">
+	<table class="table table-bordered table-sm">
 		<tbody>
 			<tr>
 				<th>Code</th>
 				<th>Name</th>
+				<th>S-Name</th>
 				<th>Quantity</th>
 				<th>Price</th>
 				<th>UnitType</th>
@@ -57,19 +73,26 @@
 			</tr>
 
 			<tr>
-				<th><input class="form-control" ng-model="product.code"
-					ng-keypress="getProduct($event)"></th>
-				<th><input class="form-control" ng-model="product.name"
-					readonly></th>
 
-				<th><input class="form-control" ng-model="product.quantity"></th>
+				<th><input class="form-control form-control-sm"
+					ng-model="product.code" ng-keypress="getProduct($event)"></th>
+				<th><input class="form-control form-control-sm"
+					ng-model="product.name" readonly></th>
+				<th><input class="form-control form-control-sm"
+					ng-model="product.scientificName" readonly></th>
 
-				<th><input class="form-control" class="form-control"
-					ng-model="product.price"></th>
-				<th><input class="form-control" ng-model="product.unitType"
+				<th><input type="number" class="form-control form-control-sm"
+					ng-model="product.quantity" placeholder={{product.stockLevel}}></th>
+
+				<th><input class="form-control form-control-sm"
+					class="form-control form-control-sm" ng-model="product.price"
 					readonly></th>
+				<th><input class="form-control form-control-sm"
+					ng-model="product.unitType" readonly></th>
 				<th>
-					<button class="btn btn-outline-primary"
+					<button
+						ng-disabled="!product.quantity||product.quantity<0||!product.name"
+						class="btn btn-sm btn-outline-primary"
 						ng-click="addCustomerOrderDetail()">Add</button>
 				</th>
 
@@ -79,11 +102,14 @@
 			<tr ng-repeat="item in cusomerOrder.customerOrderDetailDs">
 				<td>{{item.productCode}}</td>
 				<td>{{item.productName}}</td>
-				<td>{{item.quantity}}</td>
+				<td>{{item.scientificName}}</td>
+				<td>{{item.quantity}} <span class="text-info"
+					ng-if="discountPercentage>0"> %{{discountPercentage}} </span>
+				</td>
 				<td>{{item.price}}</td>
 				<td>&nbsp;</td>
 				<td>
-					<button class="btn btn-outline-danger"
+					<button class="btn btn-sm btn-outline-danger"
 						ng-click="removeCustomerOrderDetail($index)">Delete</button>
 				</td>
 			</tr>
@@ -95,29 +121,16 @@
 			<tr>
 				<td>Total Price</td>
 				<td><input ng-value="totalPrice()|number : 3"
-					class="form-control" readonly></td>
+					class="form-control form-control-sm" readonly></td>
 			</tr>
 
-			<tr>
-				<td>Payment Amount</td>
-				<td>
-					<div>
-						<div style="display: inline-block">
-							<input ng-value="paymentAmount()| number : 3"
-								class="form-control" readonly>
-						</div>
-						<div style="display: inline-block">
-							Discount % <input class="cus-inline-block form-control"
-								ng-class={"is-invalid":!form.discountPercentage.$valid} type="number"
-								name="discountPercentage" ng-model="discountPercentage" min="0"
-								max="100">
-						</div>
-					</div>
-				</td>
-
+			<tr ng-if="discountPercentage">
+				<td>Total Price(Discount)</td>
+				<td><input ng-value="totalPriceWithDiscount()|number : 3"
+					class="form-control form-control-sm" readonly></td>
 			</tr>
 		</table>
 	</div>
-	<button ng-disabled="!form.$valid" class="btn btn-outline-primary"
-		ng-click="addCustomerOrder()">Save</button>
+	<button ng-disabled="!form.$valid"
+		class="btn btn-sm btn-outline-primary" ng-click="addCustomerOrder()">Save</button>
 </div>

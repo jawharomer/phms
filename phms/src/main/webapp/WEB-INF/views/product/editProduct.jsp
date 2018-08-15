@@ -22,6 +22,12 @@
 				</tr>
 
 				<tr>
+					<td class="text-left">Scientific Name</td>
+					<td><sf:input class="form-control" path="scientificName" /></td>
+					<td><sf:errors class="text-wrap" path="scientificName" /></td>
+				</tr>
+
+				<tr>
 					<td class="text-left">Profit</td>
 					<td><sf:input class="form-control" path="profit" /></td>
 					<td><sf:errors path="profit" /></td>
@@ -31,6 +37,19 @@
 					<td class="text-left">unitType</td>
 					<td><sf:input class="form-control" path="unitType" /></td>
 					<td><sf:errors path="unitType" /></td>
+				</tr>
+
+				<tr>
+					<td class="text-left">Category</td>
+					<td><select class="form-control" name="productCategory[id]"
+						value="${product.productCategory.id}">
+							<option value="">Choose</option>
+							<c:forEach items="${productCategories}" var="item">
+								<option value="${item.id}">${item.name}</option>
+							</c:forEach>
+					</select></td>
+					<td><sf:errors path="productCategory" /> <sf:errors
+							path="productCategory.id" /></td>
 				</tr>
 
 				<tr>
@@ -52,7 +71,7 @@
 	function modalEditProduct(event) {
 		console.log("modalEditProduct->fired");
 		event.preventDefault();
-		var data = JSON.stringify($("#editProductForm").serializeObject());
+		var data = JSON.stringify($("#editProductForm").serializeJSON());
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",

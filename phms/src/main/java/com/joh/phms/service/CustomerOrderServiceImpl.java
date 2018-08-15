@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.joh.phms.controller.ProductStepUpController;
 import com.joh.phms.dao.CustomerOrderDAO;
-import com.joh.phms.dao.DoctorDAO;
 import com.joh.phms.dao.ProductDAO;
 import com.joh.phms.dao.ProductStepUpDAO;
 import com.joh.phms.domain.model.ProductD;
@@ -21,7 +19,6 @@ import com.joh.phms.exception.ItemNotAvaiableException;
 import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.CustomerOrderDetail;
 import com.joh.phms.model.DiscountType;
-import com.joh.phms.model.Doctor;
 import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductStepUp;
 

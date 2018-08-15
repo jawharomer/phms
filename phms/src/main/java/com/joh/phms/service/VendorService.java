@@ -8,4 +8,10 @@ public interface VendorService {
 
 	Iterable<Vendor> findAll();
 
+	void delete(int id);
+
+	Vendor findOne(int id);
+
+	Vendor update(Vendor vendor);
+
 }

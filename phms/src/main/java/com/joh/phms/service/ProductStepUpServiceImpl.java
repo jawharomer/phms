@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joh.phms.dao.ProductStepUpDAO;
-import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.ProductStepUp;
 
 @Service

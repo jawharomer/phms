@@ -5,11 +5,13 @@ public class ProductD {
 	private Integer productId;
 	private String code;
 	private String name;
+	private String scientificName;
 	private String unitType;
 	private Integer stockLevel;
 	private Double cost;
 	private Double profit;
 	private Double price;
+	private String category;
 
 	public Integer getProductId() {
 		return productId;
@@ -75,10 +77,27 @@ public class ProductD {
 		this.price = price;
 	}
 
+	public String getScientificName() {
+		return scientificName;
+	}
+
+	public void setScientificName(String scientificName) {
+		this.scientificName = scientificName;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductD [productId=" + productId + ", code=" + code + ", name=" + name + ", unitType=" + unitType
-				+ ", stockLevel=" + stockLevel + ", cost=" + cost + ", profit=" + profit + ", price=" + price + "]";
+		return "ProductD [productId=" + productId + ", code=" + code + ", name=" + name + ", scientificName="
+				+ scientificName + ", unitType=" + unitType + ", stockLevel=" + stockLevel + ", cost=" + cost
+				+ ", profit=" + profit + ", price=" + price + ", category=" + category + "]";
 	}
 
 }

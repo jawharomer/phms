@@ -47,3 +47,11 @@ a {
 .cus-inline-block {
 	display: inline-block !important;
 }
+
+.cus-table-borderless th,.cus-table-borderless td{
+	border: none;
+}
+
+
+
+

@@ -7,17 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joh.phms.domain.model.NotificationD;
 import com.joh.phms.domain.model.ProductD;
-import com.joh.phms.service.ProductServiceImpl;
 import com.joh.phms.service.ProductSevice;
 import com.joh.phms.service.ReportService;
 
 @Controller()
-@RequestMapping(path = "/stock")
 public class StockController {
 
 	private static final Logger logger = Logger.getLogger(StockController.class);
@@ -28,20 +24,28 @@ public class StockController {
 	@Autowired
 	private ReportService reportService;
 
-	@GetMapping()
-	private String getStock(Model model) {
-		logger.info("getStock->fired");
+	@GetMapping(path = "/adminRoot")
+	private String adminRoot(Model model) {
+		logger.info("adminRoot->fired");
+
+		List<NotificationD> notificationDs = reportService.findAdminNotifications();
+		logger.info("notificationDs=" + notificationDs);
+
+		model.addAttribute("notificationDs", notificationDs);
+
+		return "adminRoot";
+	}
+
+	@GetMapping(path = "/adminStock")
+	private String getAdminStock(Model model) {
+		logger.info("getAdminStock->fired");
 
 		List<ProductD> productDs = productSevice.findStock();
 
 		logger.info("productDs=" + productDs);
 
-		List<NotificationD> notificationDs = reportService.findAdminNotifications();
-		logger.info("notificationDs=" + notificationDs);
-
 		model.addAttribute("productDs", productDs);
-		model.addAttribute("notificationDs", notificationDs);
 
-		return "adminRoot";
+		return "adminStock";
 	}
 }

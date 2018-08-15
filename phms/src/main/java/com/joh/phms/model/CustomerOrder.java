@@ -1,5 +1,6 @@
 package com.joh.phms.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "CUSTOMER_ORDERS")
@@ -50,6 +52,11 @@ public class CustomerOrder {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "I_DISCOUNT_TYPE")
 	private DiscountType discountType;
+
+	@Column(name = "DISCOUNT_AMOUNT")
+	@Min(value = 0, message = "minimum discountAmount is 0")
+	@Max(value = 1, message = "maximum discountAmount is 1")
+	private BigDecimal discountAmount;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "I_CUSTOMER_ORDER")
@@ -111,10 +118,19 @@ public class CustomerOrder {
 		this.discountType = discountType;
 	}
 
+	public BigDecimal getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(BigDecimal discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerOrder [id=" + id + ", customerName=" + customerName + ", orderTime=" + orderTime
-				+ ", totalPrice=" + totalPrice + ", doctor=" + doctor + "]";
+				+ ", totalPrice=" + totalPrice + ", doctor=" + doctor + ", discountType=" + discountType
+				+ ", discountAmount=" + discountAmount + ", customerOrderDetails=" + customerOrderDetails + "]";
 	}
 
 }

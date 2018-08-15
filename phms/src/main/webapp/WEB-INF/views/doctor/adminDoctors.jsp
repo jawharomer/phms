@@ -11,6 +11,8 @@
 
 <div ng-app="adminDoctors" ng-controller="adminDoctors"
 	class="admin-doctors">
+	
+		<h2>Doctors</h2>
 
 	<div class="add-new-doctor-div">
 		<button class="btn btn-outline-primary" ng-click="getAddingDoctor()">Add</button>

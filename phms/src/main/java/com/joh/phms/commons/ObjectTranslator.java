@@ -37,6 +37,9 @@ public class ObjectTranslator {
 		if (customerOrder.getDiscountType() != null)
 			customerOrderD.setDiscountId(customerOrder.getDiscountType().getId());
 
+		if (customerOrder.getDiscountAmount() != null)
+			customerOrderD.setDiscountAmount(customerOrder.getDiscountAmount());
+
 		for (CustomerOrderDetail customerOrderDetail : customerOrder.getCustomerOrderDetails()) {
 			CustomerOrderDetailD customerOrderDetailD = new CustomerOrderDetailD();
 
@@ -75,6 +78,9 @@ public class ObjectTranslator {
 			discountType.setId(customerOrderD.getDiscountId());
 			customerOrder.setDiscountType(discountType);
 		}
+
+		if (customerOrderD.getDiscountAmount() != null)
+			customerOrder.setDiscountAmount(customerOrderD.getDiscountAmount());
 
 		customerOrder.setCustomerName(customerOrderD.getCustomerName());
 

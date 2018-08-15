@@ -21,6 +21,12 @@
 					<td><sf:input class="form-control" path="name" /></td>
 					<td><sf:errors class="text-wrap" path="name" /></td>
 				</tr>
+				
+				<tr>
+					<td class="text-left">Scientific Name</td>
+					<td><sf:input class="form-control" path="scientificName" /></td>
+					<td><sf:errors class="text-wrap" path="scientificName" /></td>
+				</tr>
 
 				<tr>
 					<td class="text-left">Profit</td>
@@ -35,7 +41,23 @@
 				</tr>
 
 				<tr>
-					<td><input class="btn btn-outline-primary" type="submit" value="Adding"></td>
+					<td class="text-left">Category</td>
+					<td><select class="form-control"
+						name="productCategory[id]"
+						value="${product.productCategory.id}">
+						<option value="">Choose</option>
+							<c:forEach items="${productCategories}" var="item">
+								<option value="${item.id}">${item.name}</option>
+							</c:forEach>
+					</select></td>
+					<td><sf:errors path="productCategory" />
+					<sf:errors path="productCategory.id" />
+					</td>
+				</tr>
+
+				<tr>
+					<td><input class="btn btn-outline-primary" type="submit"
+						value="Adding"></td>
 				</tr>
 
 			</tbody>
@@ -51,7 +73,7 @@
 	function addProduct(event) {
 		event.preventDefault();
 		console.log("addProduct->fired");
-		var data = $("#add-product-form").serializeObject();
+		var data = $("#add-product-form").serializeJSON();
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",

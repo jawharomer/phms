@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.joh.phms.model.CustomerOrder;
-import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductStepUp;
 
 public interface ProductStepUpDAO extends CrudRepository<ProductStepUp, Integer> {

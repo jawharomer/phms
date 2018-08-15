@@ -17,6 +17,8 @@
 			<tr>
 				<th>Code</th>
 				<th>Name</th>
+				<th>Scientific Name</th>
+				<th>Category</th>
 				<th>UnitType</th>
 				<th>StockLevel</th>
 				<th>Cost</th>
@@ -29,19 +31,24 @@
 				<tr>
 					<td>${productD.code}</td>
 					<td>${productD.name}</td>
+					<td>${productD.scientificName}</td>
+					<td>${productD.category}</td>
 					<td>${productD.unitType}</td>
 					<td>${productD.stockLevel}</td>
 					<td>${productD.cost}</td>
 					<td>${productD.price}</td>
 					<td>
 						<div class="cus-table-function-div">
-							<button class="btn btn-outline-danger" data-product-id="${productD.productId}"
+							<button class="btn btn-outline-danger"
+								data-product-id="${productD.productId}"
 								onclick="deleteProduct(this)">delete</button>
-							<button class="btn btn-outline-warning" data-product-id="${productD.productId}"
+							<button class="btn btn-outline-warning"
+								data-product-id="${productD.productId}"
 								onclick="editProduct(this)">edit</button>
 
-							<button class="btn btn-outline-primary" data-product-id="${productD.productId}"
-								onclick="productStepUp(this)">StepUp</button>
+							<button class="btn btn-outline-primary"
+								data-product-id="${productD.productId}"
+								onclick="productStepUp(this)">Add To</button>
 						</div>
 					</td>
 				</tr>
