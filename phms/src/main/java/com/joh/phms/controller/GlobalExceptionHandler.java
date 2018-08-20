@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.joh.phms.exception.CusDataIntegrityViolationException;
 import com.joh.phms.exception.ItemExistsException;
 
 @ControllerAdvice
@@ -33,7 +34,13 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler({ DataIntegrityViolationException.class })
 	public String handleSQLException(HttpServletRequest request, Exception ex, Model model) {
 		logger.info("SQLException Occured:: URL=" + request.getRequestURL());
-		model.addAttribute("message", ex.getMessage());
+
+		if (ex instanceof CusDataIntegrityViolationException) {
+			CusDataIntegrityViolationException cex = (CusDataIntegrityViolationException) ex;
+			logger.info("cex=" + cex);
+			model.addAttribute("message", cex.getCustomMessage());
+		}
+
 		return "dataIntigrityException";
 	}
 

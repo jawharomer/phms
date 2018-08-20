@@ -8,7 +8,7 @@
 
 	<sf:form id="add-vendor-form" method="POST" commandName="vendor"
 		onsubmit="addVendor(event)">
-		
+
 
 		<table>
 			<tbody>
@@ -55,6 +55,7 @@
 
 
 <script>
+	var csrf = '${_csrf.token}';
 	function addVendor(event) {
 		event.preventDefault();
 		console.log("addVendor->fired");
@@ -64,6 +65,9 @@
 		$.ajax({
 			type : "POST",
 			url : "<c:url value="/vendors/add"/>",
+			headers : {
+             'X-CSRF-TOKEN':csrf
+			},
 			data : JSON.stringify(data),
 			contentType : "application/json",
 			success : function(response) {

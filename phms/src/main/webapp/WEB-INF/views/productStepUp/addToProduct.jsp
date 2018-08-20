@@ -76,6 +76,8 @@
 	</sf:form>
 </div>
 <script>
+    
+    var csrf='${_csrf.token}';
 	$(document).ready()
 	{
 		$("#expirationDate,#productionDate").datepicker({
@@ -90,6 +92,9 @@
 		$.ajax({
 			type : "POST",
 			url : "<c:url value="/productStepUps/add"/>",
+			headers:{
+				'X-CSRF-TOKEN':csrf
+			},
 			data : JSON.stringify(data),
 			contentType : "application/json",
 			success : function(response) {

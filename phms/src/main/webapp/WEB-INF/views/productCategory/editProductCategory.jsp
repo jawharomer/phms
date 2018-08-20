@@ -36,6 +36,8 @@
 
 
 <script>
+
+var csrf='${_csrf.token}';
 	function editProductCategory(event) {
 		event.preventDefault();
 		console.log("editProductCategory->fired");
@@ -45,6 +47,9 @@
 		$.ajax({
 			type : "POST",
 			url : "<c:url value="/productCategories/update"/>",
+			headers:{
+				'X-CSRF-TOKEN':csrf
+			},
 			data : JSON.stringify(data),
 			contentType : "application/json",
 			success : function(response) {

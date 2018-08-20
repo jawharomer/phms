@@ -70,6 +70,9 @@
 
 
 <script>
+
+var csrf='${_csrf.token}';
+
 	function addProduct(event) {
 		event.preventDefault();
 		console.log("addProduct->fired");
@@ -78,6 +81,9 @@
 		$.ajax({
 			type : "POST",
 			url : "<c:url value="/products/add"/>",
+			headers: {
+		        'X-CSRF-TOKEN':csrf
+		    },
 			data : JSON.stringify(data),
 			contentType : "application/json",
 			success : function(response) {

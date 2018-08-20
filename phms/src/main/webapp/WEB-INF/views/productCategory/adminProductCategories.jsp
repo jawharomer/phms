@@ -9,11 +9,17 @@
 <fmt:formatDate var="currentDate" value="${now}" pattern="yyyy-MM-dd" />
 
 
+<script>
+	var csrf = '${_csrf.token}';
+</script>
+
+
 <div ng-app="adminProductCategories"
 	ng-controller="adminProductCategories" class="admin-doctors">
 
 	<div class="add-new-doctor-div">
-		<button class="btn btn-outline-primary" ng-click="getAddingProductCategory()">Add</button>
+		<button class="btn btn-outline-primary"
+			ng-click="getAddingProductCategory()">Add</button>
 	</div>
 
 	<table class="table">

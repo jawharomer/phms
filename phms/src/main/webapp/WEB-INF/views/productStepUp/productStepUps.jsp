@@ -52,20 +52,21 @@
 	</div>
 
 
-	<table class="table">
+	<table id="productStepUpsTable" class="display">
 		<thead>
 			<tr>
-				<td>Code</td>
-				<td>Time</td>
-				<td>Expiration</td>
-				<td>Production</td>
-				<td>Vendor</td>
-				<td>PaymentAmount</td>
-				<td>Quantity</td>
-				<td>Sold</td>
-				<td>Bonus</td>
-				<td>Note</td>
-				<td>Function</td>
+				<th>Code</th>
+				<th>Time</th>
+				<th>Expiration</th>
+				<th>Production</th>
+				<th>Vendor</th>
+				<th>Payment</th>
+				<th>Quantity</th>
+				<th>Sold</th>
+				<th>Remain</th>
+				<th>Bonus</th>
+				<th>Note</th>
+				<th>Function</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -84,6 +85,7 @@
 							value="${item.paymentAmount}" /></td>
 					<td>${item.quantity}</td>
 					<td>${item.soldQuantity}</td>
+					<td>${item.quantity-item.soldQuantity}</td>
 					<td>${item.bonusQuantity}</td>
 					<td>${item.note}</td>
 					<td>
@@ -98,6 +100,22 @@
 			</c:forEach>
 
 		</tbody>
+
+		<tfoot>
+			<tr>
+				<th>Code</th>
+				<th>Time</th>
+				<th>Expiration</th>
+				<th>Production</th>
+				<th>Vendor</th>
+				<th>Payment</th>
+				<th>Quantity</th>
+				<th>Sold</th>
+				<th>Bonus</th>
+				<th>Note</th>
+				<th>Function</th>
+			</tr>
+		</tfoot>
 
 
 	</table>

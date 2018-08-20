@@ -68,6 +68,7 @@
 
 
 <script>
+	var csrf = '${_csrf.token}';
 	function modalEditProduct(event) {
 		console.log("modalEditProduct->fired");
 		event.preventDefault();
@@ -77,6 +78,9 @@
 			type : "POST",
 			url : "<c:url value="/products/update"/>",
 			data : data,
+			headers : {
+				"X-CSRF-TOKEN" : csrf
+			},
 			contentType : "application/json",
 			success : function(data) {
 				console.log("data=", data);

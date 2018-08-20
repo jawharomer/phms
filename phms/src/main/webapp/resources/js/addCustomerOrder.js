@@ -1,4 +1,25 @@
+$(document).ready()
+{
+	console.log("csrf=",csrf);
+}
+
+// Angular
+
+
 appAddCusotmerOrder = angular.module("addCustomerOrder", []);
+
+
+appAddCusotmerOrder.factory('httpRequestInterceptor', function () {
+	  return {
+	    request: function (config) {
+	      config.headers['X-CSRF-TOKEN'] = csrf;
+	      return config;
+	    }
+	  };
+});
+appAddCusotmerOrder.config(function ($httpProvider) {
+	  $httpProvider.interceptors.push('httpRequestInterceptor');
+});
 
 appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 

@@ -15,6 +15,7 @@ import com.joh.phms.dao.CustomerOrderDAO;
 import com.joh.phms.dao.ProductDAO;
 import com.joh.phms.dao.ProductStepUpDAO;
 import com.joh.phms.domain.model.ProductD;
+import com.joh.phms.exception.CusDataIntegrityViolationException;
 import com.joh.phms.exception.ItemNotAvaiableException;
 import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.CustomerOrderDetail;
@@ -56,7 +57,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			} else if (customerOrder.getDiscountType() != null && customerOrder.getDoctor() == null
 					&& customerOrder.getDiscountType().getId().equals(DiscountType.type.ByDoctor.getId())) {
 
-				throw new DataIntegrityViolationException(
+				throw new CusDataIntegrityViolationException(
 						"You are tring to discount by doctor but no doctor is selected");
 
 			}

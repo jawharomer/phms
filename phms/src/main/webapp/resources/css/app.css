@@ -12,6 +12,11 @@ body {
 	color: black;
 }
 
+
+body{
+	font-size: 14px;
+}
+
 #view-port {
 	position: fixed;
 	top: 0px;
@@ -50,6 +55,10 @@ a {
 
 .cus-table-borderless th,.cus-table-borderless td{
 	border: none;
+}
+
+.display th,.display tfoot th{
+	font-size: 12px;
 }
 
 

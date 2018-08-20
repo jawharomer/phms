@@ -1,6 +1,18 @@
-appAddCusotmerOrder = angular.module("adminProductCategories", []);
+appAdminProductCategories = angular.module("adminProductCategories", []);
 
-appAddCusotmerOrder.controller("adminProductCategories", function($scope, $http) {
+appAdminProductCategories.factory('httpRequestInterceptor', function () {
+	  return {
+	    request: function (config) {
+	      config.headers['X-CSRF-TOKEN'] = csrf;
+	      return config;
+	    }
+	  };
+});
+appAdminProductCategories.config(function ($httpProvider) {
+	  $httpProvider.interceptors.push('httpRequestInterceptor');
+});
+
+appAdminProductCategories.controller("adminProductCategories", function($scope, $http) {
 
 	$scope.getAddingProductCategory= function() {
 		console.log("getAddingProductCategory->fired");

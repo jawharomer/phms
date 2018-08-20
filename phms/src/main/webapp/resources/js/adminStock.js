@@ -1,3 +1,5 @@
+console.log("csrf=",csrf);
+
 $(document).ready(function() {
 	console.log("Activate data table");
 	$("#studentTable").DataTable({
@@ -21,6 +23,9 @@ function deleteProduct(_this) {
 	$.ajax({
 		type : "POST",
 		url : $$ContextURL + "/products/delete/" + id,
+		headers:{
+			"X-CSRF-TOKEN":csrf
+		},
 		contentType : "application/json",
 		success : function(data) {
 			if (data == "success") {

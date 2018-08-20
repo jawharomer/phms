@@ -34,6 +34,7 @@
 
 
 <script>
+	var csrf = '${_csrf.token}';
 	function addProductCategory(event) {
 		event.preventDefault();
 		console.log("addProductCategory->fired");
@@ -44,13 +45,17 @@
 			type : "POST",
 			url : "<c:url value="/productCategories/add"/>",
 			data : JSON.stringify(data),
+			headers : {
+				'X-CSRF-TOKEN' : csrf
+			},
 			contentType : "application/json",
 			success : function(response) {
 				$("#add-product-category-container").html(response);
 			},
 			error : function(response) {
 				console.log(response);
-				$("#add-product-category-container").html(response.responseText);
+				$("#add-product-category-container")
+						.html(response.responseText);
 			}
 		});
 	}

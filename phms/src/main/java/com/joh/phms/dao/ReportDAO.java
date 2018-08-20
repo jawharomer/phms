@@ -104,15 +104,15 @@ public class ReportDAO {
 
 		// Notification-3
 
-		query = em.createNativeQuery("SELECT ROUND(IFNULL(SUM(PRICE*QUANTITY),0),3) FROM CUSTOMER_ORDERS\n"
-				+ "INNER JOIN CUSTOMER_ORDER_DETAILS USING(I_CUSTOMER_ORDER) WHERE DATE(ORDER_TIME)=CURDATE();");
+		query = em.createNativeQuery(
+				"SELECT ROUND(IFNULL(SUM(TOTAL_PRICE*DISCOUNT_AMOUNT),0),3) FROM CUSTOMER_ORDERS WHERE DATE(ORDER_TIME)=CURDATE();");
 
 		Object totalTodayCustomerPriceResultWithDiscount = query.getSingleResult();
 
 		double totalTodayCustomerPriceWithDiscount = 0;
 
 		if (totalTodayCustomerPriceResultWithDiscount != null)
-			Double.parseDouble("" + totalTodayCustomerPriceResultWithDiscount);
+			totalTodayCustomerPriceWithDiscount = Double.parseDouble("" + totalTodayCustomerPriceResultWithDiscount);
 
 		NotificationD not3 = new NotificationD();
 		not3.setTitle("Today Total Customer Order Income ");
@@ -126,8 +126,7 @@ public class ReportDAO {
 		// Notification-4
 
 		query = em.createNativeQuery(
-				"SELECT ROUND(IFNULL(SUM(PRICE*QUANTITY),0)-SUM(TOTAL_PRICE),3) FROM CUSTOMER_ORDERS\n"
-						+ "INNER JOIN CUSTOMER_ORDER_DETAILS USING(I_CUSTOMER_ORDER) WHERE DATE(ORDER_TIME);");
+				"SELECT ROUND(IFNULL(SUM(TOTAL_PRICE),0)-SUM(TOTAL_PRICE*DISCOUNT_AMOUNT),3) FROM CUSTOMER_ORDERS WHERE DATE(ORDER_TIME)=CURDATE();");
 
 		Object totalTodayCustomerDiscountResult = query.getSingleResult();
 
@@ -147,9 +146,7 @@ public class ReportDAO {
 
 		// Notification-5
 
-		query = em.createNativeQuery(
-				"SELECT ROUND(IFNULL(SUM(PRICE*QUANTITY),0)-SUM(TOTAL_PRICE),3) FROM CUSTOMER_ORDERS\n"
-						+ "INNER JOIN CUSTOMER_ORDER_DETAILS USING(I_CUSTOMER_ORDER) WHERE DATE(ORDER_TIME);");
+		query = em.createNativeQuery("SELECT ROUND(IFNULL(SUM(PAYMENT_AMOUNT),0)) FROM PRODUCT_STEPUPS WHERE DATE(STEPUP_TIME)=CURDATE();");
 
 		Object totalProductStepUpPaymentamountResult = query.getSingleResult();
 

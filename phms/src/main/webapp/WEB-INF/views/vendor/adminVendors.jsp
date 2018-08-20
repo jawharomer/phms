@@ -7,6 +7,9 @@
 
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate var="currentDate" value="${now}" pattern="yyyy-MM-dd" />
+<script>
+	var csrf = '${_csrf.token}';
+</script>
 
 
 <div ng-app="adminVendors" ng-controller="adminVendors"

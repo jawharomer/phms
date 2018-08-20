@@ -1,0 +1,29 @@
+body {
+	
+}
+
+#cus-login-contianer {
+	width: 400px;
+	margin:0 auto;
+	margin-top: 100px;
+	padding:30px;
+}
+
+#cus-submit-td{
+	padding-top:20px;
+}
+
+#cus-login-btn{
+	width:100px;
+}
+
+.cus-user-icon{
+	font-size: 50px;
+}
+td{
+	padding-top:10px;
+}
+
+td,th{
+	text-align: center;
+}

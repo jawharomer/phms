@@ -69,11 +69,8 @@
 			</tr>
 			<tr>
 				<td>Total Price</td>
-				<td><c:set var="totalPrice" value="${0.0}" /> <c:forEach
-						var="item" items="${customerOrder.customerOrderDetails}">
-						<c:set var="totalPrice"
-							value="${totalPrice + (item.price*item.quantity)}" />
-					</c:forEach> ${totalPrice}</td>
+				<td><fmt:formatNumber type="number" maxFractionDigits="3"
+						value="${customerOrder.totalPrice}" /></td>
 			</tr>
 
 			<c:if test="${customerOrder.discountAmount!=null}">
@@ -83,7 +80,9 @@
 				</tr>
 				<tr>
 					<td>Total Price (Discount)</td>
-					<td>${totalPrice*customerOrder.discountAmount}</td>
+					<td><fmt:formatNumber type="number" maxFractionDigits="3"
+							value="${customerOrder.totalPrice*customerOrder.discountAmount}" />
+					</td>
 				</tr>
 
 			</c:if>
@@ -95,19 +94,23 @@
 
 			<thead>
 				<tr>
-					<th>Code</th>
 					<th>Name</th>
 					<th>Quantity</th>
 					<th>Price</th>
+					<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${customerOrder.customerOrderDetails}" var="item">
 					<tr>
-						<td>${item.productCode}</td>
 						<td>${item.productName}</td>
 						<td>${item.quantity}</td>
-						<td>${item.price}</td>
+						<td><fmt:formatNumber type="number" maxFractionDigits="3"
+								value="${item.price}" /></td>
+
+						<td><fmt:formatNumber type="number" maxFractionDigits="3"
+								value="${item.price*item.quantity}" /></td>
+
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -1,6 +1,21 @@
-appAddCusotmerOrder = angular.module("adminVendors", []);
+appAdminVendors = angular.module("adminVendors", []);
 
-appAddCusotmerOrder.controller('adminVendors', function($scope, $http) {
+appAdminVendors.factory('httpRequestInterceptor', function () {
+	  return {
+	    request: function (config) {
+	      config.headers['X-CSRF-TOKEN'] = csrf;
+	      return config;
+	    }
+	  };
+});
+
+appAdminVendors.config(function ($httpProvider) {
+	  $httpProvider.interceptors.push('httpRequestInterceptor');
+});
+
+
+
+appAdminVendors.controller('adminVendors', function($scope, $http) {
 
 	$scope.getAddingVendor = function() {
 		console.log("getAddingVendor->fired");
@@ -18,7 +33,7 @@ appAddCusotmerOrder.controller('adminVendors', function($scope, $http) {
 	}
 
 	$scope.deleteVendor = function(id) {
-		console.log("delteVendor->fired");
+		console.log("deleteVendor->fired");
 		$http({
 			method : 'POST',
 			url : $$ContextURL + '/vendors/delete/' + id

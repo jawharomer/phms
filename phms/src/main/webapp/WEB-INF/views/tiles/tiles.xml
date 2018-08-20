@@ -54,15 +54,14 @@
 			<add-attribute value="adminStock" />
 		</put-list-attribute>
 	</definition>
-	
-	
-	
-<!-- Admin Stock page -->
+
+
+
+	<!-- Admin Stock page -->
 	<definition name="adminStock" extends="adminRoot">
 		<put-attribute name="title" value="Add Customer Order" />
 		<put-attribute name="adminBody"
-			value="/WEB-INF/views/admin/stock.jsp"
-			cascade="true" />
+			value="/WEB-INF/views/admin/stock.jsp" cascade="true" />
 		<put-list-attribute name="requiredCSSFiles">
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />
@@ -129,6 +128,7 @@
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />
 			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="jquery.dataTables" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
 		</put-list-attribute>
@@ -189,8 +189,10 @@
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />
 			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="jquery.dataTables" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="doctorCustomerOrders" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">
@@ -199,6 +201,16 @@
 			<add-attribute value="jquery.serializeObject" />
 			<add-attribute value="jquery.serializejson" />
 			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<!-- S-DataTableLib -->
+			<add-attribute value="dt/dataTables.buttons.min" />
+			<add-attribute value="dt/buttons.flash.min" />
+			<add-attribute value="dt/jszip.min" />
+			<add-attribute value="dt/pdfmake.min" />
+			<add-attribute value="dt/vfs_fonts" />
+			<add-attribute value="dt/buttons.html5.min" />
+			<add-attribute value="dt/buttons.print.min" />
+			<!-- E-DataTableLib -->
 			<add-attribute value="angular" />
 			<add-attribute value="app" />
 			<add-attribute value="adminDoctorCustomerOrders" />
@@ -221,6 +233,7 @@
 			<add-attribute value="jquery-ui.theme" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="jquery.dataTables" />
 			<add-attribute value="adminCustomerOrders" />
 		</put-list-attribute>
 
@@ -230,6 +243,16 @@
 			<add-attribute value="jquery.serializeObject" />
 			<add-attribute value="jquery.serializejson" />
 			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<!-- S-DataTableLib -->
+			<add-attribute value="dt/dataTables.buttons.min" />
+			<add-attribute value="dt/buttons.flash.min" />
+			<add-attribute value="dt/jszip.min" />
+			<add-attribute value="dt/pdfmake.min" />
+			<add-attribute value="dt/vfs_fonts" />
+			<add-attribute value="dt/buttons.html5.min" />
+			<add-attribute value="dt/buttons.print.min" />
+			<!-- E-DataTableLib -->
 			<add-attribute value="angular" />
 			<add-attribute value="app" />
 			<add-attribute value="adminCustomerOrders" />
@@ -250,6 +273,7 @@
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />
 			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="jquery.dataTables" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
 			<add-attribute value="adminProductStepUps" />
@@ -261,14 +285,24 @@
 			<add-attribute value="jquery.serializeObject" />
 			<add-attribute value="jquery.serializejson" />
 			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<!-- S-DataTableLib -->
+			<add-attribute value="dt/dataTables.buttons.min" />
+			<add-attribute value="dt/buttons.flash.min" />
+			<add-attribute value="dt/jszip.min" />
+			<add-attribute value="dt/pdfmake.min" />
+			<add-attribute value="dt/vfs_fonts" />
+			<add-attribute value="dt/buttons.html5.min" />
+			<add-attribute value="dt/buttons.print.min" />
+			<!-- E-DataTableLib -->
 			<add-attribute value="angular" />
 			<add-attribute value="app" />
 			<add-attribute value="adminProductStepUps" />
 		</put-list-attribute>
 
 	</definition>
-	
-	
+
+
 	<!-- AdminVendors page -->
 	<definition name="adminVendors" extends="adminRoot">
 		<put-attribute name="title" value="Add Customer Order" />
@@ -297,14 +331,16 @@
 		</put-list-attribute>
 
 	</definition>
-	
-	
-	
+
+
+
 	<!-- AdminProductCategories page -->
-	<definition name="adminProductCategories" extends="adminRoot">
+	<definition name="adminProductCategories"
+		extends="adminRoot">
 		<put-attribute name="title" value="Add Customer Order" />
 		<put-attribute name="adminBody"
-			value="/WEB-INF/views/productCategory/adminProductCategories.jsp" cascade="true" />
+			value="/WEB-INF/views/productCategory/adminProductCategories.jsp"
+			cascade="true" />
 		<put-list-attribute name="requiredCSSFiles">
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />

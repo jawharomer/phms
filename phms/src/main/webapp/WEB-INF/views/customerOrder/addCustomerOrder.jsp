@@ -8,12 +8,14 @@
 <script type="text/javascript">
 	var jsonDoctors = '${jsonDoctors}';
 	var jsonDiscountTypes = '${jsonDiscountTypes}';
+	var csrf='${_csrf.token}';
 </script>
 
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
 	ng-init="init()" ng-form name="form">	
 	<h2>Sale Point</h2>
+
 	<button class="btn btn-lg btn-outline-success"
 		onClick="window.location.reload()">Refresh</button>
 

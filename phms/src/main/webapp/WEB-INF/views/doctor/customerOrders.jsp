@@ -11,13 +11,15 @@
 		<table>
 			<tr>
 				<td class="text-left">From</td>
-				<td><input class="form-control" id="from" name="from" value="<fmt:formatDate pattern = "yyyy-MM-dd"  
+				<td><input class="form-control" id="from" name="from"
+					value="<fmt:formatDate pattern = "yyyy-MM-dd"  
          value = "${from}" />" /></td>
 			</tr>
 
 			<tr>
 				<td class="text-left">To</td>
-				<td><input class="form-control" id="to" name="to" value="<fmt:formatDate pattern = "yyyy-MM-dd"  
+				<td><input class="form-control" id="to" name="to"
+					value="<fmt:formatDate pattern = "yyyy-MM-dd"  
          value = "${to}" />" /></td>
 			</tr>
 			<tr>
@@ -29,36 +31,49 @@
 	</form>
 
 </div>
+<div>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>Customer Name</th>
-			<th>Order Time</th>
-			<th>Total Price</th>
-			<th>Total Payment</th>
-			<th>Discount Type</th>
-			<th>Income</th>
-			<th>#Invoice</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach items="${doctorCustomerOrderDs}" var="item">
+	<table id="customerOrdersTable" class="display nowrap">
+		<thead>
 			<tr>
-				<td>${item.customerName}</td>
-				<td>${item.orderTime}</td>
-				<td><fmt:formatNumber type="number" maxFractionDigits="3"
-						value="${item.totalPrice}" /></td>
-				<td><fmt:formatNumber type="number" maxFractionDigits="3"
-						value="${item.totalPayment}" /></td>
-				<td>${item.discountType}</td>
-				<td><fmt:formatNumber type="number" maxFractionDigits="3"
-						value="${item.income}" /></td>
-				<td>${item.customerOrderId}</td>
+				<th>Customer Name</th>
+				<th>Order Time</th>
+				<th>Total Price</th>
+				<th>Total Payment</th>
+				<th>Discount Type</th>
+				<th>Income</th>
+				<th>#Invoice</th>
 			</tr>
-		</c:forEach>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<c:forEach items="${doctorCustomerOrderDs}" var="item">
+				<tr>
+					<td>${item.customerName}</td>
+					<td>${item.orderTime}</td>
+					<td><fmt:formatNumber type="number" maxFractionDigits="3"
+							value="${item.totalPrice}" /></td>
+					<td><fmt:formatNumber type="number" maxFractionDigits="3"
+							value="${item.totalPayment}" /></td>
+					<td>${item.discountType}</td>
+					<td><fmt:formatNumber type="number" maxFractionDigits="3"
+							value="${item.income}" /></td>
+					<td>${item.customerOrderId}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>Customer Name</th>
+				<th>Order Time</th>
+				<th>Total Price</th>
+				<th>Total Payment</th>
+				<th>Discount Type</th>
+				<th>Income</th>
+				<th>#Invoice</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>
 <hr />
 
 <div>
