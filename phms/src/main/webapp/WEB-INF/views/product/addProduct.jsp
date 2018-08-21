@@ -21,7 +21,18 @@
 					<td><sf:input class="form-control" path="name" /></td>
 					<td><sf:errors class="text-wrap" path="name" /></td>
 				</tr>
-				
+
+				<tr>
+					<td class="text-left">Country</td>
+					<td><sf:select class="form-control" path="country">
+							<c:forEach items="${countries}" var="item">
+								<option value="${item.code}">${item.name}</option>
+							</c:forEach>
+
+						</sf:select></td>
+					<td><sf:errors class="text-wrap" path="country" /></td>
+				</tr>
+
 				<tr>
 					<td class="text-left">Scientific Name</td>
 					<td><sf:input class="form-control" path="scientificName" /></td>
@@ -42,17 +53,15 @@
 
 				<tr>
 					<td class="text-left">Category</td>
-					<td><select class="form-control"
-						name="productCategory[id]"
+					<td><select class="form-control" name="productCategory[id]"
 						value="${product.productCategory.id}">
-						<option value="">Choose</option>
+							<option value="">Choose</option>
 							<c:forEach items="${productCategories}" var="item">
 								<option value="${item.id}">${item.name}</option>
 							</c:forEach>
 					</select></td>
-					<td><sf:errors path="productCategory" />
-					<sf:errors path="productCategory.id" />
-					</td>
+					<td><sf:errors path="productCategory" /> <sf:errors
+							path="productCategory.id" /></td>
 				</tr>
 
 				<tr>
@@ -70,8 +79,7 @@
 
 
 <script>
-
-var csrf='${_csrf.token}';
+	var csrf = '${_csrf.token}';
 
 	function addProduct(event) {
 		event.preventDefault();
@@ -81,9 +89,9 @@ var csrf='${_csrf.token}';
 		$.ajax({
 			type : "POST",
 			url : "<c:url value="/products/add"/>",
-			headers: {
-		        'X-CSRF-TOKEN':csrf
-		    },
+			headers : {
+				'X-CSRF-TOKEN' : csrf
+			},
 			data : JSON.stringify(data),
 			contentType : "application/json",
 			success : function(response) {

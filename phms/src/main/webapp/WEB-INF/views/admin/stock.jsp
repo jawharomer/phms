@@ -24,6 +24,7 @@ var csrf='${_csrf.token}';
 				<th>Name</th>
 				<th>Scientific Name</th>
 				<th>Category</th>
+				<th>Country</th>
 				<th>UnitType</th>
 				<th>StockLevel</th>
 				<th>Cost</th>
@@ -38,6 +39,7 @@ var csrf='${_csrf.token}';
 					<td>${productD.name}</td>
 					<td>${productD.scientificName}</td>
 					<td>${productD.category}</td>
+					<td>${productD.country}</td>
 					<td>${productD.unitType}</td>
 					<td>${productD.stockLevel}</td>
 					<td>${productD.cost}</td>

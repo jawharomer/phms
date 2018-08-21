@@ -51,6 +51,10 @@ public class Product {
 	@JoinColumn(name = "I_PRODUCT_CATEGORY", nullable = false)
 	private ProductCategory productCategory;
 
+	@NotBlank(message = "Country  is blank")
+	@Column(name = "COUNTRY")
+	private String country;
+
 	public int getId() {
 		return id;
 	}
@@ -107,10 +111,19 @@ public class Product {
 		this.unitType = unitType;
 	}
 
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", scientificName=" + scientificName
-				+ ", profit=" + profit + ", unitType=" + unitType + ", productCategory=" + productCategory + "]";
+				+ ", profit=" + profit + ", unitType=" + unitType + ", productCategory=" + productCategory
+				+ ", country=" + country + "]";
 	}
 
 }

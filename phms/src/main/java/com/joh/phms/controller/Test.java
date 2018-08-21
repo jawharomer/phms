@@ -31,6 +31,7 @@ public class Test {
 	public static void main(String[] args) {
 		System.out.println("workds");
 		BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+		System.out.println(b.encode("inet2018"));
 		System.out.println(b.encode("inet2018s"));
 	}
 }

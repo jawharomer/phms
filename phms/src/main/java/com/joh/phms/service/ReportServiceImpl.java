@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.joh.phms.dao.ReportDAO;
 import com.joh.phms.domain.model.DoctorCustomerOrderD;
 import com.joh.phms.domain.model.NotificationD;
+import com.joh.phms.model.Country;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -24,5 +25,11 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public List<NotificationD> findAdminNotifications() {
 		return reportDAO.findAdminNotifications();
+	}
+	
+	
+	@Override
+	public List<Country> findAllCountry() {
+		return reportDAO.findAllCountry();
 	}
 }

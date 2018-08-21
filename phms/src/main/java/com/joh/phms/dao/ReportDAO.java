@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.joh.phms.domain.model.DoctorCustomerOrderD;
 import com.joh.phms.domain.model.NotificationD;
 import com.joh.phms.domain.model.NotificationD.NotificationType;
+import com.joh.phms.model.Country;
 
 @Component
 public class ReportDAO {
@@ -146,7 +147,8 @@ public class ReportDAO {
 
 		// Notification-5
 
-		query = em.createNativeQuery("SELECT ROUND(IFNULL(SUM(PAYMENT_AMOUNT),0)) FROM PRODUCT_STEPUPS WHERE DATE(STEPUP_TIME)=CURDATE();");
+		query = em.createNativeQuery(
+				"SELECT ROUND(IFNULL(SUM(PAYMENT_AMOUNT),0)) FROM PRODUCT_STEPUPS WHERE DATE(STEPUP_TIME)=CURDATE();");
 
 		Object totalProductStepUpPaymentamountResult = query.getSingleResult();
 
@@ -166,6 +168,25 @@ public class ReportDAO {
 
 		return notificationDs;
 
+	}
+
+	public List<Country> findAllCountry() {
+
+		Query query = em.createNativeQuery("SELECT I_COUNTRY,COUNTRY_CODE,COUNTRY_NAME FROM COUNTRIES;");
+
+		List<Object[]> rows = query.getResultList();
+
+		List<Country> countries = new ArrayList<>();
+		for (Object[] columns : rows) {
+			Country country = new Country();
+
+			country.setId(Integer.parseInt("" + columns[0]));
+			country.setCode((String) columns[1]);
+			country.setName((String) columns[2]);
+
+			countries.add(country);
+		}
+		return countries;
 	}
 
 }

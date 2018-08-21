@@ -22,6 +22,18 @@
 				</tr>
 
 				<tr>
+					<td class="text-left">Country</td>
+					<td><sf:select class="form-control" path="country">
+							<c:forEach items="${countries}" var="item">
+								<option value="${item.code}">${item.name}</option>
+							</c:forEach>
+
+						</sf:select></td>
+					<td><sf:errors class="text-wrap" path="country" /></td>
+				</tr>
+
+
+				<tr>
 					<td class="text-left">Scientific Name</td>
 					<td><sf:input class="form-control" path="scientificName" /></td>
 					<td><sf:errors class="text-wrap" path="scientificName" /></td>
@@ -76,7 +88,7 @@
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",
-			url : "<c:url value="/products/update"/>",
+			url : "_$tag____________________________",
 			data : data,
 			headers : {
 				"X-CSRF-TOKEN" : csrf

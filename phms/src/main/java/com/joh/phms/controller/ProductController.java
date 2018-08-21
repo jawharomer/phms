@@ -1,5 +1,7 @@
 package com.joh.phms.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joh.phms.domain.model.ProductD;
+import com.joh.phms.model.Country;
 import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductCategory;
 import com.joh.phms.service.ProductCategorySevice;
 import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ReportService;
 import com.joh.phms.validator.ProductValidator;
 
 @Controller()
@@ -34,6 +38,9 @@ public class ProductController {
 	@Autowired
 	private ProductCategorySevice productCategorySevice;
 
+	@Autowired
+	private ReportService reportService;
+
 	@GetMapping(path = "/add")
 	private String getAddingProduct(Model model) {
 		logger.info("getAddingProduct->fired");
@@ -42,7 +49,11 @@ public class ProductController {
 
 		logger.info("productCategories=" + productCategories);
 
+		List<Country> countries = reportService.findAllCountry();
+
 		model.addAttribute("productCategories", productCategories);
+		model.addAttribute("countries", countries);
+
 		model.addAttribute("product", new Product());
 
 		return "product/addProduct";
@@ -62,7 +73,10 @@ public class ProductController {
 
 			logger.info("productCategories=" + productCategories);
 
+			List<Country> countries = reportService.findAllCountry();
+
 			model.addAttribute("productCategories", productCategories);
+			model.addAttribute("countries", countries);
 
 			model.addAttribute("product", product);
 
@@ -89,7 +103,10 @@ public class ProductController {
 
 		logger.info("productCategories=" + productCategories);
 
+		List<Country> countries = reportService.findAllCountry();
+
 		model.addAttribute("productCategories", productCategories);
+		model.addAttribute("countries", countries);
 
 		model.addAttribute("product", productService.findOne(id));
 		return "product/editProduct";

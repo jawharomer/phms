@@ -12,6 +12,7 @@ public class ProductD {
 	private Double profit;
 	private Double price;
 	private String category;
+	private String country;
 
 	public Integer getProductId() {
 		return productId;
@@ -93,11 +94,19 @@ public class ProductD {
 		this.category = category;
 	}
 
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductD [productId=" + productId + ", code=" + code + ", name=" + name + ", scientificName="
 				+ scientificName + ", unitType=" + unitType + ", stockLevel=" + stockLevel + ", cost=" + cost
-				+ ", profit=" + profit + ", price=" + price + ", category=" + category + "]";
+				+ ", profit=" + profit + ", price=" + price + ", category=" + category + ", country=" + country + "]";
 	}
 
 }
