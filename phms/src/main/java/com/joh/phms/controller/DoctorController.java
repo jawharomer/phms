@@ -120,6 +120,8 @@ public class DoctorController {
 		List<DoctorCustomerOrderD> doctorCustomerOrderDs = reportService.findDoctorCustomerOrder(id, from, to);
 		logger.info("doctorCustomerOrderDs=" + doctorCustomerOrderDs);
 
+		model.addAttribute("doctor", doctorService.findOne(id));
+
 		model.addAttribute("doctorId", id);
 		model.addAttribute("doctorCustomerOrderDs", doctorCustomerOrderDs);
 

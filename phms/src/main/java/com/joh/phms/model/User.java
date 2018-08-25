@@ -22,11 +22,14 @@ public class User {
 	@Column(name = "I_USER")
 	private Integer id;
 
+	@Column(name = "USER_NAME", unique = true, nullable = false)
 	private String userName;
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
+	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 
-	@ManyToMany(targetEntity = Role.class,fetch=FetchType.EAGER)
+	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_ROLE", inverseJoinColumns = @JoinColumn(name = "I_ROLE"), joinColumns = @JoinColumn(name = "I_USER"))
 	private List<Role> roles;
 

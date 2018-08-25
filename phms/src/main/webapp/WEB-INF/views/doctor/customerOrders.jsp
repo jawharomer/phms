@@ -8,6 +8,8 @@
 
 <div>
 	<form action="<c:url value="/doctors/" />${doctorId}/customerOrders">
+		<h4>Doctor (${doctor.fullName}) CustomerOrders</h4>
+		<hr>
 		<table>
 			<tr>
 				<td class="text-left">From</td>
@@ -27,10 +29,12 @@
 					value="View" /></td>
 			</tr>
 		</table>
-		<hr />
+
 	</form>
 
 </div>
+<hr />
+
 <div>
 
 	<table id="customerOrdersTable" class="display nowrap">
@@ -40,6 +44,7 @@
 				<th>Order Time</th>
 				<th>Total Price</th>
 				<th>Total Payment</th>
+				<th>Discount Amount</th>
 				<th>Discount Type</th>
 				<th>Income</th>
 				<th>#Invoice</th>
@@ -54,6 +59,7 @@
 							value="${item.totalPrice}" /></td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
 							value="${item.totalPayment}" /></td>
+					<td>${item.discountAmount}</td>
 					<td>${item.discountType}</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
 							value="${item.income}" /></td>
@@ -67,6 +73,7 @@
 				<th>Order Time</th>
 				<th>Total Price</th>
 				<th>Total Payment</th>
+				<th>Discount Amount</th>
 				<th>Discount Type</th>
 				<th>Income</th>
 				<th>#Invoice</th>
@@ -87,3 +94,6 @@
 		</span>
 	</h6>
 </div>
+
+
+

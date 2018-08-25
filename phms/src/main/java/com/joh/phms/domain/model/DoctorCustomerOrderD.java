@@ -1,5 +1,6 @@
 package com.joh.phms.domain.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class DoctorCustomerOrderD {
@@ -10,6 +11,7 @@ public class DoctorCustomerOrderD {
 	private Double totalPrice;
 	private Double totalPayment;
 	private String discountType;
+	private BigDecimal discountAmount;
 	private Double income;
 
 	public int getCustomerOrderId() {
@@ -68,11 +70,19 @@ public class DoctorCustomerOrderD {
 		this.income = income;
 	}
 
+	public BigDecimal getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(BigDecimal discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "DoctorCustomerOrderD [customerOrderId=" + customerOrderId + ", customerName=" + customerName
 				+ ", orderTime=" + orderTime + ", totalPrice=" + totalPrice + ", totalPayment=" + totalPayment
-				+ ", discountType=" + discountType + ", income=" + income + "]";
+				+ ", discountType=" + discountType + ", discountAmount=" + discountAmount + ", income=" + income + "]";
 	}
 
 }

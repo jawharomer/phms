@@ -17,26 +17,26 @@
 			<tbody>
 
 				<tr>
-					<td>fullName</td>
-					<td><sf:input path="fullName" /></td>
+					<td class="text-left">fullName</td>
+					<td><sf:input class="form-control" path="fullName" /></td>
 					<td><sf:errors path="fullName" /></td>
 				</tr>
 
 				<tr>
-					<td>phone</td>
-					<td><sf:input path="phone" /></td>
+					<td class="text-left">phone</td>
+					<td><sf:input class="form-control" path="phone" /></td>
 					<td><sf:errors path="phone" /></td>
 				</tr>
 
 				<tr>
-					<td>profit</td>
-					<td><sf:input path="profit" /></td>
+					<td class="text-left">profit</td>
+					<td><sf:input class="form-control" path="profit" /></td>
 					<td><sf:errors path="profit" /></td>
 				</tr>
 
 				<tr>
-					<td>Add</td>
-					<td><input type="submit" value="Adding"></td>
+					<td><input class="btn btn-outline-warning" type="submit"
+						value="Edit"></td>
 				</tr>
 
 			</tbody>

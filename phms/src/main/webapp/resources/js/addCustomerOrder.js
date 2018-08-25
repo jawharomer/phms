@@ -39,6 +39,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		};
 	
    $scope.$watch('discountPercentage',function(discountPercentage){
+	   $scope.cusomerOrder.discountAmount="";
 		if(discountPercentage>0&&discountPercentage<=100){
 			$scope.cusomerOrder.discountAmount=discountPercentage/100;
 			console.log($scope.cusomerOrder.discountAmount);
@@ -86,7 +87,8 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		cost : "",
 		profit : "",
 		price : "",
-		quantity : ""
+		quantity : "",
+		country:"",
 	};
 	$scope.addedProduct = [];
 
@@ -134,7 +136,8 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 			productName : $scope.product.name,
 			scientificName : $scope.product.scientificName,
 			quantity : $scope.product.quantity,
-			price : $scope.product.price
+			price : $scope.product.price,
+			country:$scope.product.country
 		};
 		$scope.cusomerOrder.customerOrderDetailDs.push(customerOrderDetail);
 		console.log($scope.cusomerOrder.customerOrderDetailDs);

@@ -137,7 +137,7 @@ public class ProductController {
 
 	@GetMapping(path = "/find/code/{code}")
 	@ResponseBody
-	private ProductD getProductByCode(@PathVariable String code, Model model) {
+	private ProductD getProductByCode(@PathVariable String code) {
 		logger.info("getProductByCode->fired");
 
 		logger.info("code=" + code);

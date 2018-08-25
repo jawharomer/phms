@@ -1,5 +1,6 @@
 package com.joh.phms.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,14 +24,14 @@ public class ReportDAO {
 
 	public List<DoctorCustomerOrderD> findDoctorCustomerOrder(int doctorId, Date from, Date to) {
 
-		Query query = em.createNativeQuery("SELECT  CO.I_CUSTOMER_ORDER,CO.CUSTOMER_NAME,ORDER_TIME,TOTAL_PRICE\n"
-				+ ",SUM(PRICE*QUANTITY) AS TOTAL_PAYMENT,DISCOUNT_TYPE,(\n" + "CASE\n"
-				+ "WHEN I_DISCOUNT_TYPE=3 THEN  SUM(PRICE*QUANTITY)-TOTAL_PRICE\n" + "ELSE SUM(PRICE*QUANTITY)*PROFIT\n"
-				+ "END\n" + ") INCOME\n" + "FROM DOCTORS D\n" + "INNER JOIN CUSTOMER_ORDERS CO USING(I_DOCTOR)\n"
-				+ "INNER JOIN CUSTOMER_ORDER_DETAILS COD USING(I_CUSTOMER_ORDER)\n"
-				+ "LEFT OUTER JOIN DISCOUNT_TYPES USING(I_DISCOUNT_TYPE)\n"
-				+ "WHERE I_DOCTOR=:I_DOCTOR AND ORDER_TIME BETWEEN :from AND :to\n" + "GROUP BY I_CUSTOMER_ORDER\n"
-				+ "ORDER BY ORDER_TIME;");
+		Query query = em.createNativeQuery(
+				"SELECT I_CUSTOMER_ORDER,CUSTOMER_NAME,ORDER_TIME,TOTAL_PRICE,TOTAL_PRICE-TOTAL_PRICE*IFNULL(DISCOUNT_AMOUNT,0) AS TOTAL_PAYMENT,DISCOUNT_AMOUNT,DISCOUNT_TYPE\n"
+						+ ",\n" + "(\n" + "CASE \n"
+						+ "WHEN I_DISCOUNT_TYPE=3 THEN -TOTAL_PRICE*IFNULL(DISCOUNT_AMOUNT,0) \n"
+						+ "ELSE (TOTAL_PRICE-TOTAL_PRICE*IFNULL(DISCOUNT_AMOUNT,0))*PROFIT \n" + "END\n" + ") INCOME\n"
+						+ "FROM DOCTORS D\n" + "INNER JOIN \n" + "CUSTOMER_ORDERS C USING(I_DOCTOR)\n"
+						+ "LEFT OUTER JOIN DISCOUNT_TYPES DT USING(I_DISCOUNT_TYPE)\n" + "WHERE I_DOCTOR=:I_DOCTOR \n"
+						+ "AND ORDER_TIME BETWEEN :from AND :to");
 
 		query.setParameter("I_DOCTOR", doctorId);
 		query.setParameter("from", from, TemporalType.TIMESTAMP);
@@ -47,8 +48,9 @@ public class ReportDAO {
 			doctorCustomerOrderD.setOrderTime((Date) columns[2]);
 			doctorCustomerOrderD.setTotalPrice((Double) columns[3]);
 			doctorCustomerOrderD.setTotalPayment((Double) columns[4]);
-			doctorCustomerOrderD.setDiscountType((String) columns[5]);
-			doctorCustomerOrderD.setIncome((Double) columns[6]);
+			doctorCustomerOrderD.setDiscountAmount((BigDecimal) columns[5]);
+			doctorCustomerOrderD.setDiscountType((String) columns[6]);
+			doctorCustomerOrderD.setIncome((Double) columns[7]);
 
 			doctorCustomerOrderDs.add(doctorCustomerOrderD);
 		}
@@ -106,7 +108,7 @@ public class ReportDAO {
 		// Notification-3
 
 		query = em.createNativeQuery(
-				"SELECT ROUND(IFNULL(SUM(TOTAL_PRICE*DISCOUNT_AMOUNT),0),3) FROM CUSTOMER_ORDERS WHERE DATE(ORDER_TIME)=CURDATE();");
+				"SELECT ROUND(SUM(TOTAL_PRICE)-IFNULL(SUM(TOTAL_PRICE*DISCOUNT_AMOUNT),0),3) FROM CUSTOMER_ORDERS WHERE DATE(ORDER_TIME)=CURDATE();");
 
 		Object totalTodayCustomerPriceResultWithDiscount = query.getSingleResult();
 
@@ -127,7 +129,7 @@ public class ReportDAO {
 		// Notification-4
 
 		query = em.createNativeQuery(
-				"SELECT ROUND(IFNULL(SUM(TOTAL_PRICE),0)-SUM(TOTAL_PRICE*DISCOUNT_AMOUNT),3) FROM CUSTOMER_ORDERS WHERE DATE(ORDER_TIME)=CURDATE();");
+				"SELECT ROUND(SUM(TOTAL_PRICE*DISCOUNT_AMOUNT),3) FROM CUSTOMER_ORDERS WHERE DATE(ORDER_TIME)=CURDATE();");
 
 		Object totalTodayCustomerDiscountResult = query.getSingleResult();
 

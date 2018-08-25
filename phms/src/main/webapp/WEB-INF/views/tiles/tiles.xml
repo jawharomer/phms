@@ -66,8 +66,10 @@
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery-ui" />
 			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="jquery.dataTables" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="adminStock" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">
@@ -77,6 +79,15 @@
 			<add-attribute value="jquery.serializejson" />
 			<add-attribute value="bootstrap" />
 			<add-attribute value="jquery.dataTables" />
+			<!-- S-DataTableLib -->
+			<add-attribute value="dt/dataTables.buttons.min" />
+			<add-attribute value="dt/buttons.flash.min" />
+			<add-attribute value="dt/jszip.min" />
+			<add-attribute value="dt/pdfmake.min" />
+			<add-attribute value="dt/vfs_fonts" />
+			<add-attribute value="dt/buttons.html5.min" />
+			<add-attribute value="dt/buttons.print.min" />
+			<!-- E-DataTableLib -->
 			<add-attribute value="angular" />
 			<add-attribute value="app" />
 			<add-attribute value="adminStock" />

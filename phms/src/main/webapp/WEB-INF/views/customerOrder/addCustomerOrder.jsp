@@ -8,18 +8,16 @@
 <script type="text/javascript">
 	var jsonDoctors = '${jsonDoctors}';
 	var jsonDiscountTypes = '${jsonDiscountTypes}';
-	var csrf='${_csrf.token}';
+	var csrf = '${_csrf.token}';
 </script>
 
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
-	ng-init="init()" ng-form name="form">	
+	ng-init="init()" ng-form name="form">
 	<h2>Sale Point</h2>
 
 	<button class="btn btn-lg btn-outline-success"
 		onClick="window.location.reload()">Refresh</button>
-
-
 
 	<table class="table table-sm cus-table-borderless">
 		<tbody>
@@ -35,16 +33,16 @@
 					<div class="form-row">
 						<div class="col">
 							<select class="form-control form-control-sm"
-								ng-model="cusomerOrder.discountId">
-								<option value="">&nbsp;</option>
-								<option ng-repeat="item in discountTypes" value="{{item.id}}"
-									value="{{item.id}}">{{item.discountType}}</option>
-
+								ng-model="cusomerOrder.discountId"
+								ng-options="item.id as item.discountType for item in discountTypes">
+								<option value=""></option>
 							</select>
+
 						</div>
-						<div class="col" >
-							% <input ng-disabled="!cusomerOrder.discountId" name="discountPercentage" type="number" max="100"
-								min="0" ng-model="discountPercentage"
+						<div class="col">
+							% <input ng-disabled="!cusomerOrder.discountId"
+								name="discountPercentage" type="number" max="100" min="0"
+								ng-model="discountPercentage"
 								class="w-50 cus-inline-block form-control form-control-sm">
 						</div>
 					</div>
@@ -55,8 +53,9 @@
 			<tr>
 				<td>Doctor</td>
 				<td><select class="form-control form-control-sm"
-					ng-model="cusomerOrder.doctorId">
-						<option ng-repeat="item in  doctors" value="{{item.id}}">{{item.fullName}}</option>
+					ng-model="cusomerOrder.doctorId"
+					ng-options="item.id as item.fullName for item in doctors">
+						<option value=""></option>
 				</select></td>
 			</tr>
 		</tbody>
@@ -68,6 +67,7 @@
 				<th>Code</th>
 				<th>Name</th>
 				<th>S-Name</th>
+				<th>County</th>
 				<th>Quantity</th>
 				<th>Price</th>
 				<th>UnitType</th>
@@ -82,6 +82,8 @@
 					ng-model="product.name" readonly></th>
 				<th><input class="form-control form-control-sm"
 					ng-model="product.scientificName" readonly></th>
+				<th><input class="form-control form-control-sm"
+					ng-model="product.country" readonly></th>
 
 				<th><input type="number" class="form-control form-control-sm"
 					ng-model="product.quantity" placeholder={{product.stockLevel}}></th>
@@ -105,6 +107,7 @@
 				<td>{{item.productCode}}</td>
 				<td>{{item.productName}}</td>
 				<td>{{item.scientificName}}</td>
+				<td>{{item.country}}</td>
 				<td>{{item.quantity}} <span class="text-info"
 					ng-if="discountPercentage>0"> %{{discountPercentage}} </span>
 				</td>

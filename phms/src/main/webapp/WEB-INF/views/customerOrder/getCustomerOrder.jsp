@@ -11,6 +11,19 @@
 <head>
 
 <style type="text/css">
+body{
+font-size: 12px;
+
+}
+table{
+font-size: 12px;
+}
+
+.cus-print-container{
+padding:20px 3px;
+max-width: 500px; 
+margin: 0 auto
+}
 .cus-center th, .cus-center td {
 	text-align: center;
 }
@@ -40,16 +53,13 @@
 </style>
 
 
+
 </head>
 
 <body>
 
-	<div class="cus-no-print cus-center  print-btn-con">
-		<button onclick="window.print()">Print</button>
-		<hr>
-	</div>
 
-	<div style="width: 500px; margin: 0 auto">
+	<div class="cus-print-container">
 
 
 		<h3 class="cus-center">
@@ -62,7 +72,7 @@
 				value="${customerOrder.orderTime}" />
 		</p>
 
-		<table style="width: 100%">
+		<table style="width: 100%;font-size:14px;">
 			<tr>
 				<td>Customer Name</td>
 				<td>${customerOrder.customerName}</td>
@@ -81,7 +91,7 @@
 				<tr>
 					<td>Total Price (Discount)</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
-							value="${customerOrder.totalPrice*customerOrder.discountAmount}" />
+							value="${customerOrder.totalPrice-customerOrder.totalPrice*customerOrder.discountAmount}" />
 					</td>
 				</tr>
 
@@ -118,6 +128,15 @@
 		</table>
 
 	</div>
+	<hr>
+
+	<script type="text/javascript">
+		function printing() {
+			console.log("print fired");
+			window.print();
+		}
+		printing();
+	</script>
 
 
 </body>

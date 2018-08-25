@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
-var csrf='${_csrf.token}';
-
+	var csrf = '${_csrf.token}';
 </script>
 
 <div>
@@ -17,7 +16,7 @@ var csrf='${_csrf.token}';
 	</div>
 
 
-	<table class="table">
+	<table id="stockTable" class="display nowrap">
 		<thead>
 			<tr>
 				<th>Code</th>
@@ -29,7 +28,7 @@ var csrf='${_csrf.token}';
 				<th>StockLevel</th>
 				<th>Cost</th>
 				<th>Price</th>
-				<th>Function</th>
+				<th class="cus-not-export">Function</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,6 +60,20 @@ var csrf='${_csrf.token}';
 				</tr>
 			</c:forEach>
 		</tbody>
+		<tfoot>
+			<tr>
+				<th>Code</th>
+				<th>Name</th>
+				<th>Scientific Name</th>
+				<th>Category</th>
+				<th>Country</th>
+				<th>UnitType</th>
+				<th>StockLevel</th>
+				<th>Cost</th>
+				<th>Price</th>
+				<th class="cus-not-search"></th>
+			</tr>
+		</tfoot>
 
 
 	</table>

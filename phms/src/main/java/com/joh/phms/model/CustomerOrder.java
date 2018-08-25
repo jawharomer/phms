@@ -36,7 +36,7 @@ public class CustomerOrder {
 	@Column(name = "CUSTOMER_NAME")
 	private String customerName;
 
-	@Column(name = "ORDER_TIME")
+	@Column(name = "ORDER_TIME",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	@ColumnDefault("CURRENT_TIMESTAMP")

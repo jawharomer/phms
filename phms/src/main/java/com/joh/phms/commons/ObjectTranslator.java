@@ -28,7 +28,7 @@ public class ObjectTranslator {
 		customerOrderD.setCustomerName(customerOrder.getCustomerName());
 		customerOrderD.setCustomerOrderId(customerOrder.getId());
 
-		if (customerOrder.getDiscountType().getId() != null)
+		if (customerOrder.getDiscountType() != null && customerOrder.getDiscountType().getId() != null)
 			customerOrderD.setDiscountId(customerOrder.getDiscountType().getId());
 
 		if (customerOrder.getDoctor() != null)

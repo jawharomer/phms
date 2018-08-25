@@ -57,13 +57,6 @@
 
 				<c:set var="sumTotalPayment" value="${0}" />
 				<c:forEach items="${customerOrders}" var="item">
-
-					<c:set var="totalPayment" value="${0}" />
-					<c:forEach var="i" items="${item.customerOrderDetails}">
-						<c:set var="totalPayment"
-							value="${totalPayment +(i.quantity*i.price)}" />
-					</c:forEach>
-
 					<tr>
 						<td>${item.customerName}</td>
 						<td>${item.orderTime}</td>
@@ -72,27 +65,27 @@
 						<td><c:if test="${item.discountAmount==null}">
 								<fmt:formatNumber type="number" maxFractionDigits="3"
 									value="${item.totalPrice}" />
+								<c:set var="sumTotalPayment"
+									value="${sumTotalPayment+item.totalPrice}" />
 							</c:if> <c:if test="${item.discountAmount!=null}">
 								<fmt:formatNumber type="number" maxFractionDigits="3"
-									value="${item.totalPrice*item.discountAmount}" />
+									value="${item.totalPrice-item.totalPrice*item.discountAmount}" />
+								<c:set var="sumTotalPayment"
+									value="${sumTotalPayment+(item.totalPrice-item.totalPrice*item.discountAmount)}" />
 							</c:if></td>
 						<td>${item.discountAmount}</td>
 						<td>${item.doctor.fullName}</td>
 						<td>${item.discountType.discountType}</td>
-						<td>
-							<!--  
-					<a class="btn btn-sm btn-outline-warning"
-						href="<c:url value="/customerOrders/edit/" />${item.id}">E</a>
-						-->
+						<td><a class="btn btn-sm btn-outline-warning"
+							href="<c:url value="/customerOrders/edit/" />${item.id}">E</a>
+
 							<button class="btn btn-sm btn-outline-danger"
 								ng-click="deleteCustomerOrder(${item.id})">D</button> <a
 							target="_blank" class="btn btn-sm btn-outline-info"
-							href="<c:url value="/customerOrders/" />${item.id}">V</a>
-						</td>
+							href="<c:url value="/customerOrders/" />${item.id}">V</a></td>
 					</tr>
 
-					<c:set var="sumTotalPayment"
-						value="${sumTotalPayment+totalPayment}" />
+
 
 				</c:forEach>
 

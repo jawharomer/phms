@@ -111,9 +111,10 @@
 				<th>Payment</th>
 				<th>Quantity</th>
 				<th>Sold</th>
+				<th>Remain</th>
 				<th>Bonus</th>
 				<th>Note</th>
-				<th>Function</th>
+				<th class="cus-not-search">Function</th>
 			</tr>
 		</tfoot>
 

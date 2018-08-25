@@ -1,34 +1,101 @@
-appAddCusotmerOrder = angular.module("editCustomerOrder", []);
+$(document).ready()
+{
+	console.log("csrf=",csrf);
+}
 
-appAddCusotmerOrder.controller('editCustomerOrder', function($scope, $http) {
+// Angular
 
+
+editCustomerOrder = angular.module("editCustomerOrder", []);
+
+
+editCustomerOrder.factory('httpRequestInterceptor', function () {
+	  return {
+	    request: function (config) {
+	      config.headers['X-CSRF-TOKEN'] = csrf;
+	      return config;
+	    }
+	  };
+});
+editCustomerOrder.config(function ($httpProvider) {
+	  $httpProvider.interceptors.push('httpRequestInterceptor');
+});
+
+editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
+
+	
 	$scope.doctors;
+	$scope.discountTypes;
+	$scope.discountPercentage=0;
+	
+	
+	
+	$scope.cusomerOrder = {
+			customerOrderId:"",
+			customerName : "",
+			doctorId : "",
+			discountId:"",
+			discountAmount:"",
+			customerOrderDetailDs : [],
+		};
+	
+   $scope.$watch('discountPercentage',function(discountPercentage){
+	   $scope.cusomerOrder.discountAmount="";
+		if(discountPercentage>0&&discountPercentage<=100){
+			$scope.cusomerOrder.discountAmount=discountPercentage/100;
+			console.log($scope.cusomerOrder.discountAmount);
+		}
+	});
 
-	$scope.cusomerOrder = {};
+		
+	$scope.totalPrice=function(){
+		var totalPrice=0;
+		for(var i = 0; i < $scope.cusomerOrder.customerOrderDetailDs.length; i++){
+			var quantity= $scope.cusomerOrder.customerOrderDetailDs[i].quantity;
+			var price= $scope.cusomerOrder.customerOrderDetailDs[i].price;
+			totalPrice+=quantity*price;
+		}
+
+        return totalPrice;
+	};
+	
+	$scope.totalPriceWithDiscount=function(){
+	return $scope.totalPrice()-($scope.totalPrice()*($scope.discountPercentage/100));
+	}
+
+	
 
 	$scope.init = function() {
 		console.log("init->fired");
 		console.log("jsonDoctors=", jsonDoctors);
+		console.log("jsonDiscountTypes=", jsonDiscountTypes);
 		console.log("jsonCustomerOrderD=", jsonCustomerOrderD);
+		
+		
 
 		$scope.doctors = JSON.parse(jsonDoctors);
+		
+		$scope.discountTypes = JSON.parse(jsonDiscountTypes);
 		$scope.cusomerOrder=JSON.parse(jsonCustomerOrderD);
 
-		console.log("$scope.doctors=", $scope.doctors);
 		console.log("$scope.cusomerOrder=", $scope.cusomerOrder);
-
+		console.log("$scope.doctors=", $scope.doctors);
+		console.log("$scope. $discountTypes=", $scope.discountTypes);
+		
 	};
 
 	$scope.product = {
 		productId : "",
 		code : "",
 		name : "",
+		scientifiName : "",
 		unitType : "",
 		stockLevel : "",
 		cost : "",
 		profit : "",
 		price : "",
-		quantity : ""
+		quantity : "",
+		country:"",
 	};
 	$scope.addedProduct = [];
 
@@ -45,13 +112,26 @@ appAddCusotmerOrder.controller('editCustomerOrder', function($scope, $http) {
 							$$ContextURL + "/products/find/code/"
 									+ $scope.product.code).then(
 							function(response) {
-								$scope.product = response.data;
+								console.log("success");
+								console.log("response=",response);
+							
+								if(response.data.stockLevel==0){
+									$("#modal-body").html("Out of the stock");
+									$("#modal").modal("show");
+								}
+								else{
+									$scope.product = response.data;
+								}
 							}, function(response) {
+								console.error("failed");
 								console.error("error occured");
 								$scope.content = "Something went wrong";
+								$("#modal-body").html(response.data);
+								$("#modal").modal("show");
 							});
 
 		}
+		
 	}
 
 	$scope.addCustomerOrderDetail = function() {
@@ -61,6 +141,7 @@ appAddCusotmerOrder.controller('editCustomerOrder', function($scope, $http) {
 			productId : $scope.product.productId,
 			productCode : $scope.product.code,
 			productName : $scope.product.name,
+			scientificName : $scope.product.scientificName,
 			quantity : $scope.product.quantity,
 			price : $scope.product.price
 		};
@@ -69,15 +150,14 @@ appAddCusotmerOrder.controller('editCustomerOrder', function($scope, $http) {
 		$scope.product = $scope.resetProduct;
 	}
 
-	$scope.editCustomerOrder = function() {
-		console.log("editCustomerOrder->fired");
-		
+	$scope.addCustomerOrder = function() {
+		console.log("addCustomerOrder->fired");
 		console.log("$scope.cusomerOrder=", $scope.cusomerOrder);
 
 		$http({
 			method : 'POST',
 			data : $scope.cusomerOrder,
-			url : $$ContextURL + '/customerOrders/update'
+			url : $$ContextURL + '/customerOrders/add'
 		}).then(function(response) {
 			console.log(response);
 			var outPut = `
@@ -85,7 +165,7 @@ appAddCusotmerOrder.controller('editCustomerOrder', function($scope, $http) {
 			<div>${response.data.message}
 			</div>
 			<div>
-			<a target="_blank" href="${$$ContextURL}/customerOrders/${response.data.etc}">View</a></div>
+			<a class="btn btn-info" target="_blank" href="${$$ContextURL}/customerOrders/${response.data.etc}">View</a></div>
 			`;
 			console.log("outPut=",outPut);
 			
@@ -105,8 +185,15 @@ appAddCusotmerOrder.controller('editCustomerOrder', function($scope, $http) {
 				$("#modal-body").html(outPut);
 				$("#modal").modal("show");
 			} else {
-				$("#modal-body").html(response.data.message);
-				$("#modal").modal("show");
+				if(response.data.message){
+					$("#modal-body").html(response.data.message);
+					$("#modal").modal("show");
+				}
+				else{
+					$("#modal-body").html(response.data);
+					$("#modal").modal("show");
+				}
+				
 			}
 		});
 

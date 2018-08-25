@@ -1,5 +1,6 @@
 package com.joh.phms.service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -60,6 +61,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 				throw new CusDataIntegrityViolationException(
 						"You are tring to discount by doctor but no doctor is selected");
 
+			} else if (customerOrder.getDiscountType() != null && (customerOrder.getDiscountAmount() == null
+					|| customerOrder.getDiscountAmount().compareTo(BigDecimal.ZERO) == 0)) {
+				throw new CusDataIntegrityViolationException(
+						"You are tring to discount but discount amount is not set");
 			}
 
 			for (int i = 0; i < customerOrderDetail.getQuantity(); i++) {
