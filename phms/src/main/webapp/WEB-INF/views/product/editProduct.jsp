@@ -53,12 +53,18 @@
 
 				<tr>
 					<td class="text-left">Category</td>
-					<td><select class="form-control" name="productCategory[id]"
-						value="${product.productCategory.id}">
+					<td><select class="form-control" name="productCategory[id]">
 							<option value="">Choose</option>
 							<c:forEach items="${productCategories}" var="item">
-								<option value="${item.id}">${item.name}</option>
+								<c:if test="${product.productCategory.id==item.id}">
+									<option selected="selected" value="${item.id}">${item.name}</option>
+								</c:if>
+								<c:if test="${product.productCategory.id!=item.id}">
+									<option value="${item.id}">${item.name}</option>
+								</c:if>
 							</c:forEach>
+
+
 					</select></td>
 					<td><sf:errors path="productCategory" /> <sf:errors
 							path="productCategory.id" /></td>
@@ -88,7 +94,7 @@
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",
-			url : "_$tag____________________________",
+			url : "<c:url value="/products/add"/>",
 			data : data,
 			headers : {
 				"X-CSRF-TOKEN" : csrf

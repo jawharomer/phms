@@ -80,15 +80,15 @@
 
 <script>
 	var csrf = '${_csrf.token}';
-
 	function addProduct(event) {
 		event.preventDefault();
 		console.log("addProduct->fired");
 		var data = $("#add-product-form").serializeJSON();
+		
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",
-			url : "<c:url value="/products/add"/>",
+			url : "<c:url value="/products/update"/>",
 			headers : {
 				'X-CSRF-TOKEN' : csrf
 			},
