@@ -10,13 +10,14 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.joh.phms.validator.OrderProductStepUpValidator;
 import com.joh.phms.validator.VendorValidator.ValidationForEdit;
 
 @Entity
 @Table(name = "VENDORS")
 public class Vendor {
 
-	@NotNull(groups = { ValidationForEdit.class }, message = "id is null")
+	@NotNull(groups = { ValidationForEdit.class, OrderProductStepUpValidator.Insert.class }, message = "id is null")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "I_VENDOR")

@@ -20,8 +20,6 @@ public interface ProductStepUpDAO extends CrudRepository<ProductStepUp, Integer>
 	@Query(value = "UPDATE PRODUCT_STEPUPS SET SOLD_QUANTITY=SOLD_QUANTITY+1 WHERE I_PRODUCT_STEPUP= ?1 ", nativeQuery = true)
 	void stockDown(Integer id);
 
-	List<ProductStepUp> findAllByTimeBetween(Date from, Date to);
-
 	List<ProductStepUp> findAllByExpirationDateLessThanEqualOrderByExpirationDate(Date to);
 
 }

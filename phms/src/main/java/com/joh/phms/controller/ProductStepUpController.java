@@ -75,26 +75,26 @@ public class ProductStepUpController {
 			model.addAttribute("productStepUpD", productStepUpD);
 			return "productStepUp/addToProduct";
 		} else {
-			ProductStepUp productStepUp = new ProductStepUp();
-
-			Product product = new Product();
-			product.setId(productStepUpD.getProductId());
-
-			Vendor vendor = new Vendor();
-			vendor.setId(productStepUpD.getVendorId());
-
-			productStepUp.setProduct(product);
-			productStepUp.setVendor(vendor);
-			productStepUp.setExpirationDate(productStepUpD.getExpirationDate());
-			productStepUp.setProductionDate(productStepUpD.getProductionDate());
-			productStepUp.setQuantity(productStepUpD.getQuantity());
-			productStepUp.setBonusQuantity(productStepUpD.getBonusQuantity());
-			productStepUp.setPaymentAmount(productStepUpD.getPaymentAmount());
-			productStepUp.setNote(productStepUpD.getNote());
-
-			logger.info("productStepUp=" + productStepUp);
-
-			productStepUpService.save(productStepUp);
+//			ProductStepUp productStepUp = new ProductStepUp();
+//
+//			Product product = new Product();
+//			product.setId(productStepUpD.getProductId());
+//
+//			Vendor vendor = new Vendor();
+//			vendor.setId(productStepUpD.getVendorId());
+//
+//			productStepUp.setProduct(product);
+//			productStepUp.setVendor(vendor);
+//			productStepUp.setExpirationDate(productStepUpD.getExpirationDate());
+//			productStepUp.setProductionDate(productStepUpD.getProductionDate());
+//			productStepUp.setQuantity(productStepUpD.getQuantity());
+//			productStepUp.setBonusQuantity(productStepUpD.getBonusQuantity());
+//			productStepUp.setPaymentAmount(productStepUpD.getPaymentAmount());
+//			productStepUp.setNote(productStepUpD.getNote());
+//
+//			logger.info("productStepUp=" + productStepUp);
+//
+//			productStepUpService.save(productStepUp);
 
 			return "success";
 		}

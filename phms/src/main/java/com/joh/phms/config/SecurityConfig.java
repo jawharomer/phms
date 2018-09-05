@@ -35,16 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/login/**", "/logout").permitAll()
-				.antMatchers("/admin/**", "/productStepUps/**", "/vendors/**", "/productCategories/**")
-				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.defaultSuccessUrl("/adminRoot").and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
-				.permitAll()
-				.and().exceptionHandling().accessDeniedPage("/WEB-INF/views/accessDenied.jsp");
+				.antMatchers("/admin/**", "/productStepUps/**", "/vendors/**", "/productCategories/**").hasRole("ADMIN")
+				.anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/adminRoot")
+				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/login").permitAll()		.and().exceptionHandling().accessDeniedPage("/WEB-INF/views/accessDenied.jsp");
 	}
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(appUserDetailService).passwordEncoder(passwordEncoder());
+		auth.inMemoryAuthentication()
+		.withUser("admin").password("admin").roles("ADMIN");
+//		auth.userDetailsService(appUserDetailService).passwordEncoder(passwordEncoder());
 	}
 
 	@Bean
