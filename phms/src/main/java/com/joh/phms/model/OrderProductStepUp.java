@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,15 +25,18 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.joh.phms.validator.OrderProductStepUpValidator;
 
 @Entity
 @Table(name = "ORDER_PRODUCT_STEPUPS")
+
 public class OrderProductStepUp {
 
+	@NotNull(message = "Id id null", groups = { OrderProductStepUpValidator.Edit.class })
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "I_ORDER_PRODUCT_STEPUPS")
+	@Column(name = "I_ORDER_PRODUCT_STEPUP")
 	private Integer id;
 
 	@Valid()
@@ -57,9 +61,17 @@ public class OrderProductStepUp {
 	private BigDecimal discount;
 
 	@Size(min = 0, groups = { OrderProductStepUpValidator.Insert.class })
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "I_PRODUCT_STEPUP")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "I_ORDER_PRODUCT_STEPUP")
 	private List<ProductStepUp> productStepUps = new ArrayList<>();
+
+	public List<ProductStepUp> getProductStepUps() {
+		return productStepUps;
+	}
+
+	public void setProductStepUps(List<ProductStepUp> productStepUps) {
+		this.productStepUps = productStepUps;
+	}
 
 	public Integer getId() {
 		return id;
@@ -107,14 +119,6 @@ public class OrderProductStepUp {
 
 	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
-	}
-
-	public List<ProductStepUp> getProductStepUps() {
-		return productStepUps;
-	}
-
-	public void setProductStepUps(List<ProductStepUp> productStepUps) {
-		this.productStepUps = productStepUps;
 	}
 
 	@Override

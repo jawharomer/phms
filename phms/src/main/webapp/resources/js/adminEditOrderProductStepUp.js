@@ -111,15 +111,15 @@ appAddCusotmerOrder
 								1);
 					}
 
-					$scope.saveOrderProductStepUp = function() {
-						console.log("saveOrderProductStepUp->fired");
+					$scope.editOrderProductStepUp = function() {
+						console.log("editOrderProductStepUp->fired");
 						$scope.orderProductStepUp.totalPaymentAmount = $scope
 								.totalPaymentAmount();
 						console.log($scope.orderProductStepUp);
 						$http({
 							method : 'POST',
 							data : $scope.orderProductStepUp,
-							url : $$ContextURL + '/orderProductStepUps/add'
+							url : $$ContextURL + '/orderProductStepUps/edit'
 						}).then(function(response) {
 							console.log(response);
 							$("#modal-body").html(response.data);

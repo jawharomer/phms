@@ -26,7 +26,7 @@ public class ProductStepUp {
 	@Column(name = "I_PRODUCT_STEPUP")
 	private Integer id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "I_PRODUCT", nullable = false)
 	private Product product;
 

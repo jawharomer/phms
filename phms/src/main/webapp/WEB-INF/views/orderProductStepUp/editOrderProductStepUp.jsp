@@ -14,7 +14,7 @@
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
 	ng-init="init()">
-	<h2>Order</h2>
+	<h2>Edit Order</h2>
 
 	<table class="table table-sm cus-table-borderless">
 		<tbody ng-form="orderProductStepUpForm">
@@ -90,8 +90,7 @@
 					<td>{{item.paymentAmount|number}}</td>
 					<td>{{item.note}}</td>
 					<td>
-						<button class="btn btn-danger btn-sm rounded-circle"
-							ng-click="deleteProductStepUp($index)">
+						<button class="btn btn-danger btn-sm rounded-circle" ng-click="deleteProductStepUp($index)">
 							<i class="fa fa-times"></i>
 						</button>
 					</td>
@@ -111,8 +110,8 @@
 
 		<button
 			ng-disabled="!orderProductStepUp||!orderProductStepUp.productStepUps.length>0||orderProductStepUpForm.$invalid"
-			class="btn btn-success" ng-click="saveOrderProductStepUp()">
-			<i class="fa fa-plus"></i>
+			class="btn btn-warning" ng-click="editOrderProductStepUp()">
+			<i class="fa fa-edit"></i>
 		</button>
 	</div>
 
