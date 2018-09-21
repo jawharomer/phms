@@ -149,24 +149,24 @@ public class ReportDAO {
 
 		// Notification-5
 
-//		query = em.createNativeQuery(
-//				"SELECT ROUND(IFNULL(SUM(PAYMENT_AMOUNT),0)) FROM PRODUCT_STEPUPS WHERE DATE(STEPUP_TIME)=CURDATE();");
-//
-//		Object totalProductStepUpPaymentamountResult = query.getSingleResult();
-//
-//		double totalProductStepUpPaymentamount = 0;
-//
-//		if (totalProductStepUpPaymentamountResult != null)
-//			totalProductStepUpPaymentamount = Double.parseDouble("" + totalProductStepUpPaymentamountResult);
-//
-//		NotificationD not5 = new NotificationD();
-//		not5.setTitle("Today total Stockup Payment Amount");
-//		not5.setEtc("" + totalProductStepUpPaymentamount);
-//		not5.setMessage("The total today order amount payment");
-//
-//		not5.setNotificationType(NotificationType.INFO);
-//
-//		notificationDs.add(not5);
+		query = em.createNativeQuery(
+				"SELECT  ROUND(IFNULL(SUM(TOTAL_PAYMENT_AMOUNT),0)) FROM ORDER_PRODUCT_STEPUPS WHERE DATE(ORDER_TIME)=CURDATE()");
+
+		Object totalProductStepUpPaymentamountResult = query.getSingleResult();
+
+		double totalProductStepUpPaymentamount = 0;
+
+		if (totalProductStepUpPaymentamountResult != null)
+			totalProductStepUpPaymentamount = Double.parseDouble("" + totalProductStepUpPaymentamountResult);
+
+		NotificationD not5 = new NotificationD();
+		not5.setTitle("Today total Stockup Payment Amount");
+		not5.setEtc("" + totalProductStepUpPaymentamount);
+		not5.setMessage("The total today order amount payment");
+
+		not5.setNotificationType(NotificationType.INFO);
+
+		notificationDs.add(not5);
 
 		return notificationDs;
 

@@ -15,7 +15,7 @@
 	<hr>
 
 	<div>
-		<form action="<c:url value="/productStepUps/search/" />${searchBy}">
+		<form action="<c:url value="/orderProductStepUps"/>">
 			<table>
 
 				<tr>
@@ -51,7 +51,7 @@
 					<th>Reference</th>
 					<th>TotalPayment</th>
 					<th>Discount</th>
-					<th>F</th>
+					<th class="cus-not-export">F</th>
 				</tr>
 			</thead>
 			<tbody>

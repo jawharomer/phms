@@ -6,10 +6,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="container">
 	<div class="row">
-		<c:forEach items="${notificationDs}" var="item">
+		<c:forEach items="${notificationDs}" var="item" varStatus="loop">
 			<div class="col-sm-6" style="margin-bottom: 10px">
 				<div class="card bg-danger">
-					<div class="card-header bg-light">${item.title}</div>
+
+					<c:choose>
+						<c:when test="${loop.index==0}">
+							<div class="card-header  bg-danger">${item.title}</div>
+						</c:when>
+						<c:otherwise>
+							<div class="card-header  bg-light">${item.title}</div>
+						</c:otherwise>
+					</c:choose>
+
 					<div class="card-body bg-dark text-light">
 						<p class="card-text">
 						<h3>${item.etc}</h3>

@@ -25,7 +25,15 @@
 					<td class="text-left">Country</td>
 					<td><sf:select class="form-control" path="country">
 							<c:forEach items="${countries}" var="item">
-								<option value="${item.code}">${item.name}</option>
+								<c:choose>
+									<c:when test="${item.code==product.country}">
+										<option selected="selected" value="${item.code}">${item.name}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${item.code}">${item.name}</option>
+									</c:otherwise>
+								</c:choose>
+
 							</c:forEach>
 
 						</sf:select></td>

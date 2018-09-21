@@ -19,7 +19,6 @@ public class AppController {
 	@GetMapping("/")
 	public String appRoot() {
 		logger.info("appRoot->fired");
-
 		return "redirect:/adminRoot";
 	}
 }

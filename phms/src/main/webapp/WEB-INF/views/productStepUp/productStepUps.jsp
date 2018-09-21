@@ -56,10 +56,7 @@
 		<thead>
 			<tr>
 				<th>Code</th>
-				<th>Time</th>
 				<th>Expiration</th>
-				<th>Production</th>
-				<th>Vendor</th>
 				<th>Payment</th>
 				<th>Quantity</th>
 				<th>Sold</th>
@@ -73,14 +70,9 @@
 			<c:set var="sumTotalPayment" value="${0}" />
 
 			<c:forEach items="${productStepUps}" var="item">
-
-
 				<tr>
 					<td>${item.product.code}</td>
-					<td>${item.time}</td>
 					<td>${item.expirationDate}</td>
-					<td>${item.productionDate}</td>
-					<td>${item.vendor.fullName}</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
 							value="${item.paymentAmount}" /></td>
 					<td>${item.quantity}</td>
@@ -104,17 +96,14 @@
 		<tfoot>
 			<tr>
 				<th>Code</th>
-				<th>Time</th>
 				<th>Expiration</th>
-				<th>Production</th>
-				<th>Vendor</th>
 				<th>Payment</th>
 				<th>Quantity</th>
 				<th>Sold</th>
 				<th>Remain</th>
 				<th>Bonus</th>
 				<th>Note</th>
-				<th class="cus-not-search">Function</th>
+				<th class="cus-not-export">Function</th>
 			</tr>
 		</tfoot>
 

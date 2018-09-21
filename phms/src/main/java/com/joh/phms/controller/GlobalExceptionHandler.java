@@ -59,4 +59,12 @@ public class GlobalExceptionHandler {
 		logger.info("NoResultException occured:: URL=" + request.getRequestURL());
 		return "noResultException";
 	}
+
+	// @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	// @ExceptionHandler({ Exception.class })
+	// public String handleInternalServerError(HttpServletRequest request, Exception
+	// ex) {
+	// logger.info("internalServerError occured:: URL=" + request.getRequestURL());
+	// return "internalServerError";
+	// }
 }

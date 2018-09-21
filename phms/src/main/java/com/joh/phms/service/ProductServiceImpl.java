@@ -2,10 +2,12 @@ package com.joh.phms.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.joh.phms.dao.ProductDAO;
@@ -57,6 +59,11 @@ public class ProductServiceImpl implements ProductSevice {
 
 	@Override
 	public ProductD findProductByCode(String code) {
-		return productDAO.findProductByCode(code);
+		try {
+			return productDAO.findProductByCode(code);
+		} catch (EmptyResultDataAccessException e) {
+			throw new EntityNotFoundException();
+		}
+
 	}
 }

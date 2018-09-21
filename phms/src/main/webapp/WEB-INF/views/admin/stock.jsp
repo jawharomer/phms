@@ -51,10 +51,6 @@
 							<button class="btn btn-outline-warning"
 								data-product-id="${productD.productId}"
 								onclick="editProduct(this)">edit</button>
-
-							<button class="btn btn-outline-primary"
-								data-product-id="${productD.productId}"
-								onclick="productStepUp(this)">Add To</button>
 						</div>
 					</td>
 				</tr>

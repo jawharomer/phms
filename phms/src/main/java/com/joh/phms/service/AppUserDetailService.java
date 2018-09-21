@@ -3,8 +3,7 @@ package com.joh.phms.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +18,7 @@ import com.joh.phms.model.User;
 
 @Service
 public class AppUserDetailService implements UserDetailsService {
+	private static final Logger logger = Logger.getLogger(AppUserDetailService.class);
 
 	@Autowired
 	private UserDAO userDAO;
@@ -36,6 +36,8 @@ public class AppUserDetailService implements UserDetailsService {
 
 		org.springframework.security.core.userdetails.User sUser = new org.springframework.security.core.userdetails.User(
 				user.getUserName(), user.getPassword(), authorities);
+
+		logger.info("user=" + sUser);
 
 		return (UserDetails) sUser;
 

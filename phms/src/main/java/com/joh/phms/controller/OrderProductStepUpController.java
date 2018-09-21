@@ -53,6 +53,8 @@ public class OrderProductStepUpController {
 		logger.info("orderProductStepUps=" + orderProductStepUps);
 
 		model.addAttribute("orderProductStepUps", orderProductStepUps);
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
 
 		return "orderProductStepUps";
 	}

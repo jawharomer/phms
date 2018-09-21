@@ -108,10 +108,10 @@
 				<td>{{item.productName}}</td>
 				<td>{{item.scientificName}}</td>
 				<td>{{item.country}}</td>
-				<td>{{item.quantity}} <span class="text-info"
+				<td>{{item.quantity}}</td>
+				<td>{{item.price}} <span class="text-info"
 					ng-if="discountPercentage>0"> %{{discountPercentage}} </span>
 				</td>
-				<td>{{item.price}}</td>
 				<td>&nbsp;</td>
 				<td>
 					<button class="btn btn-sm btn-outline-danger"

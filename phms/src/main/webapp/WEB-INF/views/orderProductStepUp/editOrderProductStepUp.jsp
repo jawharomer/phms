@@ -35,7 +35,7 @@
 
 			<tr>
 				<td>Discount</td>
-				<td><input type="number" min="0"
+				<td><input type="number" min="0" max="1"
 					ng-model="orderProductStepUp.discount"
 					class="form-control  form-control-sm"></td>
 			</tr>
@@ -90,7 +90,8 @@
 					<td>{{item.paymentAmount|number}}</td>
 					<td>{{item.note}}</td>
 					<td>
-						<button class="btn btn-danger btn-sm rounded-circle" ng-click="deleteProductStepUp($index)">
+						<button class="btn btn-danger btn-sm rounded-circle"
+							ng-click="deleteProductStepUp($index)">
 							<i class="fa fa-times"></i>
 						</button>
 					</td>

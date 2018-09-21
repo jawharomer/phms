@@ -27,15 +27,15 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td>Reference</td>
+				<td title="Most of the time Vendor's Invoice ID">Reference</td>
 				<td><input type="number"
 					ng-model="orderProductStepUp.referecneInvoiceId"
 					class="form-control  form-control-sm"></td>
 			</tr>
 
 			<tr>
-				<td>Discount</td>
-				<td><input type="number" min="0"
+				<td title="Discount 0-1">Discount</td>
+				<td><input type="number" min="0" max="1"
 					ng-model="orderProductStepUp.discount"
 					class="form-control  form-control-sm"></td>
 			</tr>
