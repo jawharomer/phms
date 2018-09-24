@@ -24,11 +24,11 @@ public class Product {
 	@Column(name = "I_PRODUCT")
 	private int id;
 
-	@NotBlank(message = "{product.code.blank}")
+	@NotBlank(message = "product code is null")
 	@Column(name = "PRODUCT_CODE", unique = true)
 	private String code;
 
-	@NotBlank(message = "{product.name.blank}")
+	@NotBlank(message = "product name is null")
 	@Column(name = "PRODUCT_NAME")
 	private String name;
 
@@ -36,12 +36,12 @@ public class Product {
 	@Column(name = "SCIENTIFIC_NAME")
 	private String scientificName;
 
-	@NotNull(message = "{product.profit.blank}")
+	@NotNull(message = "product profit is null")
 	@Max(value = 1)
 	@Column(name = "PROFIT", nullable = false)
 	private Double profit;
 
-	@NotBlank(message = "{product.unitType.blank}")
+	@NotBlank(message = "unit type is null")
 	@Column(name = "UNIT_TYPE")
 	private String unitType;
 

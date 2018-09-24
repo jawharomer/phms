@@ -8,6 +8,6 @@ $.datepicker.setDefaults({
 $(document).tooltip();
 
 // Prevent Submit Form via enter
-$(document).on("keypress", "form", function(event) {
+$(document).on("keypress", "form input", function(event) {
 	return event.keyCode != 13;
 });

@@ -80,11 +80,16 @@
 
 <script>
 	var csrf = '${_csrf.token}';
+
+	$(document).on("keypress", "form input", function(event) {
+		return event.keyCode != 13;
+	});
+
 	function addProduct(event) {
 		event.preventDefault();
 		console.log("addProduct->fired");
 		var data = $("#add-product-form").serializeJSON();
-		
+
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",

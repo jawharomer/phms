@@ -47,6 +47,7 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<td>P-Name</td>
 					<td>P-Code</td>
 					<td>EXP-Date</td>
 					<td>Qrt</td>
@@ -56,6 +57,7 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr ng-form="newProductStepUpForm">
+					<td></td>
 					<td><input required ng-model="productStepUp.product.code"
 						class="form-control form-control-sm"></td>
 					<td><input id="newProductStepUpExpirationDate" required
@@ -83,6 +85,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in orderProductStepUp.productStepUps">
+					<td>{{item.product.name}}</td>
 					<td>{{item.product.code}}</td>
 					<td>{{item.expirationDate}}</td>
 					<td>{{item.quantity}}</td>

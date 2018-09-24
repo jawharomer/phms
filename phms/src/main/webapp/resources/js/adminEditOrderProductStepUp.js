@@ -84,6 +84,7 @@ appAddCusotmerOrder
 
 											console.log(response.data);
 											$scope.productStepUp.product.id = response.data.productId;
+											$scope.productStepUp.product.name = response.data.name;
 
 											$scope.orderProductStepUp.productStepUps
 													.push($scope.productStepUp);
