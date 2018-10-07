@@ -6,7 +6,7 @@
 
 	<a class="navbar-brand" href="<c:url value="/adminRoot" />"> <img
 		src="<c:url value="/resources/img/logo.png" />" height="50" alt="">
-		<b style="color: #F1008C">Bahceci Pharmacy</b>
+		<b style="color: #F1008C">BHMS</b>
 
 	</a>
 

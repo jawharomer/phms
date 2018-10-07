@@ -1,6 +1,7 @@
 package com.joh.phms.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -47,7 +52,7 @@ public class Product {
 
 	@Valid()
 	@NotNull(message = "category is null")
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "I_PRODUCT_CATEGORY", nullable = false)
 	private ProductCategory productCategory;
 

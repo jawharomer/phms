@@ -27,6 +27,11 @@ public class ProductServiceImpl implements ProductSevice {
 	}
 
 	@Override
+	public Iterable<Product> findAll() {
+		return productDAO.findAll();
+	}
+
+	@Override
 	@Transactional
 	public Product save(Product product) {
 		try {

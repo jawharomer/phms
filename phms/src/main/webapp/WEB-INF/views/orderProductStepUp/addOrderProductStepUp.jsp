@@ -8,6 +8,7 @@
 <script type="text/javascript">
 	var jsonVendors = '${jsonVendors}';
 	var jsonOrderProductStepUp = '${jsonOrderProductStepUp}';
+	var jsonProducts = '${jsonProducts}';
 	var csrf = '${_csrf.token}';
 </script>
 
@@ -15,6 +16,8 @@
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
 	ng-init="init()">
 	<h2>Order</h2>
+
+	{{products}}
 
 	<table class="table table-sm cus-table-borderless">
 		<tbody ng-form="orderProductStepUpForm">
@@ -57,8 +60,8 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr ng-form="newProductStepUpForm">
-					<td></td>
-					<td><input required ng-model="productStepUp.product.code"
+					<td><input id="autoselect" ng-change="selectedProduct=null" ng-model="productStepUp.product.name" class="form-control form-control-sm"></td>
+					<td><input ng-readonly="selectedProduct" required ng-model="productStepUp.product.code"
 						class="form-control form-control-sm"></td>
 					<td><input id="newProductStepUpExpirationDate" required
 						ng-model="productStepUp.expirationDate"

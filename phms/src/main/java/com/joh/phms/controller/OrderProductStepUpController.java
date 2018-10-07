@@ -25,8 +25,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.joh.phms.domain.model.JsonResponse;
 import com.joh.phms.exception.CusDataIntegrityViolationException;
 import com.joh.phms.model.OrderProductStepUp;
+import com.joh.phms.model.Product;
 import com.joh.phms.model.Vendor;
 import com.joh.phms.service.OrderProductServiceService;
+import com.joh.phms.service.ProductSevice;
 import com.joh.phms.service.VendorService;
 import com.joh.phms.validator.OrderProductStepUpValidator;
 
@@ -41,6 +43,9 @@ public class OrderProductStepUpController {
 
 	@Autowired
 	private OrderProductServiceService orderProductServiceService;
+
+	@Autowired
+	private ProductSevice productSevice;
 
 	@GetMapping()
 	public String getAllOrderProductStepUp(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
@@ -66,11 +71,14 @@ public class OrderProductStepUpController {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		Iterable<Vendor> vendors = vendorService.findAll();
-
 		logger.info("vendors=" + vendors);
+
+		Iterable<Product> products = productSevice.findAll();
+		logger.info("products=" + products);
 
 		model.addAttribute("jsonVendors", objectMapper.writeValueAsString(vendors));
 		model.addAttribute("jsonOrderProductStepUp", objectMapper.writeValueAsString(new OrderProductStepUp()));
+		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
 
 		return "adminAddOrderProductStepUp";
 	}

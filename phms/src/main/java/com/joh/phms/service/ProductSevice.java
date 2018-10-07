@@ -19,4 +19,6 @@ public interface ProductSevice {
 
 	ProductD findProductByCode(String code);
 
+	Iterable<Product> findAll();
+
 }
