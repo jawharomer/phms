@@ -34,9 +34,11 @@ appAddCusotmerOrder
 					$scope.isNumber = angular.isNumber;
 
 					$scope.vendors;
+					$scope.selectedProduct;
 					$scope.productStepUp = {
 						product : {
-							code : ""
+							code : "",
+							name : ""
 						},
 						expirationDate : "",
 						quantity : "",
@@ -48,6 +50,8 @@ appAddCusotmerOrder
 
 					$scope.orderProductStepUp = {};
 
+					$scope.products;
+
 					$scope.init = function() {
 
 						console.log("init->fired");
@@ -55,12 +59,45 @@ appAddCusotmerOrder
 						console.log("jsonOrderProductStepUp=",
 								jsonOrderProductStepUp);
 
+						console.log("jsonProducts=", jsonProducts);
+
 						$scope.vendors = JSON.parse(jsonVendors);
 						$scope.orderProductStepUp = JSON
 								.parse(jsonOrderProductStepUp);
+
+						$scope.products = JSON.parse(jsonProducts);
 						console.log("$scope.vendors=", $scope.vendors);
 						console.log("$scope.orderProductStepUp=",
 								$scope.orderProductStepUp);
+
+						console.log("$scope.products=", $scope.products);
+
+						var productAuto = [];
+
+						angular.forEach($scope.products, function(value, key) {
+							var obj = {
+								label : value.name + " " + value.code,
+								value : value.name,
+								data : value
+							}
+							productAuto.push(obj);
+						});
+
+						$("#autoselect").autocomplete({
+							source : productAuto,
+							select : function(event, ui) {
+								var item = ui.item.data;
+								console.log("item=", item);
+								var product = {
+									code : item.code,
+									name : item.name
+								};
+								$scope.selectedProduct = product;
+								$scope.productStepUp.product = product;
+								$scope.$digest();
+							}
+						});
+
 					}
 
 					$scope.totalPaymentAmount = function() {
@@ -92,6 +129,8 @@ appAddCusotmerOrder
 											$scope.productStepUp = angular
 													.copy($scope.resetProductStepUp);
 
+											$scope.selectedProduct = null;
+
 										},
 										function(response) {
 											console.error("error occured");
@@ -112,15 +151,15 @@ appAddCusotmerOrder
 								1);
 					}
 
-					$scope.editOrderProductStepUp = function() {
-						console.log("editOrderProductStepUp->fired");
+					$scope.saveOrderProductStepUp = function() {
+						console.log("saveOrderProductStepUp->fired");
 						$scope.orderProductStepUp.totalPaymentAmount = $scope
 								.totalPaymentAmount();
 						console.log($scope.orderProductStepUp);
 						$http({
 							method : 'POST',
 							data : $scope.orderProductStepUp,
-							url : $$ContextURL + '/orderProductStepUps/edit'
+							url : $$ContextURL + '/orderProductStepUps/add'
 						}).then(function(response) {
 							console.log(response);
 							$("#modal-body").html(response.data);

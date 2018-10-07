@@ -17,8 +17,6 @@
 	ng-init="init()">
 	<h2>Order</h2>
 
-	{{products}}
-
 	<table class="table table-sm cus-table-borderless">
 		<tbody ng-form="orderProductStepUpForm">
 			<tr>

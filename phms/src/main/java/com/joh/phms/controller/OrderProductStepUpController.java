@@ -113,8 +113,12 @@ public class OrderProductStepUpController {
 
 		logger.info("vendors=" + vendors);
 
+		Iterable<Product> products = productSevice.findAll();
+		logger.info("products=" + products);
+
 		model.addAttribute("jsonVendors", objectMapper.writeValueAsString(vendors));
 		model.addAttribute("jsonOrderProductStepUp", objectMapper.writeValueAsString(orderProductStepUp));
+		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
 
 		return "adminEditOrderProductStepUp";
 	}
