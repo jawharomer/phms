@@ -8,9 +8,10 @@
 <script type="text/javascript">
 	var jsonVendors = '${jsonVendors}';
 	var jsonOrderProductStepUp = '${jsonOrderProductStepUp}';
-	var jsonProducts = '${jsonProducts}';
+	var jsonProducts = '<spring:escapeBody  javaScriptEscape="true">${jsonProducts}</spring:escapeBody>';
 	var csrf = '${_csrf.token}';
 </script>
+
 
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
@@ -58,8 +59,11 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr ng-form="newProductStepUpForm">
-					<td><input id="autoselect" ng-change="selectedProduct=null" ng-model="productStepUp.product.name" class="form-control form-control-sm"></td>
-					<td><input ng-readonly="selectedProduct" required ng-model="productStepUp.product.code"
+					<td><input id="autoselect" ng-change="selectedProduct=null"
+						ng-model="productStepUp.product.name"
+						class="form-control form-control-sm"></td>
+					<td><input ng-readonly="selectedProduct" required
+						ng-model="productStepUp.product.code"
 						class="form-control form-control-sm"></td>
 					<td><input id="newProductStepUpExpirationDate" required
 						ng-model="productStepUp.expirationDate"

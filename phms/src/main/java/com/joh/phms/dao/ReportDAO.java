@@ -150,7 +150,7 @@ public class ReportDAO {
 		// Notification-5
 
 		query = em.createNativeQuery(
-				"SELECT  ROUND(IFNULL(SUM(TOTAL_PAYMENT_AMOUNT),0)) FROM ORDER_PRODUCT_STEPUPS WHERE DATE(ORDER_TIME)=CURDATE()");
+				"SELECT  ROUND(IFNULL(SUM(TOTAL_PAYMENT_AMOUNT),0)) FROM phms.ORDER_PRODUCT_STEPUPS WHERE DATE(ORDER_TIME)=CURDATE()");
 
 		Object totalProductStepUpPaymentamountResult = query.getSingleResult();
 
