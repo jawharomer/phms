@@ -1,6 +1,6 @@
 package com.joh.phms.domain.model;
 
-public class ProductD {
+public class ProductD{
 
 	private Integer productId;
 	private String code;
@@ -13,6 +13,7 @@ public class ProductD {
 	private Double price;
 	private String category;
 	private String country;
+	private Integer packetSize;
 
 	public Integer getProductId() {
 		return productId;
@@ -102,11 +103,20 @@ public class ProductD {
 		this.country = country;
 	}
 
+	public Integer getPacketSize() {
+		return packetSize;
+	}
+
+	public void setPacketSize(Integer packetSize) {
+		this.packetSize = packetSize;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductD [productId=" + productId + ", code=" + code + ", name=" + name + ", scientificName="
 				+ scientificName + ", unitType=" + unitType + ", stockLevel=" + stockLevel + ", cost=" + cost
-				+ ", profit=" + profit + ", price=" + price + ", category=" + category + ", country=" + country + "]";
+				+ ", profit=" + profit + ", price=" + price + ", category=" + category + ", country=" + country
+				+ ", packetSize=" + packetSize + "]";
 	}
 
 }

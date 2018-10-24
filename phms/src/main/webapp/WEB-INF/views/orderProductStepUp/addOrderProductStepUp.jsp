@@ -51,8 +51,9 @@
 				<tr>
 					<td>P-Name</td>
 					<td>P-Code</td>
-					<td>EXP-Date</td>
+					<td>P-Unit Type</td>
 					<td>QTY</td>
+					<td>EXP-Date</td>
 					<td>Bonus-QTY</td>
 					<td>Payment</td>
 					<td>Note</td>
@@ -62,14 +63,19 @@
 					<td><input id="autoselect" ng-change="selectedProduct=null"
 						ng-model="productStepUp.product.name"
 						class="form-control form-control-sm"></td>
-					<td><input ng-readonly="selectedProduct" required
+					<td><input ng-blur="getProduct()"
+						ng-readonly="selectedProduct" required
 						ng-model="productStepUp.product.code"
 						class="form-control form-control-sm"></td>
-					<td><input id="newProductStepUpExpirationDate" required
-						ng-model="productStepUp.expirationDate"
+					<td><input readonly="readonly"
+						ng-model="productStepUp.product.unitType"
 						class="form-control form-control-sm"></td>
 					<td><input type="number" min="1" required
 						ng-model="productStepUp.quantity"
+						class="form-control form-control-sm">
+						{{productStepUp.product.packetSize}}</td>
+					<td><input id="newProductStepUpExpirationDate" required
+						ng-model="productStepUp.expirationDate"
 						class="form-control form-control-sm"></td>
 					<td><input type="number" min="1"
 						ng-model="productStepUp.bonusQuantity"

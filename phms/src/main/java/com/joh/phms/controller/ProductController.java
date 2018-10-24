@@ -21,9 +21,12 @@ import com.joh.phms.domain.model.ProductD;
 import com.joh.phms.model.Country;
 import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductCategory;
+import com.joh.phms.model.ProductUnitType;
 import com.joh.phms.service.ProductCategorySevice;
 import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ProductUnitTypeService;
 import com.joh.phms.service.ReportService;
+import com.joh.phms.validator.ProductValidation;
 import com.joh.phms.validator.ProductValidator;
 
 @Controller()
@@ -41,6 +44,9 @@ public class ProductController {
 	@Autowired
 	private ReportService reportService;
 
+	@Autowired
+	private ProductUnitTypeService productUnitTypeService;
+
 	@GetMapping(path = "/add")
 	private String getAddingProduct(Model model) {
 		logger.info("getAddingProduct->fired");
@@ -51,8 +57,12 @@ public class ProductController {
 
 		List<Country> countries = reportService.findAllCountry();
 
+		Iterable<ProductUnitType> productUnitTypes = productUnitTypeService.findAll();
+		logger.info("productUnitTypes=" + productUnitTypes);
+
 		model.addAttribute("productCategories", productCategories);
 		model.addAttribute("countries", countries);
+		model.addAttribute("productUnitTypes", productUnitTypes);
 
 		model.addAttribute("product", new Product());
 
@@ -99,6 +109,7 @@ public class ProductController {
 	@GetMapping(path = "/edit/{id}")
 	public String getEditingProduct(@PathVariable int id, Model model) {
 		logger.info("getEditingProduct->fired");
+		logger.info("id=" + id);
 		Iterable<ProductCategory> productCategories = productCategorySevice.findAll();
 
 		logger.info("productCategories=" + productCategories);
@@ -108,12 +119,21 @@ public class ProductController {
 		model.addAttribute("productCategories", productCategories);
 		model.addAttribute("countries", countries);
 
-		model.addAttribute("product", productService.findOne(id));
+		Iterable<ProductUnitType> productUnitTypes = productUnitTypeService.findAll();
+		logger.info("productUnitTypes=" + productUnitTypes);
+		model.addAttribute("productUnitTypes", productUnitTypes);
+
+
+		Product product = productService.findOne(id);
+		logger.info("product=" + product);
+
+		model.addAttribute("product", product);
+
 		return "product/editProduct";
 	}
 
 	@PostMapping(path = "/update")
-	public String updateProduct(@RequestBody @Valid Product product, BindingResult result, Model model) {
+	public String updateProduct(@RequestBody @Validated(ProductValidation.Insert.class) Product product, BindingResult result, Model model) {
 		logger.info("updateProduct->fired");
 		logger.info("product=" + product);
 

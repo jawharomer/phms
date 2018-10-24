@@ -47,8 +47,24 @@
 
 				<tr>
 					<td class="text-left">unitType</td>
-					<td><sf:input class="form-control" path="unitType" /></td>
-					<td><sf:errors path="unitType" /></td>
+					<td><select id="productUnit" onchange="changeProductUnit()"
+						class="form-control" name="productUnitType[id]"
+						value="${product.productUnitType.id}">
+							<option value="">Choose</option>
+							<c:forEach items="${productUnitTypes}" var="item">
+								<option value="${item.id}">${item.name}</option>
+							</c:forEach>
+					</select></td>
+
+					<td><sf:errors path="productUnitType" /></td>
+				</tr>
+
+
+				<tr>
+					<td class="text-left">Packet Size</td>
+					<td><sf:input disabled="true" type="number"
+							class="form-control" path="packetSize" /></td>
+					<td><sf:errors path="packetSize" /></td>
 				</tr>
 
 				<tr>
@@ -84,6 +100,19 @@
 	$(document).on("keypress", "form input", function(event) {
 		return event.keyCode != 13;
 	});
+
+	function changeProductUnit() {
+		console.log("changeProductUnit->fired");
+		var unitType = $('#productUnit option:selected').text();
+		console.log("unitType=" + unitType);
+		if (unitType != "pack") {
+			$("#packetSize").val("");
+			$("#packetSize").prop('disabled', true);
+		} else {
+			$("#packetSize").prop('disabled', false);
+		}
+
+	}
 
 	function addProduct(event) {
 		event.preventDefault();

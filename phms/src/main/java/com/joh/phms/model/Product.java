@@ -1,9 +1,7 @@
 package com.joh.phms.model;
 
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,9 +44,11 @@ public class Product {
 	@Column(name = "PROFIT", nullable = false)
 	private Double profit;
 
-	@NotBlank(message = "unit type is null")
-	@Column(name = "UNIT_TYPE")
-	private String unitType;
+	@Valid
+	@NotNull(message = "unit type is null")
+	@ManyToOne()
+	@JoinColumn(name = "I_PRODUCT_UNIT_TYPE")
+	private ProductUnitType productUnitType;
 
 	@Valid()
 	@NotNull(message = "category is null")
@@ -59,6 +59,9 @@ public class Product {
 	@NotBlank(message = "Country  is blank")
 	@Column(name = "COUNTRY")
 	private String country;
+
+	@Column(name = "PACKET_SIZE")
+	private Integer packetSize;
 
 	public int getId() {
 		return id;
@@ -92,10 +95,6 @@ public class Product {
 		this.profit = profit;
 	}
 
-	public String getUnitType() {
-		return unitType;
-	}
-
 	public String getScientificName() {
 		return scientificName;
 	}
@@ -112,10 +111,6 @@ public class Product {
 		this.productCategory = productCategory;
 	}
 
-	public void setUnitType(String unitType) {
-		this.unitType = unitType;
-	}
-
 	public String getCountry() {
 		return country;
 	}
@@ -124,11 +119,27 @@ public class Product {
 		this.country = country;
 	}
 
+	public Integer getPacketSize() {
+		return packetSize;
+	}
+
+	public void setPacketSize(Integer packetSize) {
+		this.packetSize = packetSize;
+	}
+
+	public ProductUnitType getProductUnitType() {
+		return productUnitType;
+	}
+
+	public void setProductUnitType(ProductUnitType productUnitType) {
+		this.productUnitType = productUnitType;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", scientificName=" + scientificName
-				+ ", profit=" + profit + ", unitType=" + unitType + ", productCategory=" + productCategory
-				+ ", country=" + country + "]";
+				+ ", profit=" + profit + ", productUnitType=" + productUnitType + ", productCategory=" + productCategory
+				+ ", country=" + country + ", packetSize=" + packetSize + "]";
 	}
 
 }

@@ -18,11 +18,11 @@ public class ProductDAOImpl implements ProductDAOExt {
 	public List<ProductD> findStock() {
 		List<ProductD> productDs = new ArrayList<>();
 
-		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,P.UNIT_TYPE,\n"
+		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,PUT.UNIT_TYPE_NAME,\n"
 				+ "IFNULL(SUM(QUANTITY-SOLD_QUANTITY),0) AS STOCK_LEVEL,\n"
 				+ "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
-				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE,SCIENTIFIC_NAME,PC.CATEGORY_NAME AS CATEGORY,COUNTRY\n"
-				+ "FROM PRODUCTS P LEFT OUTER JOIN PRODUCT_CATEGORIES PC USING(I_PRODUCT_CATEGORY) \n"
+				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE,SCIENTIFIC_NAME,PC.CATEGORY_NAME AS CATEGORY,COUNTRY,PACKET_SIZE\n"
+				+ "FROM PRODUCTS P LEFT OUTER JOIN PRODUCT_UNIT_TYPES PUT USING(I_PRODUCT_UNIT_TYPE) LEFT OUTER JOIN PRODUCT_CATEGORIES PC USING(I_PRODUCT_CATEGORY) \n"
 				+ "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n" + "GROUP BY P.I_PRODUCT\n"
 				+ "ORDER BY PRODUCT_CODE");
 
@@ -41,6 +41,8 @@ public class ProductDAOImpl implements ProductDAOExt {
 			productD.setScientificName((String) row[7]);
 			productD.setCategory((String) row[8]);
 			productD.setCountry((String) row[9]);
+			if (row[10] != null)
+				productD.setPacketSize((Integer) row[10]);
 
 			productDs.add(productD);
 		}
@@ -50,10 +52,11 @@ public class ProductDAOImpl implements ProductDAOExt {
 	@Override
 	public ProductD findProductByCode(String productCode) {
 
-		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,P.UNIT_TYPE,\n"
-				+ "IFNULL(SUM(QUANTITY-SOLD_QUANTITY),0) AS STOCK_LEVEL,\n" + "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
-				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE,SCIENTIFIC_NAME,COUNTRY\n"
-				+ "FROM PRODUCTS P\n" + "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n"
+		Query query = em.createNativeQuery("SELECT P.I_PRODUCT,P.PRODUCT_CODE,P.PRODUCT_NAME,PUT.UNIT_TYPE_NAME,\n"
+				+ "IFNULL(SUM(QUANTITY-SOLD_QUANTITY),0) AS STOCK_LEVEL,\n"
+				+ "ROUND(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY),3) as COST,\n"
+				+ "ROUND(SUM(PAYMENT_AMOUNT)/(SUM(QUANTITY))+(SUM(PAYMENT_AMOUNT)/SUM(QUANTITY))*P.PROFIT,3) as PRICE,SCIENTIFIC_NAME,COUNTRY,PACKET_SIZE\n"
+				+ "FROM PRODUCTS  P LEFT OUTER JOIN PRODUCT_UNIT_TYPES PUT USING(I_PRODUCT_UNIT_TYPE)  \n" + "LEFT OUTER JOIN PRODUCT_STEPUPS PS  USING(I_PRODUCT)\n"
 				+ "WHERE PRODUCT_CODE= ?1 \nGROUP BY P.I_PRODUCT");
 
 		query.setParameter(1, productCode);
@@ -72,6 +75,8 @@ public class ProductDAOImpl implements ProductDAOExt {
 		productD.setPrice((Double) row[6]);
 		productD.setScientificName((String) row[7]);
 		productD.setCountry((String) row[8]);
+		if (row[9] != null)
+			productD.setPacketSize((Integer) row[9]);
 
 		return productD;
 

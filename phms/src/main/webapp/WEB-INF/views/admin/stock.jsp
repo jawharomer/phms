@@ -28,6 +28,7 @@
 				<th>StockLevel</th>
 				<th>Cost</th>
 				<th>Price</th>
+				<th>Packet Size</th>
 				<th class="cus-not-export">Function</th>
 			</tr>
 		</thead>
@@ -43,14 +44,19 @@
 					<td>${productD.stockLevel}</td>
 					<td>${productD.cost}</td>
 					<td>${productD.price}</td>
+					<td>${productD.packetSize}</td>
 					<td>
 						<div class="cus-table-function-div">
-							<button class="btn btn-outline-danger"
+							<button class="btn btn-outline-danger btn-sm"
 								data-product-id="${productD.productId}"
-								onclick="deleteProduct(this)">delete</button>
-							<button class="btn btn-outline-warning"
+								onclick="deleteProduct(this)">
+								<i class="fa fa-times"></i>
+							</button>
+							<button class="btn btn-outline-warning btn-sm"
 								data-product-id="${productD.productId}"
-								onclick="editProduct(this)">edit</button>
+								onclick="editProduct(this)">
+								<i class="fa fa-edit"></i>
+							</button>
 						</div>
 					</td>
 				</tr>
@@ -67,6 +73,7 @@
 				<th>StockLevel</th>
 				<th>Cost</th>
 				<th>Price</th>
+				<th>Packet Size</th>
 				<th class="cus-not-search"></th>
 			</tr>
 		</tfoot>

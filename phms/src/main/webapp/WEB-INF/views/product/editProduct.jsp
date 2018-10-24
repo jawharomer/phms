@@ -55,8 +55,31 @@
 
 				<tr>
 					<td class="text-left">unitType</td>
-					<td><sf:input class="form-control" path="unitType" /></td>
-					<td><sf:errors path="unitType" /></td>
+					<td><select class="form-control" name="productUnitType[id]">
+							<option value="">Choose</option>
+							<c:forEach items="${productUnitTypes}" var="item">
+								<c:if test="${product.productUnitType.id==item.id}">
+									<option selected="selected" value="${item.id}">${item.name}</option>
+								</c:if>
+								<c:if test="${product.productUnitType.id!=item.id}">
+									<option value="${item.id}">${item.name}</option>
+								</c:if>
+							</c:forEach>
+
+
+					</select></td>
+
+
+
+					<td><sf:errors path="productUnitType" /></td>
+				</tr>
+
+
+				<tr>
+					<td class="text-left">Packet Size</td>
+					<td><sf:input type="number" class="form-control"
+							path="packetSize" /></td>
+					<td><sf:errors path="packetSize" /></td>
 				</tr>
 
 				<tr>
@@ -102,7 +125,7 @@
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",
-			url : "<c:url value="/products/add"/>",
+			url : "<c:url value="/products/update"/>",
 			data : data,
 			headers : {
 				"X-CSRF-TOKEN" : csrf
