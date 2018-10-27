@@ -98,8 +98,9 @@
 				<tr ng-repeat="item in orderProductStepUp.productStepUps">
 					<td>{{item.product.name}}</td>
 					<td>{{item.product.code}}</td>
-					<td>{{item.expirationDate}}</td>
+					<td>&nbsp;</td>
 					<td>{{item.quantity}}</td>
+					<td>{{item.expirationDate}}</td>
 					<td>{{item.bonusQuantity}}</td>
 					<td>{{item.paymentAmount|number}}</td>
 					<td>{{item.note}}</td>

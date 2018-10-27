@@ -23,6 +23,6 @@ public interface ProductStepUpDAO extends CrudRepository<ProductStepUp, Integer>
 	List<ProductStepUp> findAllByExpirationDateLessThanEqualOrderByExpirationDate(Date to);
 
 	@Modifying
-	@Query("delete from ProductStepUp p where p.id = ?1")
+	@Query("delete from ProductStepUp p where p.id = ?1 ")
 	void delete(Integer id);
 }

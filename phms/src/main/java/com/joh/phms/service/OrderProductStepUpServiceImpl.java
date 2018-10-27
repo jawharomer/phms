@@ -52,17 +52,19 @@ public class OrderProductStepUpServiceImpl implements OrderProductServiceService
 	@Transactional
 	public OrderProductStepUp update(OrderProductStepUp orderProductStepUp) {
 		OrderProductStepUp oldOrderProductStepUp = orderProductStepUpDAO.findOne(orderProductStepUp.getId());
-
+/*
 		for (int i = 0; i < oldOrderProductStepUp.getProductStepUps().size(); i++) {
 			ProductStepUp productStepUp = oldOrderProductStepUp.getProductStepUps().get(i);
 			if (!isPresent(orderProductStepUp.getProductStepUps(), productStepUp.getId())) {
 				try {
+					System.err.println("productStepUp.getId()=" + productStepUp.getId());
 					productStepUpDAO.delete(productStepUp.getId());
 				} catch (DataIntegrityViolationException e) {
 					throw new CusDataIntegrityViolationException("Code=" + productStepUp.getProduct().getCode());
 				}
 			}
 		}
+		*/
 		return orderProductStepUpDAO.save(orderProductStepUp);
 	}
 

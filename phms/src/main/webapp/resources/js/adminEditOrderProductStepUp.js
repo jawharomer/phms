@@ -38,7 +38,8 @@ appAddCusotmerOrder
 					$scope.productStepUp = {
 						product : {
 							code : "",
-							name : ""
+							name : "",
+							unitType : ""
 						},
 						expirationDate : "",
 						quantity : "",
@@ -83,20 +84,30 @@ appAddCusotmerOrder
 							productAuto.push(obj);
 						});
 
-						$("#autoselect").autocomplete({
-							source : productAuto,
-							select : function(event, ui) {
-								var item = ui.item.data;
-								console.log("item=", item);
-								var product = {
-									code : item.code,
-									name : item.name
-								};
-								$scope.selectedProduct = product;
-								$scope.productStepUp.product = product;
-								$scope.$digest();
-							}
-						});
+						$("#autoselect")
+								.autocomplete(
+										{
+											source : productAuto,
+											select : function(event, ui) {
+												var item = ui.item.data;
+												console.log("item=", item);
+												var product = {
+													code : item.code,
+													name : item.name,
+													unitType : item.productUnitType.name,
+													packetSize : item.packetSize
+												};
+												$scope.selectedProduct = product;
+												$scope.productStepUp.product = product;
+
+												console
+														.log(
+																"$scope.selectedProduct=",
+																$scope.selectedProduct);
+
+												$scope.$digest();
+											}
+										});
 
 					}
 
@@ -106,6 +117,34 @@ appAddCusotmerOrder
 							totalPayment += $scope.orderProductStepUp.productStepUps[i].paymentAmount;
 						}
 						return totalPayment;
+					}
+
+					$scope.getProduct = function() {
+						console.log("getProduct->fired");
+
+						if ($scope.productStepUp.product.code)
+							$http
+									.get(
+											$$ContextURL
+													+ "/products/find/code/"
+													+ $scope.productStepUp.product.code)
+									.then(
+											function(response) {
+
+												console.log(response.data);
+												$scope.productStepUp.product.id = response.data.productId;
+												$scope.productStepUp.product.name = response.data.name;
+												$scope.productStepUp.product.unitType = response.data.unitType;
+												$scope.productStepUp.product.packetSize = response.data.packetSize;
+
+											},
+											function(response) {
+												console.error("error occured");
+												$("#modal-body").html(
+														response.data);
+												$("#modal").modal("show");
+											});
+
 					}
 
 					$scope.addProductStepUp = function() {
@@ -159,7 +198,7 @@ appAddCusotmerOrder
 						$http({
 							method : 'POST',
 							data : $scope.orderProductStepUp,
-							url : $$ContextURL + '/orderProductStepUps/add'
+							url : $$ContextURL + '/orderProductStepUps/edit'
 						}).then(function(response) {
 							console.log(response);
 							$("#modal-body").html(response.data);

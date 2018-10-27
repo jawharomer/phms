@@ -120,6 +120,7 @@ public class ProductStepUp {
 	public void setSoldQuantity(Integer soldQuantity) {
 		this.soldQuantity = soldQuantity;
 	}
+	
 
 	@Override
 	public String toString() {

@@ -8,9 +8,10 @@
 <script type="text/javascript">
 	var jsonVendors = '${jsonVendors}';
 	var jsonOrderProductStepUp = '${jsonOrderProductStepUp}';
-	var jsonProducts = '${jsonProducts}';
+	var jsonProducts = '<spring:escapeBody  javaScriptEscape="true">${jsonProducts}</spring:escapeBody>';
 	var csrf = '${_csrf.token}';
 </script>
+
 
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
@@ -50,8 +51,9 @@
 				<tr>
 					<td>P-Name</td>
 					<td>P-Code</td>
-					<td>EXP-Date</td>
+					<td>P-Unit Type</td>
 					<td>QTY</td>
+					<td>EXP-Date</td>
 					<td>Bonus-QTY</td>
 					<td>Payment</td>
 					<td>Note</td>
@@ -61,14 +63,19 @@
 					<td><input id="autoselect" ng-change="selectedProduct=null"
 						ng-model="productStepUp.product.name"
 						class="form-control form-control-sm"></td>
-					<td><input ng-readonly="selectedProduct" required
+					<td><input ng-blur="getProduct()"
+						ng-readonly="selectedProduct" required
 						ng-model="productStepUp.product.code"
 						class="form-control form-control-sm"></td>
-					<td><input id="newProductStepUpExpirationDate" required
-						ng-model="productStepUp.expirationDate"
+					<td><input readonly="readonly"
+						ng-model="productStepUp.product.unitType"
 						class="form-control form-control-sm"></td>
 					<td><input type="number" min="1" required
 						ng-model="productStepUp.quantity"
+						class="form-control form-control-sm">
+						{{productStepUp.product.packetSize}}</td>
+					<td><input id="newProductStepUpExpirationDate" required
+						ng-model="productStepUp.expirationDate"
 						class="form-control form-control-sm"></td>
 					<td><input type="number" min="1"
 						ng-model="productStepUp.bonusQuantity"
@@ -91,8 +98,9 @@
 				<tr ng-repeat="item in orderProductStepUp.productStepUps">
 					<td>{{item.product.name}}</td>
 					<td>{{item.product.code}}</td>
-					<td>{{item.expirationDate}}</td>
+					<td>&nbsp;</td>
 					<td>{{item.quantity}}</td>
+					<td>{{item.expirationDate}}</td>
 					<td>{{item.bonusQuantity}}</td>
 					<td>{{item.paymentAmount|number}}</td>
 					<td>{{item.note}}</td>
