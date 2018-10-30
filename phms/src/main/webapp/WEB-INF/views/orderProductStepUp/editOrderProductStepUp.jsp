@@ -80,7 +80,7 @@
 					<td><input type="number" min="1"
 						ng-model="productStepUp.bonusQuantity"
 						class="form-control form-control-sm"></td>
-					<td><input type="number" min="1" required
+					<td><input type="number" min="0" required
 						ng-model="productStepUp.paymentAmount"
 						class="form-control form-control-sm"></td>
 					<td><input ng-model="productStepUp.note"
