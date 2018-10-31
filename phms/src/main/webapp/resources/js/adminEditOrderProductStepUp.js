@@ -161,6 +161,22 @@ appAddCusotmerOrder
 											console.log(response.data);
 											$scope.productStepUp.product.id = response.data.productId;
 											$scope.productStepUp.product.name = response.data.name;
+											$scope.productStepUp.product.packetSize = response.data.packetSize;
+
+											console
+													.log(
+															"$scope.productStepUp.product.packetSize=",
+															$scope.productStepUp.product.packetSize);
+											if ($scope.productStepUp.product.packetSize) {
+												$scope.productStepUp.quantity = $scope.productStepUp.quantity
+														* $scope.productStepUp.product.packetSize;
+
+												if ($scope.productStepUp.bonusQuantity) {
+													$scope.productStepUp.bonusQuantity = $scope.productStepUp.bonusQuantity
+															* $scope.productStepUp.product.packetSize;
+												}
+
+											}
 
 											$scope.orderProductStepUp.productStepUps
 													.push($scope.productStepUp);

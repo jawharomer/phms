@@ -35,6 +35,9 @@ public class ProductServiceImpl implements ProductSevice {
 	@Transactional
 	public Product save(Product product) {
 		try {
+			if (!product.getProductUnitType().getName().equals("pack")) {
+				product.setPacketSize(null);
+			}
 			return productDAO.save(product);
 		} catch (DataIntegrityViolationException e) {
 			throw new ItemExistsException(e.getMessage());
@@ -59,6 +62,9 @@ public class ProductServiceImpl implements ProductSevice {
 		// This line will check this student is exit
 		// then it will update it
 		productDAO.findOne(product.getId());
+		if (!product.getProductUnitType().getName().equals("pack")) {
+			product.setPacketSize(null);
+		}
 		return productDAO.save(product);
 	}
 
