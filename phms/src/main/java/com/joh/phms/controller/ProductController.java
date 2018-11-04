@@ -2,8 +2,6 @@ package com.joh.phms.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +25,6 @@ import com.joh.phms.service.ProductSevice;
 import com.joh.phms.service.ProductUnitTypeService;
 import com.joh.phms.service.ReportService;
 import com.joh.phms.validator.ProductValidation;
-import com.joh.phms.validator.ProductValidator;
 
 @Controller()
 @RequestMapping(path = "/products")
@@ -70,7 +67,7 @@ public class ProductController {
 	}
 
 	@PostMapping(path = "/add")
-	private String addProduct(@RequestBody @Validated(ProductValidator.Insert.class) Product product,
+	private String addProduct(@RequestBody @Validated(ProductValidation.Insert.class) Product product,
 			BindingResult result, Model model) {
 		logger.info("addProduct->fired");
 
@@ -85,8 +82,12 @@ public class ProductController {
 
 			List<Country> countries = reportService.findAllCountry();
 
+			Iterable<ProductUnitType> productUnitTypes = productUnitTypeService.findAll();
+			logger.info("productUnitTypes=" + productUnitTypes);
+
 			model.addAttribute("productCategories", productCategories);
 			model.addAttribute("countries", countries);
+			model.addAttribute("productUnitTypes", productUnitTypes);
 
 			model.addAttribute("product", product);
 
@@ -123,7 +124,6 @@ public class ProductController {
 		logger.info("productUnitTypes=" + productUnitTypes);
 		model.addAttribute("productUnitTypes", productUnitTypes);
 
-
 		Product product = productService.findOne(id);
 		logger.info("product=" + product);
 
@@ -133,7 +133,8 @@ public class ProductController {
 	}
 
 	@PostMapping(path = "/update")
-	public String updateProduct(@RequestBody @Validated(ProductValidation.Insert.class) Product product, BindingResult result, Model model) {
+	public String updateProduct(@RequestBody @Validated(ProductValidation.Update.class) Product product,
+			BindingResult result, Model model) {
 		logger.info("updateProduct->fired");
 		logger.info("product=" + product);
 
@@ -145,6 +146,13 @@ public class ProductController {
 			logger.info("productCategories=" + productCategories);
 
 			model.addAttribute("productCategories", productCategories);
+			Iterable<ProductUnitType> productUnitTypes = productUnitTypeService.findAll();
+			logger.info("productUnitTypes=" + productUnitTypes);
+			model.addAttribute("productUnitTypes", productUnitTypes);
+
+			List<Country> countries = reportService.findAllCountry();
+			;
+			model.addAttribute("countries", countries);
 
 			model.addAttribute("product", product);
 			return "product/editProduct";

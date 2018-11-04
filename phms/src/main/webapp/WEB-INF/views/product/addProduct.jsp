@@ -122,7 +122,7 @@
 		console.log("data=", data);
 		$.ajax({
 			type : "POST",
-			url : "<c:url value="/products/update"/>",
+			url : "<c:url value="/products/add"/>",
 			headers : {
 				'X-CSRF-TOKEN' : csrf
 			},

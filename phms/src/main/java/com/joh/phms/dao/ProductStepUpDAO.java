@@ -12,8 +12,8 @@ import com.joh.phms.model.ProductStepUp;
 public interface ProductStepUpDAO extends CrudRepository<ProductStepUp, Integer> {
 
 	@Query(value = "SELECT PS.* FROM PRODUCTS P INNER JOIN  PRODUCT_STEPUPS PS USING(I_PRODUCT)\n"
-			+ "WHERE  QUANTITY-SOLD_QUANTITY>0 \n" + "AND PRODUCT_CODE= ?1 " + "ORDER BY EXPIRATION_DATE\n"
-			+ "LIMIT 1;", nativeQuery = true)
+			+ "WHERE  QUANTITY-SOLD_QUANTITY>0 \n" + "AND PRODUCT_CODE= ?1 "
+			+ "ORDER BY EXPIRATION_DATE LIMIT 1;", nativeQuery = true)
 	ProductStepUp findProductStepUpForStockDown(String productCode);
 
 	@Modifying

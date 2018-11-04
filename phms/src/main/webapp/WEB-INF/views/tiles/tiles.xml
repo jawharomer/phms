@@ -149,6 +149,7 @@
 			<add-attribute value="jquery.dataTables" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
+			<add-attribute value="editCustomerOrder" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">

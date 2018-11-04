@@ -123,7 +123,9 @@ public class CustomerOrderController {
 
 		logger.info("discountTypes=" + discountTypes);
 
-		System.out.println(objectMapper.writeValueAsString(discountTypes));
+		Iterable<Product> products = productSevice.findAll();
+		logger.info("products=" + products);
+		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
 
 		model.addAttribute("jsonDiscountTypes", objectMapper.writeValueAsString(discountTypes));
 

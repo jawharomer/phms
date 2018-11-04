@@ -10,11 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.joh.phms.validator.ProductValidation;
+import com.joh.phms.validator.OrderProductStepUpValidator.Insert;
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 
@@ -22,30 +26,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "PRODUCTS")
 public class Product {
 
+	@Min(groups= {ProductValidation.Update.class},value=0)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "I_PRODUCT")
 	private int id;
 
-	@NotBlank(message = "product code is null")
+	@NotBlank(groups= {ProductValidation.Insert.class},message = "product code is null")
 	@Column(name = "PRODUCT_CODE", unique = true)
 	private String code;
 
-	@NotBlank(message = "product name is null")
+	@NotBlank(groups= {ProductValidation.Insert.class},message = "product name is null")
 	@Column(name = "PRODUCT_NAME")
 	private String name;
 
-	@NotBlank(message = "Scientific name is blank")
+	@NotBlank(groups= {ProductValidation.Insert.class},message = "Scientific name is blank")
 	@Column(name = "SCIENTIFIC_NAME")
 	private String scientificName;
 
-	@NotNull(message = "product profit is null")
+	@NotNull(groups= {ProductValidation.Insert.class},message = "product profit is null")
 	@Max(value = 1)
 	@Column(name = "PROFIT", nullable = false)
 	private Double profit;
 
 	@Valid
-	@NotNull(message = "unit type is null")
+	@NotNull(groups= {ProductValidation.Insert.class},message = "unit type is null")
 	@ManyToOne()
 	@JoinColumn(name = "I_PRODUCT_UNIT_TYPE")
 	private ProductUnitType productUnitType;

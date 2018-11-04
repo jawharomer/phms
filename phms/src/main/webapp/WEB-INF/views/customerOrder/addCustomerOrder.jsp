@@ -79,8 +79,9 @@
 
 				<th><input id="autoselect" class="form-control form-control-sm"
 					ng-model="product.code" ng-keypress="getProduct($event)"></th>
-				<th><input id="productName" class="form-control form-control-sm"
-					ng-model="product.name" readonly></th>
+				<th><input id="productName"
+					class="form-control form-control-sm" ng-model="product.name"
+					readonly></th>
 				<th><input class="form-control form-control-sm"
 					ng-model="product.scientificName" readonly></th>
 				<th><input class="form-control form-control-sm"
@@ -116,7 +117,9 @@
 				<td>&nbsp;</td>
 				<td>
 					<button class="btn btn-sm btn-outline-danger"
-						ng-click="removeCustomerOrderDetail($index)">Delete</button>
+						ng-click="removeCustomerOrderDetail($index)">
+						<i class="fa fa-times"></i>
+					</button>
 				</td>
 			</tr>
 		</tbody>

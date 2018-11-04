@@ -11,12 +11,13 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.joh.phms.validator.ProductCategoryValidator;
+import com.joh.phms.validator.ProductValidation;
 
 @Entity
 @Table(name = "PRODUCT_CATEGORIES")
 public class ProductCategory {
 
-	@NotNull(message = "product category id is null")
+	@NotNull(groups= {ProductValidation.Insert.class},message = "product category id is null")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "I_PRODUCT_CATEGORY")

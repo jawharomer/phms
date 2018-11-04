@@ -81,6 +81,36 @@ editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
 		console.log("$scope.cusomerOrder=", $scope.cusomerOrder);
 		console.log("$scope.doctors=", $scope.doctors);
 		console.log("$scope. $discountTypes=", $scope.discountTypes);
+
+		console.log("jsonProducts=", jsonProducts);
+		$scope.products = JSON.parse(jsonProducts);
+		console.log("$scope.products=", $scope.products);
+
+		var productAuto = [];
+
+		angular.forEach($scope.products, function(value, key) {
+			var obj = {
+				label : value.name + " " + value.code,
+				value : value.code,
+				data : value
+			}
+			productAuto.push(obj);
+		});
+
+		$("#autoselect")
+				.autocomplete(
+						{
+							source : productAuto,
+							select : function(event, ui) {
+								var item = ui.item.data;
+								console.log("selected item =", item);
+								
+								$scope.product.code = item.code;
+								
+								$scope.$digest();
+							}
+						});
+		
 		
 	};
 
@@ -99,14 +129,13 @@ editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
 	};
 	$scope.addedProduct = [];
 
-	$scope.resetProduct = $scope.product;
+	$scope.resetProduct =angular.copy($scope.product);
 
 	$scope.getProduct = function(event) {
 		console.log("getProduct->fired");
 		if (event.which == 13) {
 
 			console.log($scope.product.code);
-			$scope.product = $scope.resetProduct;
 			$http
 					.get(
 							$$ContextURL + "/products/find/code/"
@@ -121,6 +150,7 @@ editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
 								}
 								else{
 									$scope.product = response.data;
+									$( "#productName" ).focus();
 								}
 							}, function(response) {
 								console.error("failed");
@@ -157,9 +187,11 @@ editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
 		$http({
 			method : 'POST',
 			data : $scope.cusomerOrder,
-			url : $$ContextURL + '/customerOrders/add'
+			url : $$ContextURL + '/customerOrders/update'
 		}).then(function(response) {
 			console.log(response);
+			history.pushState(null, '',  $$ContextURL+"/customerOrders/edit/"+response.data.etc);
+			$("#freeze-div").addClass("cus-disabled-div");
 			var outPut = `
 			
 			<div>${response.data.message}
