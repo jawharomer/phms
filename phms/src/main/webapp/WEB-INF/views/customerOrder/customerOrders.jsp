@@ -42,6 +42,7 @@
 		<table id="customerOrdersTable" class="display nowrap">
 			<thead>
 				<tr>
+					<td>#</td>
 					<td>CustomerName</td>
 					<td>Time</td>
 					<td>TotalPrice</td>
@@ -58,6 +59,7 @@
 				<c:set var="sumTotalPayment" value="${0}" />
 				<c:forEach items="${customerOrders}" var="item">
 					<tr>
+						<td>${item.id}</td>
 						<td>${item.customerName}</td>
 						<td>${item.orderTime}</td>
 						<td><fmt:formatNumber type="number" maxFractionDigits="3"
@@ -93,6 +95,7 @@
 
 			<tfoot>
 				<tr>
+					<th>#</th>
 					<th>CustomerName</th>
 					<th>Time</th>
 					<th>TotalPrice</th>
