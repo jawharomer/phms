@@ -62,7 +62,9 @@ public class ProductServiceImpl implements ProductSevice {
 		// This line will check this student is exit
 		// then it will update it
 		productDAO.findOne(product.getId());
-		if (!product.getProductUnitType().getName().equals("pack")) {
+		//pack id=2
+		if (product.getProductUnitType().getId()!=2) {
+			
 			product.setPacketSize(null);
 		}
 		return productDAO.save(product);
