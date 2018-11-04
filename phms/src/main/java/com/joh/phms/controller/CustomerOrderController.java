@@ -25,6 +25,7 @@ import com.joh.phms.domain.model.JsonResponse;
 import com.joh.phms.model.CustomerOrder;
 import com.joh.phms.model.DiscountType;
 import com.joh.phms.model.Doctor;
+import com.joh.phms.model.Product;
 import com.joh.phms.service.CustomerOrderService;
 import com.joh.phms.service.DiscountTypeService;
 import com.joh.phms.service.DoctorService;
@@ -69,6 +70,10 @@ public class CustomerOrderController {
 		model.addAttribute("jsonDoctors", objectMapper.writeValueAsString(doctors));
 
 		model.addAttribute("jsonDiscountTypes", objectMapper.writeValueAsString(discountTypes));
+
+		Iterable<Product> products = productSevice.findAll();
+		logger.info("products=" + products);
+		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
 
 		return "adminAddCustomerOrder";
 	}

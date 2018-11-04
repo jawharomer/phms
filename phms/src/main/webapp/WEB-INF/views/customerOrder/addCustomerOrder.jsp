@@ -8,6 +8,7 @@
 <script type="text/javascript">
 	var jsonDoctors = '${jsonDoctors}';
 	var jsonDiscountTypes = '${jsonDiscountTypes}';
+	var jsonProducts = '<spring:escapeBody  javaScriptEscape="true">${jsonProducts}</spring:escapeBody>';
 	var csrf = '${_csrf.token}';
 </script>
 
@@ -76,9 +77,9 @@
 
 			<tr>
 
-				<th><input class="form-control form-control-sm"
+				<th><input id="autoselect" class="form-control form-control-sm"
 					ng-model="product.code" ng-keypress="getProduct($event)"></th>
-				<th><input class="form-control form-control-sm"
+				<th><input id="productName" class="form-control form-control-sm"
 					ng-model="product.name" readonly></th>
 				<th><input class="form-control form-control-sm"
 					ng-model="product.scientificName" readonly></th>

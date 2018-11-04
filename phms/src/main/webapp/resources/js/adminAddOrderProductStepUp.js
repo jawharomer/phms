@@ -60,17 +60,19 @@ appAddCusotmerOrder
 						console.log("jsonOrderProductStepUp=",
 								jsonOrderProductStepUp);
 
-						console.log("jsonProducts=", jsonProducts);
+						
 
 						$scope.vendors = JSON.parse(jsonVendors);
 						$scope.orderProductStepUp = JSON
 								.parse(jsonOrderProductStepUp);
 
-						$scope.products = JSON.parse(jsonProducts);
+						
 						console.log("$scope.vendors=", $scope.vendors);
 						console.log("$scope.orderProductStepUp=",
 								$scope.orderProductStepUp);
 
+						console.log("jsonProducts=", jsonProducts);
+						$scope.products = JSON.parse(jsonProducts);
 						console.log("$scope.products=", $scope.products);
 
 						var productAuto = [];
@@ -136,6 +138,7 @@ appAddCusotmerOrder
 												$scope.productStepUp.product.name = response.data.name;
 												$scope.productStepUp.product.unitType = response.data.unitType;
 												$scope.productStepUp.product.packetSize = response.data.packetSize;
+												
 
 											},
 											function(response) {
