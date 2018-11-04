@@ -55,7 +55,7 @@
 
 				<tr>
 					<td class="text-left">unitType</td>
-					<td><select class="form-control" name="productUnitType[id]">
+					<td><select id="productUnit"  onchange="changeProductUnit()" class="form-control" name="productUnitType[id]">
 							<option value="">Choose</option>
 							<c:forEach items="${productUnitTypes}" var="item">
 								<c:if test="${product.productUnitType.id==item.id}">
@@ -118,6 +118,21 @@
 
 <script>
 	var csrf = '${_csrf.token}';
+	
+	function changeProductUnit() {
+		console.log("changeProductUnit->fired");
+		var unitType = $('#productUnit option:selected').text();
+		console.log("unitType=" + unitType);
+		if (unitType != "pack") {
+			$("#packetSize").val("");
+			$("#packetSize").prop('disabled', true);
+		} else {
+			$("#packetSize").prop('disabled', false);
+		}
+
+	}
+	
+	
 	function modalEditProduct(event) {
 		console.log("modalEditProduct->fired");
 		event.preventDefault();
