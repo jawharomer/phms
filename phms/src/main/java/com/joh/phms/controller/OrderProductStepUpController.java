@@ -3,8 +3,6 @@ package com.joh.phms.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,13 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.joh.phms.domain.model.JsonResponse;
 import com.joh.phms.exception.CusDataIntegrityViolationException;
 import com.joh.phms.model.OrderProductStepUp;
 import com.joh.phms.model.Product;
 import com.joh.phms.model.Vendor;
 import com.joh.phms.service.OrderProductServiceService;
-import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ProductService;
 import com.joh.phms.service.VendorService;
 import com.joh.phms.validator.OrderProductStepUpValidator;
 
@@ -45,7 +42,7 @@ public class OrderProductStepUpController {
 	private OrderProductServiceService orderProductServiceService;
 
 	@Autowired
-	private ProductSevice productSevice;
+	private ProductService productService;
 
 	@GetMapping()
 	public String getAllOrderProductStepUp(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
@@ -73,7 +70,7 @@ public class OrderProductStepUpController {
 		Iterable<Vendor> vendors = vendorService.findAll();
 		logger.info("vendors=" + vendors);
 
-		Iterable<Product> products = productSevice.findAll();
+		Iterable<Product> products = productService.findAll();
 		logger.info("products=" + products);
 
 		model.addAttribute("jsonVendors", objectMapper.writeValueAsString(vendors));
@@ -113,7 +110,7 @@ public class OrderProductStepUpController {
 
 		logger.info("vendors=" + vendors);
 
-		Iterable<Product> products = productSevice.findAll();
+		Iterable<Product> products = productService.findAll();
 		logger.info("products=" + products);
 
 		model.addAttribute("jsonVendors", objectMapper.writeValueAsString(vendors));

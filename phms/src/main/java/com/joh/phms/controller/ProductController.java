@@ -21,7 +21,7 @@ import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductCategory;
 import com.joh.phms.model.ProductUnitType;
 import com.joh.phms.service.ProductCategorySevice;
-import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ProductService;
 import com.joh.phms.service.ProductUnitTypeService;
 import com.joh.phms.service.ReportService;
 import com.joh.phms.validator.ProductValidation;
@@ -33,7 +33,7 @@ public class ProductController {
 	private static final Logger logger = Logger.getLogger(ProductController.class);
 
 	@Autowired
-	private ProductSevice productService;
+	private ProductService productService;
 
 	@Autowired
 	private ProductCategorySevice productCategorySevice;

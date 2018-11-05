@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.joh.phms.domain.model.NotificationD;
 import com.joh.phms.domain.model.ProductD;
-import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ProductService;
 import com.joh.phms.service.ReportService;
 
 @Controller()
@@ -19,7 +19,7 @@ public class StockController {
 	private static final Logger logger = Logger.getLogger(StockController.class);
 
 	@Autowired
-	private ProductSevice productSevice;
+	private ProductService productService;
 
 	@Autowired
 	private ReportService reportService;
@@ -40,7 +40,7 @@ public class StockController {
 	private String getAdminStock(Model model) {
 		logger.info("getAdminStock->fired");
 
-		List<ProductD> productDs = productSevice.findStock();
+		List<ProductD> productDs = productService.findStock();
 
 		logger.info("productDs=" + productDs);
 

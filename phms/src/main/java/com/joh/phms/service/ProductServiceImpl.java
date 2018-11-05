@@ -16,7 +16,7 @@ import com.joh.phms.exception.ItemExistsException;
 import com.joh.phms.model.Product;
 
 @Service
-public class ProductServiceImpl implements ProductSevice {
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductDAO productDAO;

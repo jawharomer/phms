@@ -29,7 +29,7 @@ import com.joh.phms.model.Product;
 import com.joh.phms.service.CustomerOrderService;
 import com.joh.phms.service.DiscountTypeService;
 import com.joh.phms.service.DoctorService;
-import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ProductService;
 import com.joh.phms.validator.CustomerOrderDValidator;
 
 @Controller
@@ -39,7 +39,7 @@ public class CustomerOrderController {
 	private static final Logger logger = Logger.getLogger(CustomerOrderController.class);
 
 	@Autowired
-	private ProductSevice productSevice;
+	private ProductService productService;
 
 	@Autowired
 	private DoctorService doctorService;
@@ -71,7 +71,7 @@ public class CustomerOrderController {
 
 		model.addAttribute("jsonDiscountTypes", objectMapper.writeValueAsString(discountTypes));
 
-		Iterable<Product> products = productSevice.findAll();
+		Iterable<Product> products = productService.findAll();
 		logger.info("products=" + products);
 		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
 
@@ -123,7 +123,7 @@ public class CustomerOrderController {
 
 		logger.info("discountTypes=" + discountTypes);
 
-		Iterable<Product> products = productSevice.findAll();
+		Iterable<Product> products = productService.findAll();
 		logger.info("products=" + products);
 		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
 

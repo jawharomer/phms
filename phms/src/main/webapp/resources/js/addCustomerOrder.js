@@ -80,6 +80,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		$scope.products = JSON.parse(jsonProducts);
 		console.log("$scope.products=", $scope.products);
 
+		// S-Product AutoCompletion
 		var productAuto = [];
 
 		angular.forEach($scope.products, function(value, key) {
@@ -104,6 +105,9 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 								$scope.$digest();
 							}
 						});
+		
+		// E-Product AutoCompletion
+		
 	};
 
 	$scope.product = {

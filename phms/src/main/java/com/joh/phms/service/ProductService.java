@@ -5,7 +5,7 @@ import java.util.List;
 import com.joh.phms.domain.model.ProductD;
 import com.joh.phms.model.Product;
 
-public interface ProductSevice {
+public interface ProductService {
 
 	Product save(Product product);
 

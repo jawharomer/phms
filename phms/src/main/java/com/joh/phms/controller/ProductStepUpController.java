@@ -19,10 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.joh.phms.domain.model.ProductStepUpD;
-import com.joh.phms.model.Product;
 import com.joh.phms.model.ProductStepUp;
 import com.joh.phms.model.Vendor;
-import com.joh.phms.service.ProductSevice;
+import com.joh.phms.service.ProductService;
 import com.joh.phms.service.ProductStepUpService;
 import com.joh.phms.service.VendorService;
 
@@ -33,7 +32,7 @@ public class ProductStepUpController {
 	private static final Logger logger = Logger.getLogger(ProductStepUpController.class);
 
 	@Autowired
-	private ProductSevice productService;
+	private ProductService productService;
 
 	@Autowired
 	private VendorService vendorService;
