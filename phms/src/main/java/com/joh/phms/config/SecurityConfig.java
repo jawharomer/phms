@@ -37,8 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/login/**", "/logout").permitAll()
 				.antMatchers("/adminRoot/**", "/admin/**", "/productStepUps/**", "/vendors/**", "/productCategories/**")
 				.hasRole("ADMIN").anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.defaultSuccessUrl("/adminRoot").and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
-				.permitAll().and().exceptionHandling().accessDeniedPage("/WEB-INF/views/accessDenied.jsp");
+				.defaultSuccessUrl("/adminRoot").and().logout().deleteCookies("JSESSIONID").logoutUrl("/logout")
+				.logoutSuccessUrl("/login").permitAll().and().rememberMe().key("@#$j232Kdf19)__")
+				.tokenValiditySeconds(86400).and().exceptionHandling()
+				.accessDeniedPage("/WEB-INF/views/accessDenied.jsp");
 	}
 
 	@Autowired

@@ -15,6 +15,15 @@
 
 <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet"></link>
 
+<style type="text/css">
+td {
+	text-align: left;
+}
+
+.center-td {
+	text-align: center;
+}
+</style>
 
 </head>
 <body>
@@ -28,7 +37,7 @@
 
 					<td>&nbsp;</td>
 
-					<td><i class="fa fa-user cus-user-icon"></i></td>
+					<td class="center-td"><i class="fa fa-user cus-user-icon"></i></td>
 
 				</tr>
 				<tr>
@@ -43,10 +52,15 @@
 						name="password" type="password"></td>
 				</tr>
 				<tr>
+					<td>Remember Me:</td>
+					<td><input type="checkbox" name="remember-me" /></td>
+				</tr>
+				<tr>
 					<td>&nbsp;</td>
-					<td id="cus-submit-td"><input id="cus-login-btn"
+					<td class="center-td" id="cus-submit-td"><input id="cus-login-btn"
 						class="btn btn-outline-success" type="submit" value="login"></td>
 				</tr>
+
 
 
 				<c:if test="${param.error!=null}">
