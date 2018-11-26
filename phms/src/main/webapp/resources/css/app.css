@@ -12,8 +12,7 @@ body {
 	color: black;
 }
 
-
-body{
+body {
 	font-size: 14px;
 }
 
@@ -48,19 +47,51 @@ a {
 	color: inherit;
 }
 
+/*
+Customize datatable
+*/
+.dataTables_filter{
+	padding:5px;
+}
+.dataTables_filter input {
+	width: 250px;
+	border-radius: 5px;
+	background: #fff;
+	border: 1px solid #ccc;
+	outline: none;
+	padding: 6px;
+}
+
+.dataTables_filter input:focus {
+	border: 1px solid #56b4ef;
+	box-shadow: 0px 0px 3px 1px #c8def0;
+}
+
+/*
+Customize datatable
+*/
+.dataTables_filter {
+	padding: 5px;
+}
+
+.dataTables_filter input {
+	width: 250px;
+	border-radius: 5px;
+	background: #fff;
+	border: 1px solid #ccc;
+	outline: none;
+	padding: 6px;
+}
+
 /*Custom Classes*/
 .cus-inline-block {
 	display: inline-block !important;
 }
 
-.cus-table-borderless th,.cus-table-borderless td{
+.cus-table-borderless th, .cus-table-borderless td {
 	border: none;
 }
 
-.display th,.display tfoot th{
+.display th, .display tfoot th {
 	font-size: 12px;
 }
-
-
-
-

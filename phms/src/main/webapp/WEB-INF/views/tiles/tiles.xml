@@ -31,7 +31,7 @@
 
 	<!-- Admin page -->
 	<definition name="adminRoot" extends="base-definition">
-		<put-attribute name="title" value="Stock" />
+		<put-attribute name="title" value="Dashboard" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -62,7 +62,7 @@
 
 	<!-- Admin Stock page -->
 	<definition name="adminStock" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Stock" />
 		<put-attribute name="adminBody"
 			value="/WEB-INF/views/admin/stock.jsp" cascade="true" />
 		<put-list-attribute name="requiredCSSFiles">
@@ -102,7 +102,7 @@
 
 	<!-- CustomerOrder page -->
 	<definition name="adminAddCustomerOrder" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Sale Point" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -135,7 +135,7 @@
 	<!-- EditCustomerOrder page -->
 	<definition name="adminEditCustomerOrder"
 		extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Edit Customer Order" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -169,7 +169,7 @@
 
 	<!-- Doctors page -->
 	<definition name="doctors" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Doctors" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -200,7 +200,7 @@
 
 	<!-- DoctorCustomerOrders page -->
 	<definition name="doctorCustomerOrders" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Doctor'Customer orders" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -242,7 +242,7 @@
 
 	<!-- AdminCustomerOrders page -->
 	<definition name="adminCustomerOrders" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Customer Orders" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -281,11 +281,54 @@
 		</put-list-attribute>
 
 	</definition>
+	
+	
+	<!-- AdminCustomerOrderProductSold page -->
+	<definition name="adminCustomerOrderProductSold" extends="adminRoot">
+		<put-attribute name="title" value="Product Sold" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/customerOrder/customerOrderProductSold.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="font-awesome" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+			<add-attribute value="jquery.dataTables" />
+			<add-attribute value="adminCustomerOrderProductSold" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<!-- S-DataTableLib -->
+			<add-attribute value="dt/dataTables.buttons.min" />
+			<add-attribute value="dt/buttons.flash.min" />
+			<add-attribute value="dt/jszip.min" />
+			<add-attribute value="dt/pdfmake.min" />
+			<add-attribute value="dt/vfs_fonts" />
+			<add-attribute value="dt/buttons.html5.min" />
+			<add-attribute value="dt/buttons.print.min" />
+			<!-- E-DataTableLib -->
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="adminCustomerOrderProductSold" />
+		</put-list-attribute>
+
+	</definition>
 
 
 	<!-- AdminProductStepUps page -->
 	<definition name="adminProductStepUps" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Expiration from Stock" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -328,7 +371,7 @@
 
 	<!-- AdminVendors page -->
 	<definition name="adminVendors" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Vendors" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -361,7 +404,7 @@
 	<!-- AdminProductCategories page -->
 	<definition name="adminProductCategories"
 		extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Product Categories" />
 		<put-attribute name="adminBody"
 			value="/WEB-INF/views/productCategory/adminProductCategories.jsp"
 			cascade="true" />
@@ -392,7 +435,7 @@
 	<!-- Add OrderProductStepUp -->
 	<definition name="adminAddOrderProductStepUp"
 		extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Order" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -425,7 +468,7 @@
 	<!-- Edit OrderProductStepUp -->
 	<definition name="adminEditOrderProductStepUp"
 		extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Edit Order" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -458,7 +501,7 @@
 
 	<!-- OrderProductStepUps -->
 	<definition name="orderProductStepUps" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Orders" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -501,7 +544,7 @@
 
 	<!-- AdminVendors page -->
 	<definition name="adminVendors" extends="adminRoot">
-		<put-attribute name="title" value="Add Customer Order" />
+		<put-attribute name="title" value="Vendors" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"

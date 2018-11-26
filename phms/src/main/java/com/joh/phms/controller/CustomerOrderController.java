@@ -193,5 +193,21 @@ public class CustomerOrderController {
 
 		return "adminCustomerOrders";
 	}
+	
+	@GetMapping(path="/sold")
+	private String getCustomerOrderProductSold(@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
+			@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date to, Model model) {
+		logger.info("getCustomerOrderProductSold->fired");
+
+		List<CustomerOrder> customerOrders = customerOrderService.findAllByOrderTimeBetween(from, to);
+
+		logger.info("customerOrders=" + customerOrders);
+
+		model.addAttribute("customerOrders", customerOrders);
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
+
+		return "adminCustomerOrderProductSold";
+	}
 
 }

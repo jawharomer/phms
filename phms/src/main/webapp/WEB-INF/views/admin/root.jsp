@@ -44,6 +44,10 @@
 						Vendors</a></li>
 				<li class="list-group-item"><a
 					href="<c:url value="/productCategories"/>"> Product Categories</a></li>
+
+				<li class="text-info list-group-item"><a
+					href="<c:url value="/customerOrders/sold"/>?from=${currentDate}&to=${tomorrow}">
+						Product Sold</a></li>
 			</sec:authorize>
 
 		</ul>

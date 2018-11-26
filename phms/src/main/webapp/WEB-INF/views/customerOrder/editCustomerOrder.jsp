@@ -16,7 +16,7 @@
 
 <div ng-app="editCustomerOrder" ng-controller="editCustomerOrder"
 	ng-init="init()" ng-form name="form">
-	<h2>Adit Sale Point</h2>
+	<h2 class="text-warning">Edit Sale Point</h2>
 
 	<button class="btn btn-lg btn-outline-success"
 		onClick="window.location.reload()">Refresh</button>

@@ -20,6 +20,9 @@ import com.joh.phms.service.AppUserDetailService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
+	@Autowired
+	private AppUserDetailService appUserDetailService;
+
 	public SecurityConfig() {
 		logger.info("SecurityConfig->fired");
 	}
@@ -28,9 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
 	}
-
-	@Autowired
-	private AppUserDetailService appUserDetailService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

@@ -70,8 +70,7 @@ editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
 		console.log("jsonDoctors=", jsonDoctors);
 		console.log("jsonDiscountTypes=", jsonDiscountTypes);
 		console.log("jsonCustomerOrderD=", jsonCustomerOrderD);
-		
-		
+	
 
 		$scope.doctors = JSON.parse(jsonDoctors);
 		
@@ -111,6 +110,9 @@ editCustomerOrder.controller('editCustomerOrder', function($scope, $http) {
 							}
 						});
 		
+		if($scope.cusomerOrder.discountAmount){
+			$scope.discountPercentage=$scope.cusomerOrder.discountAmount*100;
+		}
 		
 	};
 

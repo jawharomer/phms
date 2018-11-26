@@ -56,6 +56,7 @@
 		<thead>
 			<tr>
 				<th>Code</th>
+				<th>Name</th>
 				<th>Expiration</th>
 				<th>Payment</th>
 				<th>Quantity</th>
@@ -63,7 +64,7 @@
 				<th>Remain</th>
 				<th>Bonus</th>
 				<th>Note</th>
-				<th>Function</th>
+				<th class="cus-not-export">Function</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -72,6 +73,7 @@
 			<c:forEach items="${productStepUps}" var="item">
 				<tr>
 					<td>${item.product.code}</td>
+					<td>${item.product.name}</td>
 					<td>${item.expirationDate}</td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3"
 							value="${item.paymentAmount}" /></td>
@@ -80,10 +82,14 @@
 					<td>${item.quantity-item.soldQuantity}</td>
 					<td>${item.bonusQuantity}</td>
 					<td>${item.note}</td>
-					<td>
+
+					<td >
+						<!-- 
 						<button class="btn btn-sm btn-outline-danger"
 							ng-click="deleteProductStepUp(${item.id})">D</button>
+							-->
 					</td>
+
 				</tr>
 
 				<c:set var="sumTotalPayment"
@@ -96,6 +102,7 @@
 		<tfoot>
 			<tr>
 				<th>Code</th>
+				<th>Name</th>
 				<th>Expiration</th>
 				<th>Payment</th>
 				<th>Quantity</th>

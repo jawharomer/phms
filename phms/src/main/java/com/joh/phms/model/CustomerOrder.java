@@ -27,7 +27,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @Table(name = "CUSTOMER_ORDERS")
 public class CustomerOrder {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "I_CUSTOMER_ORDER")
