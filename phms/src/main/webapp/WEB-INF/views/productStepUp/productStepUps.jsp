@@ -5,6 +5,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script>
+	var reportTitle = 'To_<fmt:formatDate value="${to}" pattern="yyyy-MM-dd"/>';
+</script>
+
 <div ng-app="productStepUps" ng-controller="productStepUps">
 
 
@@ -83,7 +87,7 @@
 					<td>${item.bonusQuantity}</td>
 					<td>${item.note}</td>
 
-					<td >
+					<td>
 						<!-- 
 						<button class="btn btn-sm btn-outline-danger"
 							ng-click="deleteProductStepUp(${item.id})">D</button>

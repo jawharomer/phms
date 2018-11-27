@@ -25,18 +25,24 @@ $(document).ready()
 		dom : 'Bfrtip',
 		buttons : [ {
 			extend : "excel",
+			messageTop : reportTitle,
+			filename : reportTitle,
 			className : "btn btn-sm  btn-outline-info",
 			exportOptions : {
 				columns : ':not(.cus-not-export)'
 			}
 		}, {
 			extend : "csv",
+			messageTop : reportTitle,
+			filename : reportTitle,
 			className : "btn btn-sm btn-outline-info",
 			exportOptions : {
 				columns : ':not(.cus-not-export)'
 			}
 		}, {
 			extend : "pdf",
+			messageTop : reportTitle,
+			filename : reportTitle,
 			className : "btn btn-sm btn-outline-info",
 			exportOptions : {
 				columns : ':not(.cus-not-export)'

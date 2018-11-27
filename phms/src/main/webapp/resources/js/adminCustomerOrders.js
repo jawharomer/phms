@@ -18,31 +18,40 @@ $(document).ready()
 										'<input class="form-control fomt-control-sm cus-inline" type="text" />');
 					});
 
-	var table = $('#customerOrdersTable').DataTable({
-		sScrollX : "98%",
-		paginate : false,
-		dom : 'Bfrtip',
-		buttons : [ {
-			extend : "excel",
-			className : "btn btn-sm  btn-outline-info",
-			exportOptions : {
-				columns : ':not(.cus-not-export)'
-			}
-		}, {
-			extend : "csv",
-			className : "btn btn-sm btn-outline-info",
-			exportOptions : {
-				columns : ':not(.cus-not-export)'
-			}
-		}, {
-			extend : "pdf",
-			className : "btn btn-sm btn-outline-info",
-			exportOptions : {
-				columns : ':not(.cus-not-export)'
-			}
-		} ],
-		bInfo : false,
-	});
+	var table = $('#customerOrdersTable')
+			.DataTable(
+					{
+						sScrollX : "98%",
+						paginate : false,
+						dom : 'Bfrtip',
+						buttons : [
+								{
+									extend : "excel",
+									messageTop :reportTitle,
+									filename :reportTitle,
+									className : "btn btn-sm  btn-outline-info",
+									exportOptions : {
+										columns : ':not(.cus-not-export)'
+									}
+								}, {
+									extend : "csv",
+									messageTop :reportTitle,
+									filename :reportTitle,
+									className : "btn btn-sm btn-outline-info",
+									exportOptions : {
+										columns : ':not(.cus-not-export)'
+									}
+								}, {
+									extend : "pdf",
+									messageTop :reportTitle,
+									filename :reportTitle,
+									className : "btn btn-sm btn-outline-info",
+									exportOptions : {
+										columns : ':not(.cus-not-export)'
+									}
+								} ],
+						bInfo : false,
+					});
 
 	// Apply the search
 	table.columns().every(function() {

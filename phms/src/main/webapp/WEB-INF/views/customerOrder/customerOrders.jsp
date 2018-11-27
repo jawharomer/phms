@@ -5,6 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<script>
+	var reportTitle = '<fmt:formatDate value="${from}" pattern="yyyy-MM-dd"/>_To_<fmt:formatDate value="${to}" pattern="yyyy-MM-dd"/>';
+</script>
 <div ng-app="customerOrders" ng-controller="customerOrders">
 
 	<h4>CustomerOrders</h4>
@@ -39,7 +42,7 @@
 	<hr>
 
 	<div style="overflow: auto">
-		<table id="customerOrdersTable" class="display nowrap">
+		<table id="customerOrdersTable" class="display">
 			<thead>
 				<tr>
 					<td>#</td>
@@ -47,6 +50,7 @@
 					<td>Time</td>
 					<td>TotalPrice</td>
 					<td>TotalPayment</td>
+					<td>Products</td>
 					<td>Discount</td>
 					<td>Doctor</td>
 					<td>DiscountType</td>
@@ -75,6 +79,16 @@
 								<c:set var="sumTotalPayment"
 									value="${sumTotalPayment+(item.totalPrice-item.totalPrice*item.discountAmount)}" />
 							</c:if></td>
+
+						<td>
+							<div style="max-width: 140px;">
+								<c:forEach items="${item.customerOrderDetails}"
+									var="orderDetail">
+						${orderDetail.productName} ,
+							</c:forEach>
+							</div>
+						</td>
+
 						<td>${item.discountAmount}</td>
 						<td>${item.doctor.fullName}</td>
 						<td>${item.discountType.discountType}</td>
@@ -100,6 +114,7 @@
 					<th>Time</th>
 					<th>TotalPrice</th>
 					<th>TotalPayment</th>
+					<th>Products</th>
 					<th>Discount</th>
 					<th>Doctor</th>
 					<th>DiscountType</th>

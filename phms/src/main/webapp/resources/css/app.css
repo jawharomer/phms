@@ -50,9 +50,17 @@ a {
 /*
 Customize datatable
 */
-.dataTables_filter{
-	padding:5px;
+.cus-note-td {
+	max-width: 40px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
+
+.dataTables_filter {
+	padding: 5px;
+}
+
 .dataTables_filter input {
 	width: 250px;
 	border-radius: 5px;
