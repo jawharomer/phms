@@ -140,4 +140,16 @@ public class OrderProductStepUpController {
 		return "success";
 	}
 
+	@GetMapping(path = "/product/{code}")
+	private String findAllByProductCode(@PathVariable String code, Model model) {
+		logger.info("findAllByProductCode->fired");
+		logger.info("code=" + code);
+		List<OrderProductStepUp> orderProductStepUps = orderProductServiceService
+				.findAllByProductStepUpsProductCode(code);
+
+		model.addAttribute("orderProductStepUps", orderProductStepUps);
+
+		return "productOrderProductStepUps";
+	}
+
 }

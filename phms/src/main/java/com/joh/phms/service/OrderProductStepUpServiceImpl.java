@@ -72,6 +72,11 @@ public class OrderProductStepUpServiceImpl implements OrderProductServiceService
 	public void delete(int id) {
 		orderProductStepUpDAO.delete(id);
 	}
+	
+	@Override
+	public List<OrderProductStepUp> findAllByProductStepUpsProductCode(String code) {
+		return orderProductStepUpDAO.findAllByProductStepUpsProductCode(code);
+	}
 
 	// Helper
 	private boolean isPresent(final List<ProductStepUp> list, final int id) {

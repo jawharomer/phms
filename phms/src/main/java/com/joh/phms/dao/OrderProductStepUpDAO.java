@@ -11,4 +11,7 @@ import com.joh.phms.model.OrderProductStepUp;
 public interface OrderProductStepUpDAO extends CrudRepository<OrderProductStepUp, Integer> {
 
 	List<OrderProductStepUp> findAllByOrderTimeBetween(Date from, Date to);
+
+	List<OrderProductStepUp> findAllByProductStepUpsProductCode(String code);
+	
 }

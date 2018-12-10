@@ -57,6 +57,10 @@
 								onclick="editProduct(this)">
 								<i class="fa fa-edit"></i>
 							</button>
+							<a class="btn btn-sm btn-info" target="_blank"
+								href="<c:url value="/orderProductStepUps/product/" />${productD.code}">
+								<i class="fa fa-arrow-up"></i>
+							</a>
 						</div>
 					</td>
 				</tr>

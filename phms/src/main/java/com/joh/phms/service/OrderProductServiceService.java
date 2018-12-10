@@ -17,4 +17,6 @@ public interface OrderProductServiceService {
 
 	void delete(int id);
 
+	List<OrderProductStepUp> findAllByProductStepUpsProductCode(String code);
+
 }

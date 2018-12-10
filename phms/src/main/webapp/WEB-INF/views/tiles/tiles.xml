@@ -200,7 +200,8 @@
 
 	<!-- DoctorCustomerOrders page -->
 	<definition name="doctorCustomerOrders" extends="adminRoot">
-		<put-attribute name="title" value="Doctor'Customer orders" />
+		<put-attribute name="title"
+			value="Doctor'Customer orders" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -281,10 +282,11 @@
 		</put-list-attribute>
 
 	</definition>
-	
-	
+
+
 	<!-- AdminCustomerOrderProductSold page -->
-	<definition name="adminCustomerOrderProductSold" extends="adminRoot">
+	<definition name="adminCustomerOrderProductSold"
+		extends="adminRoot">
 		<put-attribute name="title" value="Product Sold" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
@@ -328,7 +330,8 @@
 
 	<!-- AdminProductStepUps page -->
 	<definition name="adminProductStepUps" extends="adminRoot">
-		<put-attribute name="title" value="Expiration from Stock" />
+		<put-attribute name="title"
+			value="Expiration from Stock" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
@@ -537,6 +540,49 @@
 			<add-attribute value="angular" />
 			<add-attribute value="app" />
 			<add-attribute value="orderProductStepUps" />
+		</put-list-attribute>
+
+	</definition>
+
+
+	<!-- ProductOrderProductStepUps -->
+	<definition name="productOrderProductStepUps" extends="adminRoot">
+		<put-attribute name="title" value="Product Orders" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/orderProductStepUp/productOrderProductStepUps.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="font-awesome" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="jquery.dataTables" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+			<add-attribute value="productOrderProductStepUps" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<!-- S-DataTableLib -->
+			<add-attribute value="dt/dataTables.buttons.min" />
+			<add-attribute value="dt/buttons.flash.min" />
+			<add-attribute value="dt/jszip.min" />
+			<add-attribute value="dt/pdfmake.min" />
+			<add-attribute value="dt/vfs_fonts" />
+			<add-attribute value="dt/buttons.html5.min" />
+			<add-attribute value="dt/buttons.print.min" />
+			<!-- E-DataTableLib -->
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="productOrderProductStepUps" />
 		</put-list-attribute>
 
 	</definition>
