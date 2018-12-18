@@ -141,7 +141,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 								console.log("response=",response);
 							
 								if(response.data.stockLevel==0){
-									$("#modal-body").html("Out of the stock");
+									$("#modal-body").html("Out of the stock or you may have expiration");
 									$("#modal").modal("show");
 								}
 								else{

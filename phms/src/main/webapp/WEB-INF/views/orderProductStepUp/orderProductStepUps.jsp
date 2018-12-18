@@ -84,20 +84,20 @@
 						value="${sumTotalPayment+item.totalPaymentAmount}" />
 
 				</c:forEach>
+				<tr class="text-info">
+					<td>Total</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td><fmt:formatNumber type="number" maxFractionDigits="3"
+							value="${sumTotalPayment}" /></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
 
 			</tbody>
 		</table>
 
-	</div>
-
-	<hr>
-
-	<div>
-		<h6 class="text-info">
-			<span>Summation Of TotalPayment=</span> <span> <fmt:formatNumber
-					type="number" maxFractionDigits="3" value="${sumTotalPayment}" />
-			</span>
-		</h6>
 	</div>
 
 </div>

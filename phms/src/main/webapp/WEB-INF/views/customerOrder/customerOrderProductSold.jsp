@@ -49,6 +49,7 @@
 					<td>#CO</td>
 					<td>ProductName</td>
 					<td>Product Code</td>
+					<td>QYT</td>
 					<td>Payment</td>
 					<td>Cost</td>
 					<td>Profit</td>
@@ -64,6 +65,7 @@
 							<td>${order.id}</td>
 							<td>${orderDetail.productName}</td>
 							<td>${orderDetail.productCode}</td>
+							<td>${orderDetail.quantity}</td>
 							<td><c:set var="payment"
 									value="${orderDetail.quantity*orderDetail.price}" /> <c:if
 									test="${order.discountAmount!=null}">
@@ -93,6 +95,7 @@
 					<td>Total</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 					<td><fmt:formatNumber maxFractionDigits="3">
 								${totalPayment}
 								</fmt:formatNumber></td>
@@ -109,6 +112,7 @@
 					<th>#CO</th>
 					<th>ProductName</th>
 					<th>Product Code</th>
+					<th>QYT</th>
 					<th>Payment</th>
 					<th>Cost</th>
 					<th>Profit</th>
