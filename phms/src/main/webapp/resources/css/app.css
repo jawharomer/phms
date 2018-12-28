@@ -92,6 +92,11 @@ Customize datatable
 }
 
 /*Custom Classes*/
+.cus-freeze {
+	pointer-events: none;
+	opacity: 0.4;
+}
+
 .cus-inline-block {
 	display: inline-block !important;
 }

@@ -49,6 +49,7 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
+					<td>PS#</td>
 					<td>P-Name</td>
 					<td>P-Code</td>
 					<td>P-Unit Type</td>
@@ -60,6 +61,7 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr ng-form="newProductStepUpForm">
+					<td>&nbsp;</td>
 					<td><input id="autoselect" ng-change="selectedProduct=null"
 						ng-model="productStepUp.product.name"
 						class="form-control form-control-sm"></td>
@@ -96,6 +98,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in orderProductStepUp.productStepUps">
+					<td>{{item.id}}</td>
 					<td>{{item.product.name}}</td>
 					<td>{{item.product.code}}</td>
 					<td>&nbsp;</td>

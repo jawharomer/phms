@@ -31,7 +31,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 	
 	
 	$scope.cusomerOrder = {
-			customerName : "",
+			customerName : "Return",
 			doctorId : "",
 			discountId:"",
 			discountAmount:"",
@@ -111,6 +111,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 	};
 
 	$scope.product = {
+		productStepUpId:"",
 		productId : "",
 		code : "",
 		name : "",
@@ -134,8 +135,8 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 			console.log($scope.product.code);
 			$http
 					.get(
-							$$ContextURL + "/products/find/code/"
-									+ $scope.product.code).then(
+							$$ContextURL + "/products/find/productStepUpId/"
+									+ $scope.product.productStepUpId).then(
 							function(response) {
 								console.log("success");
 								console.log("response=",response);
@@ -164,6 +165,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		console.log("addCustomerOrderDetail->fired");
 
 		var customerOrderDetail = {
+			productStepUpId : $scope.product.productStepUpId,
 			productId : $scope.product.productId,
 			productCode : $scope.product.code,
 			productName : $scope.product.name,
@@ -184,7 +186,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		$http({
 			method : 'POST',
 			data : $scope.cusomerOrder,
-			url : $$ContextURL + '/customerOrders/add'
+			url : $$ContextURL + '/customerOrders/return'
 		}).then(function(response) {
 			console.log(response);
 			var outPut = `
@@ -194,6 +196,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 			<div>
 			<a class="btn btn-info" target="_blank" href="${$$ContextURL}/customerOrders/${response.data.etc}">View</a></div>
 			`;
+			
 			$("#freeze").addClass("cus-freeze");
 			console.log("outPut=",outPut);
 			

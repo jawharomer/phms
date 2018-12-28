@@ -78,6 +78,31 @@ public class CustomerOrderController {
 		return "adminAddCustomerOrder";
 	}
 
+	@GetMapping(path = "/return")
+	private String getReturningCustomerOrder(Model model) throws JsonProcessingException {
+
+		logger.info("getReturningCustomerOrder->fired");
+
+		Iterable<Doctor> doctors = doctorService.findAll();
+
+		logger.info("doctors=" + doctors);
+
+		Iterable<DiscountType> discountTypes = discountTypeService.findAll();
+
+		logger.info("discountTypes=" + discountTypes);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		model.addAttribute("jsonDoctors", objectMapper.writeValueAsString(doctors));
+
+		model.addAttribute("jsonDiscountTypes", objectMapper.writeValueAsString(discountTypes));
+
+		Iterable<Product> products = productService.findAll();
+		logger.info("products=" + products);
+		model.addAttribute("jsonProducts", objectMapper.writeValueAsString(products));
+
+		return "adminReturnCustomerOrder";
+	}
+
 	@PostMapping(path = "/add")
 	@ResponseBody
 	private JsonResponse addCustomerOrder(@RequestBody @Validated() CustomerOrderD customerOrderD) {
@@ -89,6 +114,26 @@ public class CustomerOrderController {
 		CustomerOrder customerOrder = objectTranslator.customerOrderDTocustomerOrder(customerOrderD);
 
 		customerOrder = customerOrderService.save(customerOrder);
+
+		JsonResponse jsonResponse = new JsonResponse();
+		jsonResponse.setStatus(200);
+		jsonResponse.setMessage("success");
+		jsonResponse.setEtc("" + customerOrder.getId());
+
+		return jsonResponse;
+	}
+
+	@PostMapping(path = "/return")
+	@ResponseBody
+	private JsonResponse retrunCustomerOrder(@RequestBody @Validated() CustomerOrderD customerOrderD) {
+
+		logger.info("retrunCustomerOrder->fired");
+
+		logger.info("CustomerOrderD=" + customerOrderD);
+
+		CustomerOrder customerOrder = objectTranslator.customerOrderDTocustomerOrder(customerOrderD);
+
+		customerOrder = customerOrderService.saveReturn(customerOrder);
 
 		JsonResponse jsonResponse = new JsonResponse();
 		jsonResponse.setStatus(200);
@@ -193,8 +238,8 @@ public class CustomerOrderController {
 
 		return "adminCustomerOrders";
 	}
-	
-	@GetMapping(path="/sold")
+
+	@GetMapping(path = "/sold")
 	private String getCustomerOrderProductSold(@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date from,
 			@RequestParam() @DateTimeFormat(pattern = "yyyy-MM-dd") Date to, Model model) {
 		logger.info("getCustomerOrderProductSold->fired");

@@ -48,6 +48,8 @@
 				<li class="text-info list-group-item"><a
 					href="<c:url value="/customerOrders/sold"/>?from=${currentDate}&to=${tomorrow}">
 						Product Sold</a></li>
+				<li class="list-group-item"><a
+					href="<c:url value="/customerOrders/return"/>">Return Product</a></li>
 			</sec:authorize>
 
 		</ul>

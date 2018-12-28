@@ -131,6 +131,37 @@
 	</definition>
 
 
+	<!-- ReturnCustomerOrder page -->
+	<definition name="adminReturnCustomerOrder" extends="adminRoot">
+		<put-attribute name="title" value="Return Product" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/root.jsp" />
+		<put-attribute name="adminBody"
+			value="/WEB-INF/views/customerOrder/returnCustomerOrder.jsp"
+			cascade="true" />
+		<put-list-attribute name="requiredCSSFiles">
+			<add-attribute value="bootstrap" />
+			<add-attribute value="font-awesome" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery-ui.theme" />
+			<add-attribute value="app" />
+			<add-attribute value="admin" />
+		</put-list-attribute>
+
+		<put-list-attribute name="requiredJSFiles">
+			<add-attribute value="jquery" />
+			<add-attribute value="jquery-ui" />
+			<add-attribute value="jquery.serializeObject" />
+			<add-attribute value="jquery.serializejson" />
+			<add-attribute value="bootstrap" />
+			<add-attribute value="jquery.dataTables" />
+			<add-attribute value="angular" />
+			<add-attribute value="app" />
+			<add-attribute value="returnCustomerOrder" />
+		</put-list-attribute>
+	</definition>
+
+
 
 	<!-- EditCustomerOrder page -->
 	<definition name="adminEditCustomerOrder"
@@ -546,7 +577,8 @@
 
 
 	<!-- ProductOrderProductStepUps -->
-	<definition name="productOrderProductStepUps" extends="adminRoot">
+	<definition name="productOrderProductStepUps"
+		extends="adminRoot">
 		<put-attribute name="title" value="Product Orders" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />

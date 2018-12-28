@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity(name = "CUSTOMER_ORDER_DETAILS")
 public class CustomerOrderDetail {
@@ -45,6 +46,9 @@ public class CustomerOrderDetail {
 
 	@Column(name = "PRICE")
 	private Double price;
+
+	@Transient()
+	private Integer productStepUpId;
 
 	public int getId() {
 		return id;
@@ -110,10 +114,18 @@ public class CustomerOrderDetail {
 		this.productStepUpIds = productStepUpIds;
 	}
 
+	public Integer getProductStepUpId() {
+		return productStepUpId;
+	}
+
+	public void setProductStepUpId(Integer productStepUpId) {
+		this.productStepUpId = productStepUpId;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerOrderDetail [id=" + id + ", productName=" + productName + ", productCode=" + productCode
-				+ ", quantity=" + quantity + ", price=" + price + "]";
+				+ ", quantity=" + quantity + ", price=" + price + ", productStepUpId=" + productStepUpId + "]";
 	}
 
 }

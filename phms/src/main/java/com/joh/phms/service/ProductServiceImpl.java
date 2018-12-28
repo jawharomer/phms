@@ -80,4 +80,15 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 	}
+
+	@Override
+	public ProductD findProductByProductStepUpId(int productStepUpId) {
+		try {
+			return productDAO.findProductByProductStepUpId(productStepUpId);
+		} catch (EmptyResultDataAccessException e) {
+			throw new EntityNotFoundException();
+		}
+
+	}
+
 }

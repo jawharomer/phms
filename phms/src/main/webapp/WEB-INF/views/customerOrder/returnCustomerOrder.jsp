@@ -15,7 +15,7 @@
 
 <div ng-app="addCustomerOrder" ng-controller="addCustomerOrder"
 	ng-init="init()" ng-form name="form">
-	<h2>Sale Point</h2>
+	<h2>Return Product</h2>
 
 	<button class="btn btn-lg btn-outline-success"
 		onClick="window.location.reload()">Refresh</button>
@@ -24,40 +24,9 @@
 			<tbody>
 				<tr>
 					<td>Customer Name</td>
-					<td><input class="form-control form-control-sm"
+					<td><input readonly="readonly"
+						class="form-control form-control-sm"
 						ng-model="cusomerOrder.customerName"></td>
-				</tr>
-
-				<tr>
-					<td>Discount Type</td>
-					<td>
-						<div class="form-row">
-							<div class="col">
-								<select class="form-control form-control-sm"
-									ng-model="cusomerOrder.discountId"
-									ng-options="item.id as item.discountType for item in discountTypes">
-									<option value=""></option>
-								</select>
-
-							</div>
-							<div class="col">
-								% <input ng-disabled="!cusomerOrder.discountId"
-									name="discountPercentage" type="number" max="100" min="0"
-									ng-model="discountPercentage"
-									class="w-50 cus-inline-block form-control form-control-sm">
-							</div>
-						</div>
-					</td>
-				</tr>
-
-
-				<tr>
-					<td>Doctor</td>
-					<td><select class="form-control form-control-sm"
-						ng-model="cusomerOrder.doctorId"
-						ng-options="item.id as item.fullName for item in doctors">
-							<option value=""></option>
-					</select></td>
 				</tr>
 			</tbody>
 		</table>
@@ -65,6 +34,7 @@
 		<table class="table table-bordered table-sm">
 			<tbody>
 				<tr>
+					<th>ProductStepUpId</th>
 					<th>Code</th>
 					<th>Name</th>
 					<th>S-Name</th>
@@ -77,9 +47,11 @@
 
 				<tr>
 
-					<th><input id="autoselect"
-						class="form-control form-control-sm" ng-model="product.code"
+					<th><input class="form-control form-control-sm"
+						ng-model="product.productStepUpId"
 						ng-keypress="getProduct($event)"></th>
+					<th><input class="form-control form-control-sm"
+						ng-model="product.code" ng-keypress="getProduct($event)"></th>
 					<th><input id="productName"
 						class="form-control form-control-sm" ng-model="product.name"
 						readonly></th>
@@ -91,9 +63,8 @@
 					<th><input type="number" class="form-control form-control-sm"
 						ng-model="product.quantity" placeholder={{product.stockLevel}}></th>
 
-					<th><input class="form-control form-control-sm"
-						class="form-control form-control-sm" ng-model="product.price"
-						readonly></th>
+					<th><input class="form-control form-control-sm" type="number"
+						class="form-control form-control-sm" ng-model="product.price"></th>
 					<th><input class="form-control form-control-sm"
 						ng-model="product.unitType" readonly></th>
 					<th>
@@ -107,6 +78,7 @@
 			</tbody>
 			<tbody>
 				<tr ng-repeat="item in cusomerOrder.customerOrderDetailDs">
+					<td>{{item.productStepUpId}}</td>
 					<td>{{item.productCode}}</td>
 					<td>{{item.productName}}</td>
 					<td>{{item.scientificName}}</td>

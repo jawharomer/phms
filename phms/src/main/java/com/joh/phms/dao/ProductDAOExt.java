@@ -10,4 +10,7 @@ public interface ProductDAOExt {
 
 
 	ProductD findProductByCode(String productCode);
+
+
+	ProductD findProductByProductStepUpId(int productStepUpId);
 }

@@ -177,4 +177,18 @@ public class ProductController {
 		return productD;
 	}
 
+	@GetMapping(path = "/find/productStepUpId/{productStepUpId}")
+	@ResponseBody
+	private ProductD getProductByProductStepUpId(@PathVariable int productStepUpId) {
+		logger.info("getProductByProductStepUpId->fired");
+
+		logger.info("productStepUpId=" + productStepUpId);
+
+		ProductD productD = productService.findProductByProductStepUpId(productStepUpId);
+
+		logger.info("productD=" + productD);
+
+		return productD;
+	}
+
 }

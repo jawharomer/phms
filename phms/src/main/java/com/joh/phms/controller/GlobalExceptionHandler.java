@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
 			logger.info("cex=" + cex);
 			model.addAttribute("message", cex.getCustomMessage());
 		}
+		ex.printStackTrace();
 
 		return "dataIntigrityException";
 	}

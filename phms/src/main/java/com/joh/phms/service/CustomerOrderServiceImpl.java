@@ -96,6 +96,45 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	}
 
 	@Override
+	@Transactional
+	public CustomerOrder saveReturn(CustomerOrder customerOrder) {
+		double totalPrice = 0;
+		for (CustomerOrderDetail customerOrderDetail : customerOrder.getCustomerOrderDetails()) {
+
+			Product product = null;
+
+			totalPrice += customerOrderDetail.getQuantity() * customerOrderDetail.getPrice();
+			logger.info("productD.getPrice()=" + customerOrderDetail.getPrice());
+
+			ProductStepUp itemForStockDown = productStepUpDAO.findOne(customerOrderDetail.getProductStepUpId());
+
+			System.err.println("customerOrderDetail.getQuantity()=" + customerOrderDetail.getQuantity());
+			System.err.println("itemForStockDown.getQuantity()=" + itemForStockDown.getQuantity());
+
+			if (itemForStockDown == null || customerOrderDetail.getQuantity() > itemForStockDown.getQuantity()) {
+				String message = String.format("This product (%s) is not avaiable enough in the stock",
+						customerOrderDetail.getProductCode());
+				throw new ItemNotAvaiableException(message);
+			}
+
+			if (itemForStockDown != null) {
+				product = itemForStockDown.getProduct();
+				customerOrderDetail.setProduct(product);
+			}
+			customerOrderDetail.getProductStepUpIds().add(itemForStockDown);
+
+			for (int i = 0; i < customerOrderDetail.getQuantity(); i++) {
+				productStepUpDAO.stockDown(itemForStockDown.getId());
+			}
+
+		}
+
+		customerOrder.setTotalPrice(totalPrice);
+
+		return customerOrderDAO.save(customerOrder);
+	}
+
+	@Override
 	public CustomerOrder findOne(int id) {
 		CustomerOrder customerOrder = customerOrderDAO.findOne(id);
 		if (customerOrder == null)

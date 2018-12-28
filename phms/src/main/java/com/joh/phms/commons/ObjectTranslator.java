@@ -98,6 +98,8 @@ public class ObjectTranslator {
 			customerOrderDetail.setProductName(customerOrderDetailD.getProductName());
 			customerOrderDetail.setQuantity(customerOrderDetailD.getQuantity());
 			customerOrderDetail.setPrice(customerOrderDetailD.getPrice());
+			if (customerOrderDetailD.getProductStepUpId() != null)
+				customerOrderDetail.setProductStepUpId(customerOrderDetailD.getProductStepUpId());
 
 			customerOrderDetails.add(customerOrderDetail);
 

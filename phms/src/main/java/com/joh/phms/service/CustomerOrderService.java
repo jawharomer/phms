@@ -17,4 +17,6 @@ public interface CustomerOrderService {
 
 	void delete(int id);
 
+	CustomerOrder saveReturn(CustomerOrder customerOrder);
+
 }

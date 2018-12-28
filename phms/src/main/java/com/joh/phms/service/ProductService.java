@@ -21,4 +21,6 @@ public interface ProductService {
 
 	Iterable<Product> findAll();
 
+	ProductD findProductByProductStepUpId(int productStepUpId);
+
 }

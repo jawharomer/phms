@@ -59,6 +59,7 @@
 	<table id="productStepUpsTable" class="display">
 		<thead>
 			<tr>
+				<th>PS#</th>
 				<th>Code</th>
 				<th>Name</th>
 				<th>Expiration</th>
@@ -76,6 +77,7 @@
 
 			<c:forEach items="${productStepUps}" var="item">
 				<tr>
+					<td>${item.id}</td>
 					<td>${item.product.code}</td>
 					<td>${item.product.name}</td>
 					<td>${item.expirationDate}</td>
