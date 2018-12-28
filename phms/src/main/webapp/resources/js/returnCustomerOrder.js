@@ -176,7 +176,7 @@ appAddCusotmerOrder.controller('addCustomerOrder', function($scope, $http) {
 		};
 		$scope.cusomerOrder.customerOrderDetailDs.push(customerOrderDetail);
 		console.log($scope.cusomerOrder.customerOrderDetailDs);
-		$scope.product = $scope.resetProduct;
+		$scope.product =angular.copy($scope.resetProduct);
 	}
 
 	$scope.addCustomerOrder = function() {
