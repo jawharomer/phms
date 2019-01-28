@@ -8,7 +8,7 @@
 
 	<sf:form id="edit-vendor-form" method="POST" commandName="vendor"
 		onsubmit="addVendor(event)">
-		
+
 		<sf:input path="id" type="hidden" />
 
 		<table>
@@ -65,6 +65,9 @@
 		$.ajax({
 			type : "POST",
 			url : "<c:url value="/vendors/update"/>",
+			headers : {
+				'X-CSRF-TOKEN' : csrf
+			},
 			data : JSON.stringify(data),
 			contentType : "application/json",
 			success : function(response) {

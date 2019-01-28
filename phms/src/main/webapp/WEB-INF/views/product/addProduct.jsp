@@ -23,29 +23,6 @@
 				</tr>
 
 				<tr>
-					<td class="text-left">Country</td>
-					<td><sf:select class="form-control" path="country">
-							<c:forEach items="${countries}" var="item">
-								<option value="${item.code}">${item.name}</option>
-							</c:forEach>
-
-						</sf:select></td>
-					<td><sf:errors class="text-wrap" path="country" /></td>
-				</tr>
-
-				<tr>
-					<td class="text-left">Scientific Name</td>
-					<td><sf:input class="form-control" path="scientificName" /></td>
-					<td><sf:errors class="text-wrap" path="scientificName" /></td>
-				</tr>
-
-				<tr>
-					<td class="text-left">Profit</td>
-					<td><sf:input class="form-control" path="profit" /></td>
-					<td><sf:errors path="profit" /></td>
-				</tr>
-
-				<tr>
 					<td class="text-left">unitType</td>
 					<td><select id="productUnit" onchange="changeProductUnit()"
 						class="form-control" name="productUnitType[id]"
@@ -58,8 +35,6 @@
 
 					<td><sf:errors path="productUnitType" /></td>
 				</tr>
-
-
 				<tr>
 					<td class="text-left">Packet Size</td>
 					<td><sf:input disabled="true" type="number"

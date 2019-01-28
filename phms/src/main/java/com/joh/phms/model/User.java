@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "USERS")
 public class User {
@@ -31,6 +34,7 @@ public class User {
 
 	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_ROLE", inverseJoinColumns = @JoinColumn(name = "I_ROLE"), joinColumns = @JoinColumn(name = "I_USER"))
+	@CollectionId(columns = @Column(name = "I_USER_ROLE"), type = @Type(type = "integer"), generator = "identity")
 	private List<Role> roles;
 
 	public int getId() {

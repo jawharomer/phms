@@ -28,7 +28,7 @@ public class CustomerOrderDetail {
 	private CustomerOrder customerOrder;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "COD_PRODUCT_STEPUPS", joinColumns = @JoinColumn(name = "I_CUSTOMER_ORDER_DETAIL"), inverseJoinColumns = @JoinColumn(name = "I_PRODUCT_STEPUP"))
+	@JoinTable(name = "PHMS_COD_PRODUCT_STEPUPS", joinColumns = @JoinColumn(name = "I_CUSTOMER_ORDER_DETAIL"), inverseJoinColumns = @JoinColumn(name = "I_PRODUCT_STEPUP"))
 	public List<ProductStepUp> productStepUpIds = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)

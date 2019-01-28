@@ -22,7 +22,7 @@ import com.joh.phms.validator.VendorValidator.ValidationForEdit;
 @RequestMapping(path = "/vendors")
 public class VendorController {
 
-	private static final Logger logger = Logger.getLogger(StockController.class);
+	private static final Logger logger = Logger.getLogger(VendorController.class);
 
 	@Autowired
 	private VendorService vendorService;

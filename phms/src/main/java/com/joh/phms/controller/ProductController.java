@@ -52,13 +52,10 @@ public class ProductController {
 
 		logger.info("productCategories=" + productCategories);
 
-		List<Country> countries = reportService.findAllCountry();
-
 		Iterable<ProductUnitType> productUnitTypes = productUnitTypeService.findAll();
 		logger.info("productUnitTypes=" + productUnitTypes);
 
 		model.addAttribute("productCategories", productCategories);
-		model.addAttribute("countries", countries);
 		model.addAttribute("productUnitTypes", productUnitTypes);
 
 		model.addAttribute("product", new Product());

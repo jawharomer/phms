@@ -132,7 +132,8 @@
 
 
 	<!-- ReturnCustomerOrder page -->
-	<definition name="adminReturnCustomerOrder" extends="adminRoot">
+	<definition name="adminReturnCustomerOrder"
+		extends="adminRoot">
 		<put-attribute name="title" value="Return Product" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
@@ -620,13 +621,16 @@
 	</definition>
 
 
-	<!-- AdminVendors page -->
-	<definition name="adminVendors" extends="adminRoot">
-		<put-attribute name="title" value="Vendors" />
+
+
+
+	<!-- Doctors page -->
+	<definition name="doctors" extends="adminRoot">
+		<put-attribute name="title" value="Doctors" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/root.jsp" />
 		<put-attribute name="adminBody"
-			value="/WEB-INF/views/vendor/adminVendors.jsp" cascade="true" />
+			value="/WEB-INF/views/doctor/adminDoctors.jsp" cascade="true" />
 		<put-list-attribute name="requiredCSSFiles">
 			<add-attribute value="bootstrap" />
 			<add-attribute value="font-awesome" />
@@ -634,7 +638,7 @@
 			<add-attribute value="jquery-ui.theme" />
 			<add-attribute value="app" />
 			<add-attribute value="admin" />
-			<add-attribute value="adminVendors" />
+			<add-attribute value="adminDoctors" />
 		</put-list-attribute>
 
 		<put-list-attribute name="requiredJSFiles">
@@ -645,7 +649,7 @@
 			<add-attribute value="bootstrap" />
 			<add-attribute value="angular" />
 			<add-attribute value="app" />
-			<add-attribute value="adminVendors" />
+			<add-attribute value="adminDoctors" />
 		</put-list-attribute>
 
 	</definition>
